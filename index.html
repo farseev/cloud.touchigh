@@ -758,20 +758,10 @@ function renderLogin(){
     <input class="ob-in" id="lg-pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
     <div id="lg-err" style="color:#FF7A82;font-size:12.5px;margin-top:10px;min-height:15px"></div>
     <button class="cta" style="width:100%;justify-content:center;margin-top:4px" onclick="doLogin()">${L({en:'Sign in',zh:'登录'})} <span style="width:16px;height:16px;display:inline-block">${IC.arrow}</span></button>
-    <div style="margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px">
-      <div style="font-size:10.5px;color:#71747e;letter-spacing:.09em;text-transform:uppercase;margin-bottom:9px">${L({en:'Demo accounts — tap to sign in',zh:'演示账户——点按即可登录'})}</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        ${Object.entries(USERS).map(([em,u])=>`<button onclick="quickLogin('${em}')" style="display:flex;align-items:center;gap:11px;padding:9px 12px;border:1px solid rgba(255,255,255,.14);border-radius:12px;background:rgba(255,255,255,.04);text-align:left;transition:.13s" onmouseover="this.style.background='rgba(255,255,255,.09)'" onmouseout="this.style.background='rgba(255,255,255,.04)'">
-          <span class="avatar" style="width:34px;height:34px;background:${u.grad};font-size:12px">${u.initials}</span>
-          <span style="flex:1;min-width:0"><b style="color:#fff;font-size:13.5px;display:block">${u.name}</b><span style="color:#8b8e98;font-size:11.5px">${em}</span></span>
-          <span style="color:#71747e;width:16px;height:16px;flex:none">${IC.arrow}</span></button>`).join('')}
-      </div>
-    </div>
   </div>`;
   document.getElementById('modal-root').appendChild(ov);
   setTimeout(()=>{const e=document.getElementById('lg-email');if(e)e.focus();},60);
 }
-function quickLogin(em){document.getElementById('lg-email').value=em;document.getElementById('lg-pass').value=PASSWORD;doLogin();}
 function doLogin(){
   const em=(document.getElementById('lg-email').value||'').trim().toLowerCase();
   const pw=document.getElementById('lg-pass').value||'';
