@@ -299,6 +299,23 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 .linkbtn:hover{color:var(--ink)}
 .post-act{margin-left:auto;display:flex;align-items:center;gap:8px}
 .post.is-rejected .creative-img img{opacity:.32;filter:grayscale(.5)}
+
+/* ---- ad engine edit controls ---- */
+.ad-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#fff;border:1px solid var(--tint);border-radius:var(--r-m);padding:11px 15px;margin-bottom:14px}
+.ad-bar .abtn{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.adc-ctrl{display:flex;align-items:center;gap:9px;padding:2px 13px 12px}
+.adc-ctrl .adc-state{font-size:11px;font-weight:700;color:var(--sec)}
+.adc-ctrl .switch,.camp-sw .switch{width:36px;height:20px}
+.adc-ctrl .switch::after,.camp-sw .switch::after{width:16px;height:16px}
+.adc-ctrl .switch.on::after,.camp-sw .switch.on::after{left:18px}
+.adc.paused{opacity:.74}
+.adc.paused .adc-img img{filter:grayscale(.9);opacity:.5}
+.adc.paused .adc-state{color:var(--red)}
+.paused-tag{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#fff;background:rgba(20,21,25,.44);backdrop-filter:blur(1px)}
+.rec-act{display:flex;gap:8px;flex-wrap:wrap}
+.camp-sw{display:flex;align-items:center;gap:9px}
+.tbl tr.paused-row td{opacity:.42}
+.tbl tr.paused-row td:first-child{opacity:1}
 .approve-bar{background:#fff;border:1px solid var(--tint);border-left:3px solid var(--orange);border-radius:var(--r);padding:12px 16px;margin-bottom:14px}
 
 /* ---- chat drawer ---- */
@@ -481,7 +498,8 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 const S={lang:'zh',mode:'auto',view:'dashboard',booted:false,user:null,filterPillar:'all',filterStage:'all',socialTab:'library',
   approvals:{},edits:{},chat:[],adjustments:[],leadPillar:'P1',caregiver:false,personality:null,chatOpen:false,
   pillarTone:{},editing:null,imgSwap:{},commEnabled:false,replyTone:'professional',
-  tlEdits:{},articleEdits:{},articleApproved:{}};
+  tlEdits:{},articleEdits:{},articleApproved:{},
+  adStatus:{},campStatus:{},recActions:{}};
 let STUDIO=null;
 const USERS={
   'zhaokui@touchigh.ai':{name:'Zhao Kui',first:{en:'Zhao Kui',zh:'赵奎'},initials:'ZK',grad:'linear-gradient(135deg,#3a3f4d,#191B23)',role:{en:'CEO · HT Science (ExoStride)',zh:'HT Science（ExoStride）首席执行官'}},
@@ -888,8 +906,10 @@ const AD_RECS=[
    auto:{en:'Frequency capped at 6',zh:'频次已上限设为 6'},man:{en:'Apply cap',zh:'应用上限'}},
   {bcls:'s-fall',b:{en:'Healthy',zh:'健康'},t:{en:'Cost per purchase below benchmark',zh:'转化成本低于基准'},fig:'$41 vs $47',
    d:{en:'Blended cost-per-purchase is $41 versus the $47 category benchmark, and delivery is clean. Conversion efficiency — not audience — is the lever from here.',zh:'综合转化成本为 41 美元，低于 47 美元的品类基准，且投放健康。从这里起，杠杆在于转化效率，而非受众。'},
-   auto:{en:'No action needed',zh:'无需操作'},man:{en:'Dismiss',zh:'忽略'}}
+   auto:{en:'No action needed',zh:'无需操作'},man:{en:'Dismiss',zh:'忽略'},noApply:true}
 ];
+/* BOFU ad creatives currently in-market — the actual ads you can turn on/off */
+const AD_SEL=[{k:'P1-B-01',ch:'Amazon',spend:1400,roas:5.1,f:0},{k:'P1-B-04',ch:'Meta',spend:900,roas:4.1,f:1},{k:'P1-B-03',ch:'Amazon',spend:800,roas:4.6,f:0},{k:'P2-B-01',ch:'Google',spend:1100,roas:3.6,f:0},{k:'P2-B-03',ch:'Google',spend:700,roas:3.4,f:0},{k:'P3-B-04',ch:'Meta',spend:700,roas:3.8,f:0},{k:'P3-B-01',ch:'Meta',spend:700,roas:2.9,f:1},{k:'P3-B-03',ch:'Meta',spend:500,roas:3.1,f:0}];
 
 /* =========================================================================
    APP SHELL
@@ -1414,27 +1434,27 @@ SCREENS.seo=()=>{
 SCREENS.ads=()=>{
   const a=DATA.ads;const chColor={Amazon:'#FF9900',Meta:'#0866FF',Google:'#34A853'};
   const maxSpend=Math.max(...a.campaigns.map(c=>c.spend));
-  const rows=a.campaigns.map(c=>{const stMap={scaling:['s-rise',{en:'Scaling',zh:'扩量中'}],steady:['s-fall',{en:'Steady',zh:'稳定'}],watch:['s-vol',{en:'Watching',zh:'观察中'}]};
-    return `<tr><td><div style="display:flex;align-items:center;gap:9px"><span class="dot" style="background:${chColor[c.ch]}"></span><div><b style="font-size:13px">${c.ch}</b><div class="soft" style="font-size:11px">${L(c.ty)}</div></div></div></td>
+  const rows=a.campaigns.map((c,i)=>{const stMap={scaling:['s-rise',{en:'Scaling',zh:'扩量中'}],steady:['s-fall',{en:'Steady',zh:'稳定'}],watch:['s-vol',{en:'Watching',zh:'观察中'}]};const cpaused=S.campStatus[i]==='paused';
+    return `<tr data-camp="${i}" class="${cpaused?'paused-row':''}"><td><div class="camp-sw"><div class="switch ${cpaused?'':'on'}" onclick="toggleCampaign(${i})" title="${L({en:'Turn campaign on / off',zh:'开启 / 暂停此投放'})}"></div><span class="dot" style="background:${chColor[c.ch]}"></span><div><b style="font-size:13px">${c.ch}</b><div class="soft" style="font-size:11px">${L(c.ty)}</div></div></div></td>
       <td><span class="chip" style="font-size:10.5px"><span class="dot ${PILLAR_C[c.pillar].bg}"></span>${L(pillar(c.pillar).persona)}</span></td>
       <td><b>$${c.spend.toLocaleString()}</b></td>
       <td><b style="color:${c.roas>=4?'var(--green)':c.roas>=3?'var(--ink)':'var(--red)'}">${c.roas}×</b></td>
       <td><span class="status ${stMap[c.st][0]}">${L(stMap[c.st][1])}</span></td>
       <td style="max-width:260px"><div style="display:flex;gap:8px;align-items:flex-start"><span style="width:14px;height:14px;flex:none;color:var(--orange);margin-top:2px">${IC.bolt}</span><span style="font-size:12px;color:var(--cap)">${L(c.dec)}</span></div></td></tr>`;}).join('');
   const recCol={'s-rise':'var(--green)','s-vol':'var(--orange)','s-fall':'var(--blue)'};
-  const recs=AD_RECS.map(r=>`<div class="rec" style="border-left-color:${recCol[r.bcls]}">
+  const recs=AD_RECS.map((r,i)=>`<div class="rec" data-rec="${i}" style="border-left-color:${recCol[r.bcls]}">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span class="rb" style="background:${recCol[r.bcls]}">${L(r.b)}</span><span class="fig">${r.fig}</span></div>
     <b style="font-size:14px">${L(r.t)}</b>
     <p class="muted" style="font-size:12.5px;margin-top:5px;line-height:1.5">${L(r.d)}</p>
-    <div style="margin-top:11px">${S.mode==='auto'?`<span class="chip" style="color:var(--orange);border-color:#FFD2B8"><span style="width:12px;height:12px;display:inline-block">${IC.bolt}</span>${L(r.auto)}</span>`:`<button class="ghost sm" onclick="autofix(this)">${L(r.man)} <span style="width:13px;height:13px;display:inline-block">${IC.arrow}</span></button>`}</div>
+    <div class="rec-foot" style="margin-top:11px">${recCtrlHTML(i)}</div>
   </div>`).join('');
 
-  const adSel=[{k:'P1-B-01',ch:'Amazon',spend:1400,roas:5.1,f:0},{k:'P1-B-04',ch:'Meta',spend:900,roas:4.1,f:1},{k:'P1-B-03',ch:'Amazon',spend:800,roas:4.6,f:0},{k:'P2-B-01',ch:'Google',spend:1100,roas:3.6,f:0},{k:'P2-B-03',ch:'Google',spend:700,roas:3.4,f:0},{k:'P3-B-04',ch:'Meta',spend:700,roas:3.8,f:0},{k:'P3-B-01',ch:'Meta',spend:700,roas:2.9,f:1},{k:'P3-B-03',ch:'Meta',spend:500,roas:3.1,f:0}];
-  const adCards=adSel.map(x=>{const cr=DATA.creatives.find(c=>c.key===x.k);return `<div class="adc reveal">
-    <div class="adc-img"><img src="${CREATIVE_IMG[cr.key]}" alt="${L(cr.hook)}"><span class="k">${cr.key}</span><span class="ch"><span class="dot" style="background:${chColor[x.ch]};width:7px;height:7px"></span>${x.ch}</span></div>
+  const adCards=AD_SEL.map(x=>{const cr=DATA.creatives.find(c=>c.key===x.k);const paused=S.adStatus[x.k]==='paused';return `<div class="adc reveal ${paused?'paused':''}" data-adk="${x.k}">
+    <div class="adc-img"><img src="${CREATIVE_IMG[cr.key]}" alt="${L(cr.hook)}"><span class="k">${cr.key}</span><span class="ch"><span class="dot" style="background:${chColor[x.ch]};width:7px;height:7px"></span>${x.ch}</span>${paused?`<span class="paused-tag">${L({en:'Paused',zh:'已暂停'})}</span>`:''}</div>
     <div class="foot"><div><div style="font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--soft)">ROAS</div><b style="color:${x.roas>=4?'var(--green)':x.roas>=3?'var(--ink)':'var(--red)'}">${x.roas}×</b></div>
       <div><div style="font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--soft)">${L({en:'Spend',zh:'投放'})}</div><b>$${x.spend}</b></div>
       <span style="margin-left:auto" class="${x.f?'fatigue':'fresh'}">${x.f?L({en:'Fatiguing',zh:'疲劳中'}):L({en:'Fresh',zh:'健康'})}</span></div>
+    <div class="adc-ctrl"><span class="adc-state">${paused?L({en:'Paused',zh:'已暂停'}):L({en:'Active',zh:'投放中'})}</span><div class="switch ${paused?'':'on'}" style="margin-left:auto" onclick="toggleAd('${x.k}')" title="${L({en:'Turn ad on / off',zh:'开启 / 暂停此广告'})}"></div></div>
   </div>`;}).join('');
 
   return `<div class="crumb"><b>${L(UI.ads)}</b> · ${L({en:'amplify the winning content',zh:'放大制胜内容'})}</div>
@@ -1484,7 +1504,8 @@ SCREENS.ads=()=>{
   </div>
 
   <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px"><h2 class="h-m">${L({en:'Live ad creatives · conversion (BOFU)',zh:'在投素材 · 转化（BOFU）'})}</h2><span class="soft" style="font-size:12px">${L({en:'the winning content, amplified as paid ads',zh:'制胜内容，作为付费广告放大'})}</span></div>
-  <p class="muted" style="font-size:12.5px;margin-bottom:14px">${L({en:'Ads Autopilot runs your bottom-of-funnel creatives as paid ads across channels and flags fatigue automatically.',zh:'广告自动驾驶将你的漏斗底部素材作为付费广告投放于各渠道，并自动标记疲劳。'})}</p>
+  <p class="muted" style="font-size:12.5px;margin-bottom:14px">${L({en:'Ads Autopilot runs your bottom-of-funnel creatives as paid ads across channels and flags fatigue automatically — toggle any creative on or off to override.',zh:'广告自动驾驶将你的漏斗底部素材作为付费广告投放于各渠道并自动标记疲劳——可开关任一素材进行手动干预。'})}</p>
+  <div class="ad-bar" id="ad-bar">${adBarInner()}</div>
   <div class="grid g4">${adCards}</div>`;
 };
 
@@ -1585,6 +1606,35 @@ function genericActions(key,channel){
 }
 function approveGeneric(key,status,channel){if(status===null)delete S.approvals[key];else S.approvals[key]=status;const el=document.getElementById('act-'+key);if(el)el.innerHTML=genericActions(key,channel);}
 function approveBudget(btn){btn.outerHTML=`<div class="chip ok-chip" style="width:100%;justify-content:center;padding:10px;margin-top:14px"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Applied · budget shifted',zh:'已应用 · 预算已调整'})}</div>`;}
+
+/* ---- ad engine edit controls: on/off ads + apply/dismiss recommendations ---- */
+function adActiveStats(){let live=0,spend=0;AD_SEL.forEach(x=>{if(S.adStatus[x.k]!=='paused'){live++;spend+=x.spend;}});return {live,spend,total:AD_SEL.length,paused:AD_SEL.length-live};}
+function adBarInner(){const s=adActiveStats();const fat=AD_SEL.filter(x=>x.f&&S.adStatus[x.k]!=='paused').length;
+  return `<span style="width:16px;height:16px;color:var(--orange);flex:none">${IC.bolt}</span>
+    <span style="font-weight:700;font-size:13.5px">${s.live} / ${s.total} ${L({en:'creatives live',zh:'素材在投'})}</span>
+    <span class="muted" style="font-size:12.5px">$${s.spend.toLocaleString()} ${L({en:'active spend',zh:'在投预算'})}${s.paused?` · ${s.paused} ${L({en:'paused',zh:'已暂停'})}`:''}</span>
+    <div class="abtn">${fat?`<button class="ghost sm" onclick="pauseFatiguing()"><span style="width:12px;height:12px;display:inline-block">${IC.x}</span>${L({en:'Pause fatiguing',zh:'暂停疲劳素材'})} (${fat})</button>`:''}${s.paused?`<button class="ghost sm" onclick="resumeAllAds()">${L({en:'Resume all',zh:'全部恢复'})}</button>`:''}</div>`;}
+function updateAdBar(){const b=document.getElementById('ad-bar');if(b)b.innerHTML=adBarInner();}
+function paintAdCard(key){const card=document.querySelector('.adc[data-adk="'+key+'"]');if(!card)return;const paused=S.adStatus[key]==='paused';
+  card.classList.toggle('paused',paused);
+  const sw=card.querySelector('.adc-ctrl .switch');if(sw)sw.classList.toggle('on',!paused);
+  const st=card.querySelector('.adc-state');if(st)st.textContent=paused?L({en:'Paused',zh:'已暂停'}):L({en:'Active',zh:'投放中'});
+  const img=card.querySelector('.adc-img');let tag=img.querySelector('.paused-tag');
+  if(paused&&!tag){tag=document.createElement('span');tag.className='paused-tag';tag.textContent=L({en:'Paused',zh:'已暂停'});img.appendChild(tag);}else if(!paused&&tag){tag.remove();}}
+function toggleAd(key){S.adStatus[key]=S.adStatus[key]==='paused'?'active':'paused';paintAdCard(key);updateAdBar();}
+function pauseFatiguing(){AD_SEL.forEach(x=>{if(x.f){S.adStatus[x.k]='paused';paintAdCard(x.k);}});updateAdBar();}
+function resumeAllAds(){AD_SEL.forEach(x=>{if(S.adStatus[x.k]==='paused'){S.adStatus[x.k]='active';paintAdCard(x.k);}});updateAdBar();}
+function toggleCampaign(i){S.campStatus[i]=S.campStatus[i]==='paused'?'active':'paused';const row=document.querySelector('.tbl tr[data-camp="'+i+'"]');if(row){const paused=S.campStatus[i]==='paused';row.classList.toggle('paused-row',paused);const sw=row.querySelector('.switch');if(sw)sw.classList.toggle('on',!paused);}}
+function recCtrlHTML(i){const r=AD_RECS[i],act=S.recActions[i];
+  if(S.mode==='auto') return `<span class="chip" style="color:var(--orange);border-color:#FFD2B8"><span style="width:12px;height:12px;display:inline-block">${IC.bolt}</span>${L(r.auto)}</span>`;
+  if(act==='applied') return `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="chip ok-chip"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L(r.auto)}</span><button class="linkbtn" onclick="undoRec(${i})">${L({en:'undo',zh:'撤销'})}</button></div>`;
+  if(act==='dismissed') return `<div style="display:flex;align-items:center;gap:8px"><span class="chip no-chip">${L({en:'Dismissed',zh:'已忽略'})}</span><button class="linkbtn" onclick="undoRec(${i})">${L({en:'undo',zh:'撤销'})}</button></div>`;
+  if(r.noApply) return `<button class="ghost sm" onclick="dismissRec(${i})">${L(r.man)}</button>`;
+  return `<div class="rec-act"><button class="cta sm" onclick="applyRec(${i})"><span style="width:13px;height:13px;display:inline-block">${IC.check}</span>${L(r.man)}</button><button class="ghost sm" onclick="dismissRec(${i})">${L({en:'Dismiss',zh:'忽略'})}</button></div>`;}
+function paintRec(i){const el=document.querySelector('.rec[data-rec="'+i+'"] .rec-foot');if(el)el.innerHTML=recCtrlHTML(i);}
+function applyRec(i){S.recActions[i]='applied';paintRec(i);}
+function dismissRec(i){S.recActions[i]='dismissed';paintRec(i);}
+function undoRec(i){delete S.recActions[i];paintRec(i);}
 
 /* ---- in-line WYSIWYG post editor (manual mode) ---- */
 function postCardEditor(cr){const imgKey=S.imgSwap[cr.key]||cr.key;
