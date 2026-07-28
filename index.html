@@ -292,6 +292,115 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 .mnav .mic{width:22px;height:22px}
 .mnav.on{color:var(--orange)}
 
+/* ---- approval workflow ---- */
+.ok-chip{color:var(--green)!important;border-color:#B6E6D8!important;background:#E1F5EF!important}
+.no-chip{color:var(--red)!important;border-color:#FAD1D4!important;background:#FFE9EA!important}
+.linkbtn{font-size:11.5px;font-weight:600;color:var(--sec);text-decoration:underline;background:none}
+.linkbtn:hover{color:var(--ink)}
+.post-act{margin-left:auto;display:flex;align-items:center;gap:8px}
+.post.is-rejected .creative-img img{opacity:.32;filter:grayscale(.5)}
+.approve-bar{background:#fff;border:1px solid var(--tint);border-left:3px solid var(--orange);border-radius:var(--r);padding:12px 16px;margin-bottom:14px}
+
+/* ---- chat drawer ---- */
+.fab{position:fixed;right:22px;bottom:22px;z-index:55;background:var(--orange);color:#fff;border-radius:999px;padding:13px 19px;font-weight:600;font-size:14px;box-shadow:var(--sh-lg);display:inline-flex;align-items:center;gap:8px}
+.fab:hover{background:var(--orange-l)}.fab svg{width:18px;height:18px}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100%);background:#fff;z-index:130;box-shadow:-10px 0 44px rgba(25,27,35,.2);display:flex;flex-direction:column;animation:slidein .28s cubic-bezier(.2,.7,.2,1)}
+@keyframes slidein{from{transform:translateX(100%)}to{transform:none}}
+.drawer-head{padding:14px 16px;border-bottom:1px solid var(--tint);display:flex;align-items:center;gap:10px;flex:none}
+.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--card)}
+.msg{max-width:87%;padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.5;white-space:pre-wrap}
+.msg.user{align-self:flex-end;background:var(--orange);color:#fff;border-bottom-right-radius:4px}
+.msg.bot{align-self:flex-start;background:#fff;color:var(--ink);border:1px solid var(--tint);border-bottom-left-radius:4px}
+.msg.typing{align-self:flex-start;color:var(--soft);background:#fff;border:1px solid var(--tint)}
+.chat-sugg{display:flex;gap:7px;flex-wrap:wrap;padding:10px 14px 4px;background:var(--card);flex:none}
+.chat-sugg button{font-size:12px;font-weight:600;border:1px solid var(--tint);background:#fff;border-radius:999px;padding:6px 11px;color:var(--cap)}
+.chat-sugg button:hover{border-color:var(--orange);color:var(--orange)}
+.chat-input{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--tint);background:#fff;flex:none}
+.chat-input input{flex:1;border:1px solid var(--tint);border-radius:999px;padding:10px 15px;font-size:14px;font-family:inherit;outline:none}
+.chat-input input:focus{border-color:var(--orange)}
+.chat-input button{background:var(--orange);color:#fff;border-radius:50%;width:40px;height:40px;flex:none;display:flex;align-items:center;justify-content:center}
+.chat-input button svg{width:18px;height:18px}
+.adj-banner{background:#F1E9FE;border:1px solid #E0CFFA;border-radius:var(--r-m);padding:14px 16px;margin-bottom:22px}
+.adj-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;background:#fff;border:1px solid #E0CFFA;color:var(--violet);border-radius:999px;padding:5px 11px;margin:4px 5px 0 0}
+.lead-badge{font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--orange);color:#fff;padding:3px 9px;border-radius:999px;white-space:nowrap}
+
+/* ---- premium / community ---- */
+.pro-badge{font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#8649E1,#AB6CFE);padding:3px 9px;border-radius:999px}
+.pro-card{border:1px solid #E0CFFA;border-radius:var(--r-m);overflow:hidden;background:#fff}
+.pro-top{background:linear-gradient(100deg,#F6F0FF,#FBF7FF);padding:18px 20px;border-bottom:1px solid #EEE6FB;display:flex;align-items:center;gap:12px}
+.upgrade{display:flex;align-items:center;gap:12px;background:#F1E9FE;border:1px solid #E0CFFA;border-radius:12px;padding:13px 15px}
+.sel{appearance:none;-webkit-appearance:none;border:1px solid var(--tint);border-radius:10px;padding:9px 34px 9px 13px;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--ink);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%236C6E79' stroke-width='2'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 12px center;cursor:pointer}
+.reply-preview{background:var(--card);border:1px solid var(--tint);border-radius:12px;padding:14px}
+.cmt{display:flex;gap:10px;align-items:flex-start}
+.cmt .av{width:30px;height:30px;border-radius:50%;background:var(--line);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.cmt .bub{background:#fff;border:1px solid var(--tint);border-radius:12px;padding:9px 12px;font-size:12.5px}
+.cmt.ai .bub{background:var(--orange-t);border-color:#FFD2B8;color:#7a3d16}
+
+/* ---- inline WYSIWYG editor ---- */
+.post.editing{border-color:var(--orange);box-shadow:0 0 0 2px var(--orange-t)}
+.swap-row{display:flex;gap:7px;padding:10px 12px;overflow-x:auto;border-top:1px solid var(--tint);background:var(--card);align-items:center}
+.swap-row .st{font-size:10.5px;color:var(--sec);font-weight:700;flex:none;margin-right:2px}
+.swap-thumb{width:34px;height:50px;border-radius:6px;object-fit:cover;flex:none;cursor:pointer;border:2px solid transparent}
+.swap-thumb.on{border-color:var(--orange)}
+.fmt-bar{display:flex;gap:5px;padding:8px 12px;border-top:1px solid var(--tint);border-bottom:1px solid var(--tint);background:#fff}
+.fmt-bar button{min-width:30px;height:28px;border-radius:6px;border:1px solid var(--tint);background:#fff;font-size:13px;color:var(--cap);padding:0 7px}
+.fmt-bar button:hover{border-color:var(--ink);color:var(--ink)}
+.cap-edit{padding:12px 14px;font-size:13px;line-height:1.55;min-height:66px;outline:none;color:var(--ink)}
+.cap-edit:focus{background:#FFFDFB}
+.edit-foot{display:flex;gap:8px;align-items:center;padding:10px 12px;border-top:1px solid var(--tint);background:var(--card)}
+.cap[data-edit]{cursor:text}
+.cap[data-edit]:hover{background:var(--card);border-radius:6px}
+
+/* ---- e-commerce integration / ROI ---- */
+.integ{border-left:3px solid #5E8E3E}
+.shopify-mark{width:34px;height:34px;border-radius:9px;background:#95BF47;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;flex:none}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 0 0 rgba(0,159,129,.5);animation:pulse 1.8s infinite;vertical-align:middle}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,159,129,.45)}70%{box-shadow:0 0 0 7px rgba(0,159,129,0)}100%{box-shadow:0 0 0 0 rgba(0,159,129,0)}}
+.integ-stat{display:flex;align-items:center;gap:9px;padding:11px 13px;border:1px solid var(--tint);border-radius:10px;background:#fff}
+.integ-stat .ic-ok{width:24px;height:24px;border-radius:7px;background:#E1F5EF;color:var(--green);display:flex;align-items:center;justify-content:center;flex:none}
+.integ-stat .ic-ok svg{width:14px;height:14px}
+
+/* ---- Content Studio (copilot editor + regeneration) ---- */
+.studio{width:min(1000px,100%);background:#fff;border-radius:var(--r-l);box-shadow:var(--sh-lg);overflow:hidden;display:flex;flex-direction:column;max-height:calc(100vh - 40px);margin:auto;animation:rv .3s both}
+.studio-head{display:flex;align-items:center;gap:10px;padding:15px 20px;border-bottom:1px solid var(--tint);flex:none}
+.studio-body{display:grid;grid-template-columns:1.02fr .98fr;overflow:hidden;flex:1;min-height:0}
+.studio-preview{padding:18px 20px;overflow-y:auto;border-right:1px solid var(--tint)}
+.studio-copilot{display:flex;flex-direction:column;min-height:0;background:var(--card)}
+.studio-foot{display:flex;align-items:center;gap:10px;padding:12px 18px;border-top:1px solid var(--tint);flex:none}
+.creative-wrap{position:relative;border-radius:var(--r);overflow:hidden;background:#141519;aspect-ratio:4/5;max-height:330px;margin:0 auto}
+.creative-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .25s}
+.regen-overlay{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(20,21,25,.6);backdrop-filter:blur(2px);color:#fff;z-index:5;overflow:hidden}
+.regen-overlay.on{display:flex}
+.regen-overlay .shine{position:absolute;inset:0;background:linear-gradient(110deg,transparent 32%,rgba(255,255,255,.3) 50%,transparent 68%);transform:translateX(-100%);animation:shine 1.05s linear infinite}
+@keyframes shine{to{transform:translateX(100%)}}
+.regen-overlay .lab{font-weight:700;font-size:13.5px;display:flex;align-items:center;gap:8px;z-index:6}
+.regen-bar{width:150px;height:5px;background:rgba(255,255,255,.25);border-radius:999px;overflow:hidden;z-index:6}
+.regen-overlay.on .regen-bar i{display:block;height:100%;width:0;background:var(--orange);animation:regenbar 1.2s ease-out forwards}
+@keyframes regenbar{to{width:100%}}
+.cop-head{padding:14px 16px;border-bottom:1px solid var(--tint);background:#fff;flex:none;display:flex;align-items:center;gap:9px}
+.cop-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;min-height:120px}
+.cop-sugg{display:flex;flex-wrap:wrap;gap:7px;padding:10px 14px;background:var(--card);border-top:1px solid var(--tint);flex:none}
+.cop-sugg button{font-size:12px;font-weight:600;border:1px solid #E0CFFA;background:#fff;color:var(--violet);border-radius:999px;padding:6px 11px;display:flex;align-items:center;gap:5px;text-align:left}
+.cop-sugg button:hover{background:#F1E9FE}
+.cop-input{display:flex;gap:8px;padding:11px 14px;border-top:1px solid var(--tint);background:#fff;flex:none}
+.cop-input input{flex:1;border:1px solid var(--tint);border-radius:999px;padding:9px 14px;font-size:13.5px;font-family:inherit;outline:none}
+.cop-input input:focus{border-color:var(--orange)}
+.cop-input button{background:var(--orange);color:#fff;border-radius:50%;width:38px;height:38px;flex:none;display:flex;align-items:center;justify-content:center}
+.cop-input button svg{width:17px;height:17px}
+.studio-text{border:1px solid var(--tint);border-radius:12px;padding:0;position:relative;overflow:hidden}
+.studio-text .txt{padding:15px 16px;min-height:230px;max-height:44vh;overflow-y:auto;line-height:1.62;font-size:14px;outline:none;transition:opacity .25s;color:var(--ink)}
+.studio-text .txt h3{font-size:16px;font-weight:800;margin:12px 0 6px}
+.studio-cap{border:1px solid var(--tint);border-radius:10px;padding:12px 14px;margin-top:8px;min-height:60px;font-size:13px;line-height:1.55;outline:none}
+.studio-cap:focus{border-color:var(--orange)}
+@media(max-width:640px){
+  .ovl:has(.studio){padding:0;align-items:stretch}
+  .studio{max-height:100vh;height:100dvh;border-radius:0;width:100%}
+  .studio-body{grid-template-columns:1fr;overflow-y:auto}
+  .studio-preview{border-right:0;border-bottom:1px solid var(--tint)}
+  .studio-copilot{min-height:340px}
+  .creative-wrap{max-height:42vh}
+}
+
 /* ============================================================
    MOBILE — essentials only, works down to 360px (iPhone 12 mini)
    ============================================================ */
@@ -369,7 +478,11 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 /* =========================================================================
    STATE + i18n
    ========================================================================= */
-const S={lang:'zh',mode:'auto',view:'dashboard',booted:false,user:null,filterPillar:'all',filterStage:'all',socialTab:'library'};
+const S={lang:'zh',mode:'auto',view:'dashboard',booted:false,user:null,filterPillar:'all',filterStage:'all',socialTab:'library',
+  approvals:{},edits:{},chat:[],adjustments:[],leadPillar:'P1',caregiver:false,personality:null,chatOpen:false,
+  pillarTone:{},editing:null,imgSwap:{},commEnabled:false,replyTone:'professional',
+  tlEdits:{},articleEdits:{},articleApproved:{}};
+let STUDIO=null;
 const USERS={
   'zhaokui@touchigh.ai':{name:'Zhao Kui',first:{en:'Zhao Kui',zh:'赵奎'},initials:'ZK',grad:'linear-gradient(135deg,#3a3f4d,#191B23)',role:{en:'CEO · HT Science (ExoStride)',zh:'HT Science（ExoStride）首席执行官'}},
   'a@touchigh.ai':{name:'Aleks Farseev',first:{en:'Aleks',zh:'Aleks'},initials:'AF',grad:'linear-gradient(135deg,#FF8C43,#C33909)',role:{en:'Founder · Touchigh',zh:'Touchigh 创始人'}},
@@ -647,23 +760,21 @@ function verdictPill(v){const m={white:['v-white',{en:'WHITESPACE',zh:'空白机
 function statusPill(s){const m={rise:['s-rise',{en:'Rising',zh:'上升'}],vol:['s-vol',{en:'Volatile',zh:'波动'}],fall:['s-fall',{en:'Falling',zh:'下降'}],flat:['s-flat',{en:'Flat',zh:'平稳'}]};return `<span class="status ${m[s][0]}">${L(m[s][1])}</span>`;}
 function modeBadge(){return S.mode==='auto'?`<span class="tag-auto">● ${t('auto')}</span>`:`<span class="tag-man">${t('manual')}</span>`;}
 
-function postCard(cr){const pil=pillar(cr.pillar);
-  const actions=S.mode==='auto'
-    ? `<span class="chip" style="color:var(--orange);border-color:#FFD2B8"><span class="check" style="width:1em;height:1em;font-size:.6em">${IC.check}</span>${cr.stage==='BOFU'?t('published'):t('scheduled')}</span>`
-    : `<div class="mini-act"><button class="icobtn ok" title="${t('approve')}">${IC.check}</button><button class="icobtn" title="${t('edit')}">${IC.edit}</button><button class="icobtn no" title="${t('reject')}">${IC.x}</button></div>`;
-  return `<div class="post reveal">
+function postCard(cr){if(S.editing===cr.key)return postCardEditor(cr);const pil=pillar(cr.pillar);const imgKey=S.imgSwap[cr.key]||cr.key;
+  const editable=S.mode==='manual'&&S.approvals[cr.key]!=='approved';
+  return `<div class="post reveal ${S.approvals[cr.key]==='rejected'?'is-rejected':''}" data-key="${cr.key}">
     <div class="creative-img">
-      <img src="${CREATIVE_IMG[cr.key]}" alt="${L(cr.hook)}" loading="lazy">
+      <img src="${CREATIVE_IMG[imgKey]}" alt="${L(cr.hook)}" loading="lazy">
       <span class="k">${cr.key}</span>
       ${cr.top?`<span class="badge-top">★ ${cr.score}% ${t('top_performer')}</span>`:''}
     </div>
     <div class="meta">
       <div class="row">${pdot(cr.pillar)}<b style="font-size:12px">${L(pil.persona)}</b>${stageChip(cr.stage)}<span class="chip">${L(cr.sub)}</span></div>
-      <div class="cap" style="margin-top:8px">${L(cr.hook)}</div>
+      <div class="cap" id="cap-${cr.key}" ${editable?`data-edit="1" onclick="openStudio('post','${cr.key}')" title="${L({en:'Click to edit',zh:'点击编辑'})}"`:''} style="margin-top:8px">${S.edits[cr.key]||L(cr.hook)}</div>
     </div>
     <div class="foot">
       <div class="score">${scoreRing(cr.score)}<div><div style="font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)">${t('clickability')}</div><b>${cr.score}%</b></div></div>
-      ${actions}
+      <div class="post-act" id="act-${cr.key}">${postActions(cr)}</div>
     </div>
   </div>`;}
 
@@ -731,9 +842,16 @@ function openArticle(i){
   const stMap={published:{en:'Published',zh:'已发布'},draft:{en:'Draft',zh:'草稿'},review:{en:'In review',zh:'审阅中'},scheduled:{en:'Scheduled',zh:'已排期'}};
   const secs=bd.sections.map(s=>`${s.h?`<div class="art-h2">${L(s.h)}</div>`:''}${L(s.p)?`<p class="art-p">${L(s.p)}</p>`:''}${s.bullets?`<ul class="art-ul">${s.bullets.map(b=>`<li><span class="check" style="margin-top:2px">${IC.check}</span><span>${L(b)}</span></li>`).join('')}</ul>`:''}`).join('');
   const faq=bd.faq?`<div class="art-h2">${L({en:'Frequently asked questions',zh:'常见问题'})}</div><div class="art-faq">${bd.faq.map(f=>`<div class="qa"><div class="q"><span style="color:var(--orange)">Q</span>${L(f.q)}</div><div class="a">${L(f.a)}</div></div>`).join('')}</div>`:'';
+  const edited=S.articleEdits[i];
+  const structured=`<div class="art-tldr"><span class="lab">${L({en:'The short answer',zh:'简短答案'})}</span><div class="txt">${L(bd.tldr)}</div></div>
+      <div class="art-stats">${bd.stats.map(s=>`<div class="art-stat"><div class="n">${s.n}</div><div class="l">${L(s.l)}</div></div>`).join('')}</div>
+      ${secs}
+      ${faq}`;
+  const editedBlock=`<div class="notice" style="margin-bottom:16px;background:#E1F5EF;border-color:#B6E6D8;color:#0a6b57"><span style="width:16px;height:16px;flex:none">${IC.check}</span><div>${L({en:'Edited draft — saved. Your Content Studio changes are shown below.',zh:'已编辑草稿——已保存。以下为你在内容工作室中的修改。'})}</div></div><div class="art-p" style="font-size:14.5px;line-height:1.66">${edited||''}</div>`;
   openModal(`<div class="reader">
     <div class="reader-head">
       <button class="reader-close" onclick="closeModal()">${IC.x}</button>
+      <button class="ghost sm" style="position:absolute;top:16px;right:60px" onclick="closeModal();openStudio('article',${i})"><span style="width:13px;height:13px;display:inline-block">${IC.edit}</span>${L({en:'Edit',zh:'编辑'})}</button>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
         <span class="chip" style="border-color:${pc.c};color:${pc.c}"><span class="dot ${pc.bg}"></span>${L(tyMap[a.ty])}</span>
         <span class="chip">${L({en:'Persona',zh:'人物'})}: ${L(pillar(a.pillar).persona)}</span>
@@ -748,10 +866,7 @@ function openArticle(i){
       </div>
     </div>
     <div class="reader-body">
-      <div class="art-tldr"><span class="lab">${L({en:'The short answer',zh:'简短答案'})}</span><div class="txt">${L(bd.tldr)}</div></div>
-      <div class="art-stats">${bd.stats.map(s=>`<div class="art-stat"><div class="n">${s.n}</div><div class="l">${L(s.l)}</div></div>`).join('')}</div>
-      ${secs}
-      ${faq}
+      ${edited?editedBlock:structured}
       <div class="hr"></div>
       <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--soft)">${markHTML(false)}<span style="margin-left:auto">${L({en:'Generated by Touchigh programmatic GEO · angled to the',zh:'由 Touchigh 程序化 GEO 生成 · 契合'})} ${L(pillar(a.pillar).persona)} ${L({en:'pillar',zh:'支柱'})}</span></div>
     </div>
@@ -1018,11 +1133,13 @@ SCREENS.strategy=()=>{
     ${DATA.trends.map(t=>`<tr><td><span class="dot" style="background:${t.c};margin-right:8px"></span><b>${L(t.t)}</b></td><td class="muted">${t.a} → ${t.b}</td><td class="muted">${t.peak}</td><td>${statusPill(t.st)}</td></tr>`).join('')}
   </tbody></table>`;
 
-  const pillars=DATA.pillars.map(p=>{const c=PILLAR_C[p.id];return `<div class="card" style="border-top:3px solid ${c.c};padding:0;overflow:hidden">
+  const ordered=[...DATA.pillars].sort((a,b)=>(b.id===S.leadPillar?1:0)-(a.id===S.leadPillar?1:0));
+  const pillars=ordered.map(p=>{const c=PILLAR_C[p.id];const isLead=p.id===S.leadPillar;return `<div class="card" style="border-top:3px solid ${c.c};padding:0;overflow:hidden">
     <div style="padding:18px 20px 14px">
-      <div style="display:flex;justify-content:space-between;align-items:center"><span class="pillcap" style="border-color:${c.c};color:${c.c}">${p.id} · ${p.code}</span><span class="dot" style="background:${c.c};width:11px;height:11px"></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="pillcap" style="border-color:${c.c};color:${c.c}">${p.id} · ${p.code}</span>${isLead?`<span class="lead-badge">${L({en:'Recommended lead',zh:'推荐主打'})}</span>`:`<span class="dot" style="background:${c.c};width:11px;height:11px"></span>`}</div>
       <h3 class="h-m" style="margin-top:10px">${L(p.persona)}</h3>
       <div class="soft" style="font-size:12.5px">${L(p.app)} · ${L(p.aud)}</div>
+      ${S.pillarTone[p.id]?`<span class="chip" style="margin-top:9px;border-color:var(--violet);color:var(--violet)"><span style="width:11px;height:11px;display:inline-block">${IC.wand}</span>${L({en:'Tone',zh:'语气'})}: ${L(S.pillarTone[p.id])}</span>`:''}
     </div>
     <div style="padding:0 20px 18px">
       <div class="tl" style="margin-top:4px">
@@ -1030,6 +1147,7 @@ SCREENS.strategy=()=>{
         <div class="tl-item"><div class="eyebrow" style="color:${c.c}">${L({en:'Angle',zh:'角度'})}</div><div style="font-size:13px;margin-top:2px">${L(p.angle)}</div></div>
         <div class="tl-item"><div class="eyebrow" style="color:${c.c}">${L({en:'Story',zh:'故事'})}</div><div style="font-size:13px;margin-top:2px">${L(p.story)}</div></div>
       </div>
+      ${(S.caregiver&&p.id==='P1')?`<div style="background:#F1E9FE;border:1px solid #E0CFFA;border-radius:10px;padding:10px 12px;margin-top:8px;font-size:12px;line-height:1.45"><b style="color:var(--violet)">${L({en:'+ Caregiver angle',zh:'+ 照护者角度'})}</b> — ${L({en:'many rehab purchases are made by an adult child for a parent; speak to the family decision-maker.',zh:'许多康复购买由成年子女为父母决定；应面向家属决策者沟通。'})}</div>`:''}
       <div style="background:var(--card);border-radius:10px;padding:12px 14px;margin-top:6px">
         <div class="eyebrow" style="color:${c.c}">${L({en:'Proposition',zh:'核心主张'})}</div>
         <div style="font-weight:800;font-size:17px;margin-top:3px;letter-spacing:-.02em">"${L(p.prop)}"</div>
@@ -1038,7 +1156,7 @@ SCREENS.strategy=()=>{
     </div></div>`;}).join('');
 
   const persona=[
-    {t:{en:'Brand personality',zh:'品牌个性'},d:{en:'Warm, credible, quietly confident. Human before technical. Dignity over spectacle. Proof over hype.',zh:'温暖、可信、从容自信。先讲人，再讲技术。尊严胜于噱头，实证胜于夸张。'}},
+    {t:{en:'Brand personality',zh:'品牌个性'},d:S.personality||{en:'Warm, credible, quietly confident. Human before technical. Dignity over spectacle. Proof over hype.',zh:'温暖、可信、从容自信。先讲人，再讲技术。尊严胜于噱头，实证胜于夸张。'}},
     {t:{en:'Product focus for US entry',zh:'美国进入的产品重点'},d:{en:'Lead with Intelligent Rehabilitation (largest under-served whitespace), amplify with Outdoor, sustain with Commute.',zh:'以智能康复为主打（最大未被满足的空白），以户外放大，以通勤维持。'}},
     {t:{en:'Messaging spine',zh:'信息主线'},d:{en:'"Real assistance, everyday dignity." Every claim backed by a measured number — 80% less load, 35% less energy, 2.4 kg.',zh:'"真实助力，日常尊严。"每个主张都有量化数据支撑——省力 80%、省能 35%、仅 2.4 kg。'}}
   ].map(x=>`<div class="card"><div class="eyebrow">${L(x.t)}</div><p style="font-size:13.5px;margin-top:7px;line-height:1.5">${L(x.d)}</p></div>`).join('');
@@ -1048,7 +1166,10 @@ SCREENS.strategy=()=>{
   <div class="page-head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
     <div><h1>${L({en:'Your US market-entry strategy',zh:'你的美国市场进入策略'})}</h1>
     <p>${L({en:'Generated automatically from your competitors\' advertising and organic content. This is the core — every post, article and ad below is drawn from it.',zh:'依据对手的广告与自然内容自动生成。这是核心——下方每条内容、文章与广告皆源于此。'})}</p></div>
-    <button class="ghost" onclick="regenStrategy(this)"><span style="width:15px;height:15px;display:inline-block">${IC.bolt}</span>${L({en:'Regenerate',zh:'重新生成'})}</button>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="cta" onclick="toggleChat(true)"><span style="width:15px;height:15px;display:inline-block">${IC.wand}</span>${L({en:'Adjust strategy',zh:'调整策略'})}</button>
+      <button class="ghost" onclick="regenStrategy(this)"><span style="width:15px;height:15px;display:inline-block">${IC.bolt}</span>${L({en:'Regenerate',zh:'重新生成'})}</button>
+    </div>
   </div>
 
   <div class="ink-panel" style="margin-bottom:24px">
@@ -1057,11 +1178,12 @@ SCREENS.strategy=()=>{
     <p class="body" style="max-width:760px">${L({en:'Across 5 cross-border rivals, "everyday dignity & independence" draws 39% of engagement on just 8% of content supply — the widest gap in the category. Lead the US entry there.',zh:'在 5 个跨境对手中，"日常尊严与独立"仅以 8% 的内容供给赢得 39% 的互动——品类最大缺口。美国进入应以此为主打。'})}</p>
     <div class="grid g3" style="margin-top:20px">
       <div class="dark-card"><div class="eyebrow" style="color:var(--orange-l)">${L({en:'Target',zh:'目标'})}</div><div class="body" style="color:#fff;font-weight:600;margin-top:6px">${L({en:'Active-aging & rehab buyers in the US, aging-in-place families.',zh:'美国积极养老与康复购买者、居家养老家庭。'})}</div></div>
-      <div class="dark-card" style="border-left-color:var(--violet)"><div class="eyebrow" style="color:var(--violet-l)">${L({en:'Personality',zh:'个性'})}</div><div class="body" style="color:#fff;font-weight:600;margin-top:6px">${L({en:'Dignity over spectacle. Proof over hype. Human before tech.',zh:'尊严胜于噱头，实证胜于夸张，先人后技。'})}</div></div>
+      <div class="dark-card" style="border-left-color:var(--violet)"><div class="eyebrow" style="color:var(--violet-l)">${L({en:'Personality',zh:'个性'})}</div><div class="body" style="color:#fff;font-weight:600;margin-top:6px">${L(S.personality||{en:'Dignity over spectacle. Proof over hype. Human before tech.',zh:'尊严胜于噱头，实证胜于夸张，先人后技。'})}</div></div>
       <div class="dark-card" style="border-left-color:var(--blue)"><div class="eyebrow" style="color:var(--blue-b)">${L({en:'Message',zh:'信息'})}</div><div class="body" style="color:#fff;font-weight:600;margin-top:6px">"${L({en:'Real assistance, everyday dignity.',zh:'真实助力，日常尊严。'})}"</div></div>
     </div>
   </div>
 
+  ${S.adjustments.length?adjBanner():''}
   <div class="hide-mobile">
   <div class="eyebrow" style="margin-bottom:10px">${L({en:'How it was built · 5 layers of SOMIN analysis',zh:'如何构建 · SOMIN 五层分析'})}</div>
   <div class="flow" style="margin-bottom:26px">${method}</div>
@@ -1092,7 +1214,8 @@ SCREENS.strategy=()=>{
       <button class="ghost" onclick="setView('seo')">${L(UI.seo)}</button>
       <button class="ghost" onclick="setView('ads')">${L(UI.ads)}</button>
     </div>
-  </div>`;
+  </div>
+  <button class="fab" onclick="toggleChat(true)">${IC.wand}<span>${L({en:'Adjust strategy',zh:'调整策略'})}</span></button>`;
 };
 function regenStrategy(btn){btn.innerHTML='<span class="spin" style="border-top-color:var(--orange)"></span> '+L({en:'Analyzing…',zh:'分析中…'});setTimeout(()=>{renderView();},1400);}
 
@@ -1100,6 +1223,8 @@ function regenStrategy(btn){btn.innerHTML='<span class="spin" style="border-top-
    SCREEN: SOCIAL AUTOPILOT
    ========================================================================= */
 function setSocialTab(t){S.socialTab=t;renderView();}
+function toggleComm(){S.commEnabled=!S.commEnabled;renderView();}
+function setReplyTone(v){S.replyTone=v;renderView();}
 function setFilter(k,v){S['filter'+k]=v;renderView();}
 const CEO_POSTS=[
   {who:'ceo',name:'Zhao Kui',role:{en:'CEO, HT Science',zh:'HT Science 首席执行官'},pillar:'P1',
@@ -1112,7 +1237,7 @@ const CEO_POSTS=[
    src:{en:'Company product update',zh:'公司产品更新'},score:69}
 ];
 SCREENS.social=()=>{
-  const tabs=[['library',{en:'Content library',zh:'内容库'}],['calendar',{en:'Calendar',zh:'排期日历'}],['thought',{en:'Thought leadership',zh:'思想领导力'}],['channels',{en:'Channels',zh:'渠道'}]];
+  const tabs=[['library',{en:'Content library',zh:'内容库'}],['calendar',{en:'Calendar',zh:'排期日历'}],['thought',{en:'Thought leadership',zh:'思想领导力'}],['community',{en:'Community',zh:'社区'}],['channels',{en:'Channels',zh:'渠道'}]];
   const tabbar=`<div class="seg" style="margin-bottom:18px">${tabs.map(([id,lab])=>`<button class="${S.socialTab===id?'on':''}" onclick="setSocialTab('${id}')">${L(lab)}</button>`).join('')}</div>`;
 
   let body='';
@@ -1124,9 +1249,9 @@ SCREENS.social=()=>{
       <span style="width:1px;height:20px;background:var(--tint);margin:0 4px"></span>
       ${sf.map(([v,l])=>`<button class="fbtn ${S.filterStage===v?'on':''}" onclick="setFilter('Stage','${v}')">${L(l)}</button>`).join('')}
     </div>`;
-    let list=DATA.creatives.filter(c=>(S.filterPillar==='all'||c.pillar===S.filterPillar)&&(S.filterStage==='all'||c.stage===S.filterStage));
+    let list=filteredCreatives();
     const notice=`<div class="notice" style="margin-bottom:16px"><span style="width:18px;height:18px;flex:none">${IC.bolt}</span><div>${S.mode==='auto'?L({en:'<b>Autopilot is on.</b> Posts are scheduled and published automatically in strategy order — top performers first. Switch to Manual (top-right) to approve each one.',zh:'<b>自动驾驶已开启。</b>内容按策略顺序自动排期与发布——高潜力优先。切换右上角"手动"可逐条审批。'}):L({en:'<b>Manual mode.</b> Review each generated post — approve, edit or reject. Switch to Autopilot (top-right) to let Touchigh publish automatically.',zh:'<b>手动模式。</b>逐条审阅生成的内容——批准、编辑或拒绝。切换右上角"自动"可让 Touchigh 自动发布。'})}</div></div>`;
-    body=`${filters}${notice}
+    body=`${filters}${notice}${S.mode==='manual'?`<div class="approve-bar" id="approve-bar">${pendingBarInner()}</div>`:''}
       <div class="muted" style="font-size:12.5px;margin-bottom:12px">${list.length} ${L({en:'creatives',zh:'条素材'})} · ${list.filter(c=>c.top).length} ${L({en:'top performers ≥80%',zh:'高潜力 ≥80%'})}</div>
       <div class="grid g4">${list.map(postCard).join('')}</div>`;
   }
@@ -1148,20 +1273,60 @@ SCREENS.social=()=>{
   }
   else if(S.socialTab==='thought'){
     body=`<p class="muted" style="font-size:13.5px;margin-bottom:16px;max-width:680px">${L({en:'Touchigh writes on behalf of your CEO and your company — thought-leadership angled from world news, and product updates — all in the strategy\'s voice.',zh:'Touchigh 代表你的 CEO 与公司撰写内容——取自时事的思想领导力，以及产品更新——皆采用策略的语气。'})}</p>
-    <div class="grid g2">${CEO_POSTS.map(p=>`<div class="card" style="padding:0;overflow:hidden">
+    <div class="grid g2">${CEO_POSTS.map((p,pi)=>`<div class="card" style="padding:0;overflow:hidden">
       <div style="padding:16px 18px;display:flex;gap:12px;align-items:center;border-bottom:1px solid var(--tint)">
         <div class="avatar" style="background:${p.who==='ceo'?'linear-gradient(135deg,#FF8C43,#C33909)':'#141519'};border-radius:${p.who==='ceo'?'50%':'10px'}">${p.who==='ceo'?'ZK':'<span style=\"font-style:italic;font-weight:800;font-size:12px\">E<span style=\"color:#CE1B2B\">S</span></span>'}</div>
         <div style="flex:1"><b style="font-size:14px">${p.name}</b><div class="soft" style="font-size:12px">${L(p.role)}</div></div>
         <span class="chip"><span class="dot ${PILLAR_C[p.pillar].bg}"></span>${p.pillar}</span>
       </div>
       <div style="padding:16px 18px">
-        <div style="font-weight:700;font-size:15px;margin-bottom:8px">${L(p.hook)}</div>
+        ${S.tlEdits['TL-'+pi]?`<div style="font-size:13.5px;line-height:1.55;color:var(--cap)">${S.tlEdits['TL-'+pi]}</div><div class="chip" style="margin-top:10px;font-size:11px;color:var(--green);border-color:#B6E6D8;background:#E1F5EF"><span style="width:12px;height:12px;display:inline-block">${IC.check}</span>${L({en:'Edited draft',zh:'已编辑草稿'})}</div>`:`<div style="font-weight:700;font-size:15px;margin-bottom:8px">${L(p.hook)}</div>
         <p style="font-size:13px;color:var(--cap);line-height:1.55">${L(p.body)}</p>
-        <div class="chip" style="margin-top:12px;font-size:11px;color:var(--violet);border-color:#E0CFFA"><span style="width:12px;height:12px;display:inline-block">${IC.wand}</span>${L(p.src)}</div>
+        <div class="chip" style="margin-top:12px;font-size:11px;color:var(--violet);border-color:#E0CFFA"><span style="width:12px;height:12px;display:inline-block">${IC.wand}</span>${L(p.src)}</div>`}
       </div>
       <div class="foot"><div class="score">${scoreRing(p.score)}<div><div style="font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)">${t('clickability')}</div><b>${p.score}%</b></div></div>
-      ${S.mode==='auto'?`<span class="chip" style="margin-left:auto;color:var(--orange);border-color:#FFD2B8">${t('scheduled')} · LinkedIn</span>`:`<div class="mini-act"><button class="icobtn ok">${IC.check}</button><button class="icobtn">${IC.edit}</button><button class="icobtn no">${IC.x}</button></div>`}</div>
+      ${S.mode==='auto'?`<span class="chip" style="margin-left:auto;color:var(--orange);border-color:#FFD2B8">${t('scheduled')} · LinkedIn</span>`:`<div class="post-act" id="act-TL-${pi}">${genericActions('TL-'+pi,'LinkedIn')}</div>`}</div>
     </div>`).join('')}</div>`;
+  }
+  else if(S.socialTab==='community'){
+    const cmt={en:'Does this work for my mother who had a hip replacement?',zh:'这适合我做过髋关节置换手术的母亲吗？'};
+    const replies={
+      professional:{en:'Thank you for your question. Yes — the US-H-1.0Pro is designed for post-operative rehabilitation and reduces lower-body load by up to 80% per step. We\'d be glad to arrange a guided first walk for her.',zh:'感谢您的提问。是的——US-H-1.0Pro 专为术后康复设计，每步可为下肢减负最高 80%。我们很乐意为她安排一次陪同的首次体验。'},
+      casual:{en:'Great question! 🙌 Yep — it\'s built exactly for hip-replacement recovery, up to 80% less strain every step. Want us to set up a free trial walk for her?',zh:'好问题！🙌 没错——它正是为髋关节置换恢复而生，每步省力最高 80%。要不要我们帮她安排一次免费体验？'},
+      grateful:{en:'Thank you so much for reaching out 🙏 It truly means a lot. Yes — US-H-1.0Pro supports hip-replacement recovery with up to 80% less load per step. We\'d love to help her walk with confidence again.',zh:'非常感谢您的联系 🙏 这对我们意义重大。是的——US-H-1.0Pro 支持髋关节置换恢复，每步减负最高 80%。我们很希望能帮助她重新自信地行走。'}
+    };
+    const tones=[['professional',{en:'Professional',zh:'专业'}],['casual',{en:'Casual',zh:'轻松'}],['grateful',{en:'Grateful',zh:'感恩'}]];
+    body=`<p class="muted" style="font-size:13.5px;margin-bottom:16px;max-width:720px">${L({en:'Turn comments into conversations. Touchigh can watch every post and reply in your brand voice — automatically.',zh:'把评论变成对话。Touchigh 可监测每条帖子并以品牌语气自动回复。'})}</p>
+    <div class="pro-card">
+      <div class="pro-top">
+        <span class="ico v" style="width:40px;height:40px;padding:9px;border-radius:11px">${IC.social}</span>
+        <div style="flex:1"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><b class="h-s">${L({en:'Automated Comment Replies',zh:'自动评论回复'})}</b><span class="pro-badge">PRO</span></div>
+          <p class="muted" style="font-size:12.5px;margin-top:3px">${L({en:'AI monitors comments across your channels and replies in seconds — no lead goes cold.',zh:'AI 监测各渠道评论并在数秒内回复——不让任何潜在客户流失。'})}</p></div>
+        <div class="switch ${S.commEnabled?'on':''}" onclick="toggleComm()"></div>
+      </div>
+      <div style="padding:18px 20px">
+        ${S.commEnabled?`
+          <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;margin-bottom:18px">
+            <div><div class="eyebrow" style="margin-bottom:6px">${L({en:'Reply tone',zh:'回复语气'})}</div>
+              <select class="sel" onchange="setReplyTone(this.value)">${tones.map(([v,l])=>`<option value="${v}" ${S.replyTone===v?'selected':''}>${L(l)}</option>`).join('')}</select></div>
+            <div style="display:flex;gap:24px;margin-left:auto">
+              <div><div style="font-size:22px;font-weight:800">128</div><div class="soft" style="font-size:11px">${L({en:'comments handled · 7d',zh:'已处理评论 · 7 天'})}</div></div>
+              <div><div style="font-size:22px;font-weight:800">2m</div><div class="soft" style="font-size:11px">${L({en:'avg. reply time',zh:'平均回复时间'})}</div></div>
+            </div>
+          </div>
+          <div class="eyebrow" style="margin-bottom:8px">${L({en:'Live preview',zh:'实时预览'})}</div>
+          <div class="reply-preview">
+            <div class="cmt"><span class="av">SL</span><div><div class="soft" style="font-size:11px;margin-bottom:3px">@sarah_lim · ${L({en:'on P1-T-01',zh:'评论于 P1-T-01'})}</div><div class="bub">${L(cmt)}</div></div></div>
+            <div class="cmt ai" style="margin-top:10px;flex-direction:row-reverse;text-align:right"><span class="av" style="background:var(--orange)">ES</span><div><div class="soft" style="font-size:11px;margin-bottom:3px">ExoStride · <span style="color:var(--orange)">${L({en:'auto-reply',zh:'自动回复'})}</span></div><div class="bub">${L(replies[S.replyTone])}</div></div></div>
+          </div>
+        `:`
+          <div class="upgrade"><span style="width:22px;height:22px;color:var(--violet);flex:none">${IC.spark}</span><div style="flex:1"><b style="font-size:13.5px">${L({en:'This is a Pro feature',zh:'这是 Pro 专属功能'})}</b><p class="muted" style="font-size:12.5px;margin-top:2px">${L({en:'Upgrade to Touchigh Pro to auto-reply to comments across every channel, in your chosen tone.',zh:'升级 Touchigh Pro，即可在所有渠道以你选择的语气自动回复评论。'})}</p></div><button class="cta sm" onclick="toggleComm()">${L({en:'Upgrade to Pro',zh:'升级 Pro'})}</button></div>
+          <ul style="list-style:none;margin-top:16px;display:grid;gap:9px">
+            ${[{en:'Replies in seconds, 24/7 — even while you sleep',zh:'7×24 秒级回复——你休息时也在工作'},{en:'Choose the tone: Professional, Casual or Grateful',zh:'可选语气：专业、轻松或感恩'},{en:'Flags high-intent buyers for your team to close',zh:'标记高意向买家，交由团队促成转化'}].map(f=>`<li style="display:flex;gap:9px;align-items:flex-start;font-size:13px"><span class="check" style="margin-top:1px">${IC.check}</span>${L(f)}</li>`).join('')}
+          </ul>
+        `}
+      </div>
+    </div>`;
   }
   else if(S.socialTab==='channels'){
     const ch=[['LinkedIn',1,'in'],['X / Twitter',1,'𝕏'],['Facebook',1,'f'],['Instagram',1,'◎'],['Amazon Posts',0,'a'],['Threads',0,'@']];
@@ -1276,6 +1441,24 @@ SCREENS.ads=()=>{
   <div class="page-head"><h1>${L({en:'Ads Autopilot',zh:'广告自动驾驶'})} ${modeBadge()}</h1>
   <p>${L({en:'Runs and optimizes paid campaigns across Amazon, Meta and Google — reading live performance and reallocating budget to what converts, in your strategy\'s order.',zh:'在 Amazon、Meta 与 Google 上投放并优化付费广告——读取实时表现，按你的策略顺序将预算转向转化更好的内容。'})}</p></div>
 
+  <div class="card integ" style="margin-bottom:18px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span class="shopify-mark">S</span>
+      <div style="flex:1;min-width:200px"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><b class="h-s">${L({en:'Store connected — ROI syncing live',zh:'店铺已连接——ROI 实时同步'})}</b><span class="chip" style="color:var(--green);border-color:#B6E6D8;background:#E1F5EF"><span class="sync-dot"></span>${L({en:'Live',zh:'实时'})}</span></div>
+        <p class="muted" style="font-size:12.5px;margin-top:3px">${L({en:'Shopify + Amazon connected — every dollar of ad spend is tracked to real revenue.',zh:'已连接 Shopify 与 Amazon——每一分广告投入都追踪至真实收入。'})}</p></div>
+      <span class="muted" style="font-size:11.5px">${L({en:'last synced 2 min ago',zh:'2 分钟前同步'})}</span>
+    </div>
+    <div class="grid g2" style="margin-top:14px;gap:10px">
+      <div class="integ-stat"><span class="shopify-mark" style="width:28px;height:28px;font-size:14px">S</span><div style="flex:1;min-width:0"><b style="font-size:13px">Shopify</b><div class="soft" style="font-size:11px">exostride-us.myshopify.com</div></div><span class="chip" style="color:var(--green);border-color:#B6E6D8">${L({en:'Connected',zh:'已连接'})}</span></div>
+      <div class="integ-stat"><span style="width:28px;height:28px;border-radius:8px;background:#FF9900;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex:none">a</span><div style="flex:1;min-width:0"><b style="font-size:13px">Amazon</b><div class="soft" style="font-size:11px">Seller Central · US</div></div><span class="chip" style="color:var(--green);border-color:#B6E6D8">${L({en:'Connected',zh:'已连接'})}</span></div>
+    </div>
+    <div class="grid g3" style="margin-top:10px;gap:10px">
+      <div class="integ-stat"><span class="ic-ok">${IC.check}</span><div><b style="font-size:12.5px">${L({en:'Conversion tracking',zh:'转化追踪'})}</b><div class="soft" style="font-size:11px">${L({en:'Active',zh:'已激活'})}</div></div></div>
+      <div class="integ-stat"><span class="ic-ok">${IC.check}</span><div><b style="font-size:12.5px">${L({en:'Sales data',zh:'销售数据'})}</b><div class="soft" style="font-size:11px"><span class="sync-dot"></span> ${L({en:'Syncing',zh:'同步中'})}</div></div></div>
+      <div class="integ-stat"><span class="ic-ok">${IC.check}</span><div><b style="font-size:12.5px">${L({en:'ROI metrics',zh:'ROI 指标'})}</b><div class="soft" style="font-size:11px">${L({en:'Live',zh:'实时'})}</div></div></div>
+    </div>
+  </div>
+
   <div class="grid g4" style="margin-bottom:20px">
     <div class="tile stat"><div class="n">${a.roas}×</div><div class="l">${L({en:'Blended ROAS',zh:'综合 ROAS'})}</div><div class="d muted">${L({en:'target 3.0×',zh:'目标 3.0×'})}</div></div>
     <div class="tile stat"><div class="n">$${(a.spend/1000).toFixed(1)}k</div><div class="l">${L({en:'Spend · 30d',zh:'投放 · 30 天'})}</div><div class="d muted">${L({en:'across 3 channels',zh:'覆盖 3 个渠道'})}</div></div>
@@ -1296,7 +1479,7 @@ SCREENS.ads=()=>{
       <div class="hr"></div>
       <div class="kv"><span class="k">${L({en:'Amazon (rehab)',zh:'Amazon（康复）'})}</span><span class="v" style="color:var(--green)">5.1× ▲</span></div>
       <div class="kv"><span class="k">${L({en:'Meta prospecting',zh:'Meta 拓新'})}</span><span class="v" style="color:var(--red)">2.9× ▼</span></div>
-      ${S.mode==='manual'?`<button class="cta" style="width:100%;justify-content:center;margin-top:14px">${L({en:'Approve proposed budget shift',zh:'批准建议的预算调整'})}</button>`:`<div class="chip" style="width:100%;justify-content:center;margin-top:14px;color:var(--orange);border-color:#FFD2B8;padding:9px">${L({en:'Auto-reallocating hourly',zh:'每小时自动再分配'})}</div>`}
+      ${S.mode==='manual'?`<button class="cta" style="width:100%;justify-content:center;margin-top:14px" onclick="approveBudget(this)"><span style="width:14px;height:14px;display:inline-block">${IC.check}</span>${L({en:'Approve proposed budget shift',zh:'批准建议的预算调整'})}</button>`:`<div class="chip" style="width:100%;justify-content:center;margin-top:14px;color:var(--orange);border-color:#FFD2B8;padding:9px">${L({en:'Auto-reallocating hourly',zh:'每小时自动再分配'})}</div>`}
     </div>
   </div>
 
@@ -1338,6 +1521,251 @@ SCREENS.settings=()=>{
       <div class="kv"><span class="k">${L({en:'Last strategy run',zh:'上次策略运行'})}</span><span class="v">${L({en:'today',zh:'今天'})}</span></div></div>
   </div>`;
 };
+
+/* =========================================================================
+   BOOT
+   ========================================================================= */
+/* =========================================================================
+   MANUAL-MODE APPROVAL WORKFLOW
+   ========================================================================= */
+function filteredCreatives(){return DATA.creatives.filter(c=>(S.filterPillar==='all'||c.pillar===S.filterPillar)&&(S.filterStage==='all'||c.stage===S.filterStage));}
+function postActions(cr){
+  if(S.mode==='auto') return `<span class="chip" style="color:var(--orange);border-color:#FFD2B8"><span class="check" style="width:1em;height:1em;font-size:.6em">${IC.check}</span>${cr.stage==='BOFU'?t('published'):t('scheduled')}</span>`;
+  const st=S.approvals[cr.key];
+  if(st==='approved') return `<span class="chip ok-chip"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Approved',zh:'已批准'})}</span><button class="linkbtn" onclick="approveItem('${cr.key}',null)">${L({en:'undo',zh:'撤销'})}</button>`;
+  if(st==='rejected') return `<span class="chip no-chip">${L({en:'Rejected',zh:'已拒绝'})}</span><button class="linkbtn" onclick="approveItem('${cr.key}',null)">${L({en:'undo',zh:'撤销'})}</button>`;
+  return `<div class="mini-act"><button class="icobtn ok" title="${t('approve')}" onclick="approveItem('${cr.key}','approved')">${IC.check}</button><button class="icobtn" title="${t('edit')}" onclick="openStudio('post','${cr.key}')">${IC.edit}</button><button class="icobtn no" title="${t('reject')}" onclick="approveItem('${cr.key}','rejected')">${IC.x}</button></div>`;
+}
+function approveItem(key,status){
+  if(status===null) delete S.approvals[key]; else S.approvals[key]=status;
+  const cr=DATA.creatives.find(c=>c.key===key);
+  const act=document.getElementById('act-'+key); if(act&&cr) act.innerHTML=postActions(cr);
+  const post=document.querySelector('.post[data-key="'+key+'"]'); if(post) post.classList.toggle('is-rejected',S.approvals[key]==='rejected');
+  updatePendingBar();
+}
+function openEditPost(key){
+  const cr=DATA.creatives.find(c=>c.key===key); const cur=(S.edits[key]||L(cr.hook)).replace(/"/g,'&quot;');
+  openModal(`<div class="reader" style="width:min(520px,100%)">
+    <div class="reader-head"><button class="reader-close" onclick="closeModal()">${IC.x}</button>
+      <span class="chip" style="margin-bottom:10px;border-color:${PILLAR_C[cr.pillar].c};color:${PILLAR_C[cr.pillar].c}"><span class="dot ${PILLAR_C[cr.pillar].bg}"></span>${cr.key}</span>
+      <h1 style="font-size:19px">${L({en:'Edit caption',zh:'编辑文案'})}</h1></div>
+    <div class="reader-body">
+      <textarea id="edit-cap" style="width:100%;min-height:110px;border:1px solid var(--tint);border-radius:12px;padding:12px 14px;font-family:inherit;font-size:14px;line-height:1.5;color:var(--ink);resize:vertical">${cur}</textarea>
+      <div style="display:flex;gap:10px;margin-top:14px;justify-content:flex-end">
+        <button class="ghost" onclick="closeModal()">${L({en:'Cancel',zh:'取消'})}</button>
+        <button class="cta" onclick="saveEditPost('${key}')"><span style="width:14px;height:14px;display:inline-block">${IC.check}</span>${L({en:'Save & approve',zh:'保存并批准'})}</button>
+      </div>
+    </div></div>`);
+}
+function saveEditPost(key){
+  const v=document.getElementById('edit-cap').value; S.edits[key]=v; S.approvals[key]='approved';
+  const cap=document.getElementById('cap-'+key); if(cap) cap.textContent=v;
+  const cr=DATA.creatives.find(c=>c.key===key); const act=document.getElementById('act-'+key); if(act) act.innerHTML=postActions(cr);
+  updatePendingBar(); closeModal();
+}
+function pendingBarInner(){
+  const list=filteredCreatives(); const pending=list.filter(c=>!S.approvals[c.key]).length; const done=list.length-pending;
+  if(pending===0) return `<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="chip ok-chip"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'All reviewed',zh:'全部已审阅'})}</span><span class="muted" style="font-size:12.5px">${done} ${L({en:'items approved or rejected',zh:'项已批准或拒绝'})}</span></div>`;
+  return `<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <span style="width:16px;height:16px;color:var(--orange);flex:none">${IC.bolt}</span>
+    <span style="font-weight:700;font-size:13.5px">${pending} ${L({en:'awaiting your approval',zh:'待你批准'})}</span>
+    <span class="muted" style="font-size:12.5px">${L({en:'of',zh:'/ 共'})} ${list.length} · ${done} ${L({en:'done',zh:'已处理'})}</span>
+    <div style="margin-left:auto;display:flex;gap:8px"><button class="cta sm" onclick="approveAll()"><span style="width:13px;height:13px;display:inline-block">${IC.check}</span>${L({en:'Approve all',zh:'全部批准'})}</button><button class="ghost sm" onclick="rejectAll()">${L({en:'Reject all',zh:'全部拒绝'})}</button></div>
+  </div>`;
+}
+function updatePendingBar(){const bar=document.getElementById('approve-bar'); if(bar) bar.innerHTML=pendingBarInner();}
+function approveAll(){filteredCreatives().forEach(c=>{if(!S.approvals[c.key])S.approvals[c.key]='approved';});renderView();}
+function rejectAll(){filteredCreatives().forEach(c=>{if(!S.approvals[c.key])S.approvals[c.key]='rejected';});renderView();}
+/* generic approval for non-creative items (CEO posts, etc.) */
+function genericActions(key,channel){
+  const st=S.approvals[key];
+  if(st==='approved') return `<span class="chip ok-chip"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Approved',zh:'已批准'})} · ${channel}</span><button class="linkbtn" onclick="approveGeneric('${key}',null,'${channel}')">${L({en:'undo',zh:'撤销'})}</button>`;
+  if(st==='rejected') return `<span class="chip no-chip">${L({en:'Rejected',zh:'已拒绝'})}</span><button class="linkbtn" onclick="approveGeneric('${key}',null,'${channel}')">${L({en:'undo',zh:'撤销'})}</button>`;
+  return `<div class="mini-act"><button class="icobtn ok" title="${t('approve')}" onclick="approveGeneric('${key}','approved','${channel}')">${IC.check}</button><button class="icobtn" title="${t('edit')}" onclick="openStudio('text','${key}')">${IC.edit}</button><button class="icobtn no" title="${t('reject')}" onclick="approveGeneric('${key}','rejected','${channel}')">${IC.x}</button></div>`;
+}
+function approveGeneric(key,status,channel){if(status===null)delete S.approvals[key];else S.approvals[key]=status;const el=document.getElementById('act-'+key);if(el)el.innerHTML=genericActions(key,channel);}
+function approveBudget(btn){btn.outerHTML=`<div class="chip ok-chip" style="width:100%;justify-content:center;padding:10px;margin-top:14px"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Applied · budget shifted',zh:'已应用 · 预算已调整'})}</div>`;}
+
+/* ---- in-line WYSIWYG post editor (manual mode) ---- */
+function postCardEditor(cr){const imgKey=S.imgSwap[cr.key]||cr.key;
+  const alts=DATA.creatives.filter(c=>c.pillar===cr.pillar&&c.key!==cr.key).slice(0,6);
+  const curCap=S.edits[cr.key]||L(cr.hook);
+  return `<div class="post editing" data-key="${cr.key}">
+    <div class="creative-img"><img id="editimg-${cr.key}" src="${CREATIVE_IMG[imgKey]}" alt=""><span class="k">${cr.key}</span><span class="badge-top" style="background:var(--ink);color:#fff">${L({en:'Editing',zh:'编辑中'})}</span></div>
+    <div class="swap-row"><span class="st">${L({en:'Swap image',zh:'替换图片'})}</span>${alts.map(a=>`<img class="swap-thumb ${imgKey===a.key?'on':''}" src="${CREATIVE_IMG[a.key]}" title="${a.key}" onclick="swapImg('${cr.key}','${a.key}')">`).join('')}</div>
+    <div class="fmt-bar"><button onmousedown="event.preventDefault()" onclick="fmt('bold')" title="Bold"><b>B</b></button><button onmousedown="event.preventDefault()" onclick="fmt('italic')" title="Italic"><i>I</i></button><button onmousedown="event.preventDefault()" onclick="insertEmoji('${cr.key}','✨')">✨</button><button onmousedown="event.preventDefault()" onclick="insertEmoji('${cr.key}','🔥')">🔥</button><button onmousedown="event.preventDefault()" onclick="insertEmoji('${cr.key}','💪')">💪</button><button onmousedown="event.preventDefault()" onclick="insertEmoji('${cr.key}',' #ExoStride')" style="font-weight:800">#</button></div>
+    <div class="cap-edit" id="capedit-${cr.key}" contenteditable="true">${curCap}</div>
+    <div class="edit-foot"><button class="ghost sm" onclick="cancelInline('${cr.key}')">${L({en:'Cancel',zh:'取消'})}</button><span style="margin-left:auto"></span><button class="cta sm" onclick="saveInline('${cr.key}')"><span style="width:13px;height:13px;display:inline-block">${IC.check}</span>${L({en:'Approve & Schedule',zh:'批准并排期'})}</button></div>
+  </div>`;}
+function replaceCard(key){const cr=DATA.creatives.find(c=>c.key===key);const el=document.querySelector('.post[data-key="'+key+'"]');if(el&&cr){const tmp=document.createElement('div');tmp.innerHTML=postCard(cr);const nw=tmp.firstElementChild;el.replaceWith(nw);if(S.editing===key){const ce=document.getElementById('capedit-'+key);if(ce)ce.focus();}}}
+function startInlineEdit(key){S.editing=key;replaceCard(key);}
+function cancelInline(key){S.editing=null;replaceCard(key);}
+function saveInline(key){const ed=document.getElementById('capedit-'+key);if(ed)S.edits[key]=ed.innerHTML.trim();S.approvals[key]='approved';S.editing=null;replaceCard(key);updatePendingBar();}
+function swapImg(key,alt){S.imgSwap[key]=alt;const img=document.getElementById('editimg-'+key);if(img)img.src=CREATIVE_IMG[alt];document.querySelectorAll('.post[data-key="'+key+'"] .swap-thumb').forEach(th=>th.classList.toggle('on',th.getAttribute('title')===alt));}
+function fmt(cmd){document.execCommand(cmd,false,null);}
+function insertEmoji(key,ch){const ed=document.getElementById('capedit-'+key);if(ed){ed.focus();document.execCommand('insertText',false,ch);}}
+
+/* =========================================================================
+   CONTENT STUDIO — copilot editor with creative regeneration
+   ========================================================================= */
+function postEditSuggestions(cr){const p=cr.pillar;const dd=(k,fb)=>k===cr.key?fb:k;
+  const defs=[
+    ['T-03','T-08',{en:'More energetic & bold',zh:'更有活力、更大胆'},{en:'a bolder, high-energy statement',zh:'更大胆、更具活力的主张'}],
+    ['M-03','M-06',{en:'Lead with the proof / stat',zh:'以数据实证为主'},{en:'the measured-proof cut (up to 80% less load)',zh:'量化实证版本（省力最高 80%）'}],
+    ['T-07','M-05',{en:'A lifestyle moment',zh:'生活场景版本'},{en:'a candid lifestyle moment',zh:'真实生活场景'}],
+    ['T-04','B-04',{en:'Warmer, family tone',zh:'更温暖的家庭语气'},{en:'a warmer, emotional story cut',zh:'更温暖的情感故事版本'}]
+  ];
+  return defs.map(d=>{const target=dd(p+'-'+d[0],p+'-'+d[1]);const tc=DATA.creatives.find(c=>c.key===target);return {lab:d[2],reply:d[3],target,cap:tc?L(tc.hook):L(cr.hook)};});
+}
+function tlEditSuggestions(key){const pi=+key.split('-')[1];const p=CEO_POSTS[pi];const hook=L(p.hook),body=L(p.body);
+  return [
+    {lab:{en:'Punchier hook',zh:'更有力的开头'},reply:{en:'Tightened the opening into a single bold line.',zh:'已将开头收紧为一句有力短句。'},body:S.lang==='en'?`<h3>Mobility is dignity. Full stop.</h3><p>${body}</p>`:`<h3>行动力，就是尊严。仅此而已。</h3><p>${body}</p>`},
+    {lab:{en:'Add a hard data point',zh:'加入硬数据'},reply:{en:'Added a WHO stat to anchor the argument.',zh:'已加入世卫数据以支撑论点。'},body:S.lang==='en'?`<h3>${hook}</h3><p>${body}</p><p><b>1 in 2 adults over 60</b> report a mobility limitation — the single fastest-rising driver of lost independence.</p>`:`<h3>${hook}</h3><p>${body}</p><p><b>每两位 60 岁以上成年人中就有一位</b>存在行动力受限——这是失去独立的最快诱因。</p>`},
+    {lab:{en:'More personal (founder voice)',zh:'更具创始人个人色彩'},reply:{en:'Added a first-person founder close.',zh:'已加入第一人称的创始人收尾。'},body:S.lang==='en'?`<h3>${hook}</h3><p>${body}</p><p>I didn't build US-H-1.0Pro to look like the future. I built it so a father could walk to the kopitiam by himself again. — Zhao Kui, CEO</p>`:`<h3>${hook}</h3><p>${body}</p><p>我打造 US-H-1.0Pro，不是为了看起来像未来，而是为了让一位父亲能重新自己走去咖啡店。——赵奎，首席执行官</p>`}
+  ];
+}
+function articleBaseBody(i){const a=DATA.articles[i],bd=ARTICLE_BODIES[i];return `<h3>${L(a.ti)}</h3><p><b>TL;DR — </b>${L(bd.tldr)}</p><h3>${L(bd.sections[0].h)}</h3><p>${L(bd.sections[0].p)}</p>`;}
+function articleEditSuggestions(i){const a=DATA.articles[i],bd=ARTICLE_BODIES[i];const title=L(a.ti),tldr=L(bd.tldr),h0=L(bd.sections[0].h),p0=L(bd.sections[0].p);const base=articleBaseBody(i);
+  return [
+    {lab:{en:'Stronger TL;DR',zh:'更有力的 TL;DR'},reply:{en:'Tightened the opening answer and led with the outcome.',zh:'已收紧开头答案，以结果为先。'},body:S.lang==='en'?`<h3>${title}</h3><p style="font-size:15px"><b>Short answer — ${tldr}</b></p><h3>${h0}</h3><p>${p0}</p>`:`<h3>${title}</h3><p style="font-size:15px"><b>简短答案——${tldr}</b></p><h3>${h0}</h3><p>${p0}</p>`},
+    {lab:{en:'Warmer, patient-friendly',zh:'更温暖、更贴近患者'},reply:{en:'Softened the tone and spoke to the reader directly.',zh:'已柔化语气并直接与读者对话。'},body:base+(S.lang==='en'?`<p>If someone you love is finding the stairs harder than they used to, this guide is written for you — no jargon, just what actually helps.</p>`:`<p>如果你所爱的人上下楼越来越吃力，这篇指南正是为你而写——没有术语，只有真正有用的内容。</p>`)},
+    {lab:{en:'Add an FAQ block',zh:'加入常见问题'},reply:{en:'Appended an FAQ block for answer-engine visibility.',zh:'已追加常见问题块以利答案引擎收录。'},body:base+(S.lang==='en'?`<h3>FAQ</h3><p><b>Is it a medical device?</b> A consumer mobility-assist exoskeleton for rehabilitation, outdoor and everyday use — used at home without a prescription.</p><p><b>How heavy is it?</b> 2.4 kg, foldable, one-button — no app needed.</p>`:`<h3>常见问题</h3><p><b>这是医疗器械吗？</b>面向康复、户外与日常使用的消费级助行外骨骼，可在家使用，无需处方。</p><p><b>有多重？</b>2.4 kg，可折叠，一键操作——无需 App。</p>`)}
+  ];
+}
+function studioSubtitle(){
+  if(STUDIO.type==='post'){const cr=DATA.creatives.find(c=>c.key===STUDIO.key);return `${STUDIO.key} · ${L(pillar(cr.pillar).persona)} · ${L({en:'copilot can regenerate the visual',zh:'副驾可重新生成视觉'})}`;}
+  if(STUDIO.type==='text')return `${L({en:'Thought leadership',zh:'思想领导力'})} · ${L({en:'copilot can rewrite the draft',zh:'副驾可重写草稿'})}`;
+  return `${L(DATA.articles[STUDIO.id].ti)}`;
+}
+function openStudio(type,id){
+  if(type==='post'){const cr=DATA.creatives.find(c=>c.key===id);STUDIO={type,key:id,img:S.imgSwap[id]||id,cap:S.edits[id]||L(cr.hook),sugg:postEditSuggestions(cr),chat:[]};}
+  else if(type==='text'){const pi=+id.split('-')[1];STUDIO={type,key:id,body:S.tlEdits[id]||('<h3>'+L(CEO_POSTS[pi].hook)+'</h3><p>'+L(CEO_POSTS[pi].body)+'</p>'),sugg:tlEditSuggestions(id),chat:[]};}
+  else {STUDIO={type:'article',id:id,body:S.articleEdits[id]||articleBaseBody(id),sugg:articleEditSuggestions(id),chat:[]};}
+  openModal(studioHTML()); renderStudioCopilot();
+}
+function studioHTML(){
+  const head=`<div class="studio-head"><span class="ico v" style="width:32px;height:32px;padding:7px;border-radius:9px">${IC.wand}</span><div style="flex:1;min-width:0"><b style="font-size:15px">${L({en:'Content Studio',zh:'内容工作室'})}</b><div class="soft" style="font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${studioSubtitle()}</div></div><button class="icobtn" onclick="closeStudio()">${IC.x}</button></div>`;
+  let preview;
+  if(STUDIO.type==='post'){
+    const cr=DATA.creatives.find(c=>c.key===STUDIO.key);const alts=DATA.creatives.filter(c=>c.pillar===cr.pillar&&c.key!==cr.key).slice(0,6);
+    preview=`<div class="studio-preview">
+      <div class="creative-wrap"><img id="studio-img" src="${CREATIVE_IMG[STUDIO.img]}" alt=""><div class="regen-overlay" id="studio-regen"></div></div>
+      <div class="swap-row" style="border:0;background:none;padding:10px 0 4px"><span class="st">${L({en:'Swap image',zh:'替换图片'})}</span>${alts.map(a=>`<img class="swap-thumb ${STUDIO.img===a.key?'on':''}" src="${CREATIVE_IMG[a.key]}" title="${a.key}" onclick="studioSwap('${a.key}')">`).join('')}</div>
+      <div class="fmt-bar" style="border:1px solid var(--tint);border-radius:8px"><button onmousedown="event.preventDefault()" onclick="studioFmt('bold')"><b>B</b></button><button onmousedown="event.preventDefault()" onclick="studioFmt('italic')"><i>I</i></button><button onmousedown="event.preventDefault()" onclick="studioEmoji('✨')">✨</button><button onmousedown="event.preventDefault()" onclick="studioEmoji('🔥')">🔥</button><button onmousedown="event.preventDefault()" onclick="studioEmoji(' #ExoStride')" style="font-weight:800">#</button></div>
+      <div class="studio-cap" id="studio-cap" contenteditable="true">${STUDIO.cap}</div>
+    </div>`;
+  } else {
+    preview=`<div class="studio-preview"><div class="studio-text"><div class="regen-overlay" id="studio-regen"></div><div class="txt" id="studio-txt" contenteditable="true">${STUDIO.body}</div></div></div>`;
+  }
+  const copilot=`<div class="studio-copilot">
+    <div class="cop-head"><span style="width:16px;height:16px;color:var(--violet)">${IC.wand}</span><b style="font-size:13.5px">${L({en:'Content Copilot',zh:'内容副驾'})}</b></div>
+    <div class="cop-body" id="cop-body"></div>
+    <div class="cop-sugg" id="cop-sugg"></div>
+    <div class="cop-input"><input id="cop-inp" placeholder="${L({en:'Ask for an edit…',zh:'输入修改要求…'})}" onkeydown="if(event.key==='Enter')studioSend()"><button onclick="studioSend()">${IC.arrow}</button></div>
+  </div>`;
+  const foot=`<div class="studio-foot"><button class="ghost" onclick="closeStudio()">${L({en:'Cancel',zh:'取消'})}</button><span style="margin-left:auto"></span><button class="cta" onclick="studioSave()"><span style="width:14px;height:14px;display:inline-block">${IC.check}</span>${STUDIO.type==='post'?L({en:'Approve & Schedule',zh:'批准并排期'}):L({en:'Save & approve',zh:'保存并批准'})}</button></div>`;
+  return `<div class="studio">${head}<div class="studio-body">${preview}${copilot}</div>${foot}</div>`;
+}
+function renderStudioCopilot(){
+  const sg=document.getElementById('cop-sugg'); if(sg)sg.innerHTML=STUDIO.sugg.map((s,i)=>`<button onclick="studioApply(${i})"><span style="width:12px;height:12px;display:inline-block">${IC.wand}</span>${L(s.lab)}</button>`).join('');
+  const b=document.getElementById('cop-body'); if(!b)return;
+  const intro=STUDIO.type==='post'?{en:"Pick a direction and I'll regenerate the creative and caption to match — or type your own.",zh:'选择一个方向，我会据此重新生成素材与文案——也可自行输入。'}:{en:"Pick a direction and I'll rewrite the draft — or type your own.",zh:'选择一个方向，我会据此重写草稿——也可自行输入。'};
+  b.innerHTML=`<div class="msg bot">${L(intro)}</div>`+STUDIO.chat.map(m=>m.role==='typing'?`<div class="msg typing">${L({en:'Regenerating…',zh:'正在重新生成…'})}</div>`:`<div class="msg ${m.role}">${(m.text||'').replace(/</g,'&lt;')}</div>`).join('');
+  b.scrollTop=b.scrollHeight;
+}
+function studioApply(i){
+  const s=STUDIO.sugg[i];
+  STUDIO.chat.push({role:'user',text:L(s.lab)}); STUDIO.chat.push({role:'typing'}); renderStudioCopilot();
+  const ov=document.getElementById('studio-regen');
+  if(ov){ov.innerHTML=`<div class="shine"></div><div class="lab"><span class="spin" style="border-top-color:#fff"></span> ${L({en:'Regenerating…',zh:'正在重新生成…'})}</div><div class="regen-bar"><i></i></div>`;ov.classList.add('on');}
+  setTimeout(()=>{
+    STUDIO.chat=STUDIO.chat.filter(m=>m.role!=='typing');
+    if(STUDIO.type==='post'){
+      STUDIO.img=s.target; const img=document.getElementById('studio-img'); if(img){img.style.opacity=0;setTimeout(()=>{img.src=CREATIVE_IMG[s.target];img.style.opacity=1;},170);}
+      const cap=document.getElementById('studio-cap'); if(cap)cap.innerHTML=s.cap; STUDIO.cap=s.cap;
+      document.querySelectorAll('.studio-preview .swap-thumb').forEach(th=>th.classList.toggle('on',th.getAttribute('title')===s.target));
+      STUDIO.chat.push({role:'bot',text:(S.lang==='en'?`Done — regenerated the creative to ${L(s.reply)}, and updated the caption to match. Approve & Schedule when you're happy.`:`完成——已将素材重新生成为${L(s.reply)}，并同步更新了文案。满意后即可批准并排期。`)});
+    } else {
+      STUDIO.body=s.body; const tx=document.getElementById('studio-txt'); if(tx){tx.style.opacity=0;setTimeout(()=>{tx.innerHTML=s.body;tx.style.opacity=1;},170);}
+      STUDIO.chat.push({role:'bot',text:L(s.reply)});
+    }
+    if(ov)ov.classList.remove('on'); renderStudioCopilot();
+  },1250);
+}
+function studioSwap(key){STUDIO.img=key;const img=document.getElementById('studio-img');if(img)img.src=CREATIVE_IMG[key];document.querySelectorAll('.studio-preview .swap-thumb').forEach(th=>th.classList.toggle('on',th.getAttribute('title')===key));}
+function studioFmt(cmd){document.execCommand(cmd,false,null);}
+function studioEmoji(ch){const el=STUDIO.type==='post'?document.getElementById('studio-cap'):document.getElementById('studio-txt');if(el){el.focus();document.execCommand('insertText',false,ch);}}
+function studioSend(){const inp=document.getElementById('cop-inp');const text=(inp?inp.value:'').trim();if(!text)return;if(inp)inp.value='';STUDIO.chat.push({role:'user',text});STUDIO.chat.push({role:'typing'});renderStudioCopilot();setTimeout(()=>{STUDIO.chat=STUDIO.chat.filter(m=>m.role!=='typing');STUDIO.chat.push({role:'bot',text:(S.lang==='en'?"Got it — tap one of the suggestions above and I'll regenerate it live, or keep editing directly.":'收到——点击上方任一建议，我会实时重新生成；也可直接继续编辑。')});renderStudioCopilot();},700);}
+function studioSave(){
+  if(STUDIO.type==='post'){const cap=document.getElementById('studio-cap');if(cap)S.edits[STUDIO.key]=cap.innerHTML.trim();if(STUDIO.img!==STUDIO.key)S.imgSwap[STUDIO.key]=STUDIO.img;else delete S.imgSwap[STUDIO.key];S.approvals[STUDIO.key]='approved';closeStudio();renderView();}
+  else if(STUDIO.type==='text'){const tx=document.getElementById('studio-txt');if(tx)S.tlEdits[STUDIO.key]=tx.innerHTML.trim();S.approvals[STUDIO.key]='approved';closeStudio();renderView();}
+  else {const tx=document.getElementById('studio-txt');if(tx)S.articleEdits[STUDIO.id]=tx.innerHTML.trim();S.articleApproved[STUDIO.id]=true;const id=STUDIO.id;closeStudio();openArticle(id);}
+}
+function closeStudio(){STUDIO=null;closeModal();}
+
+/* =========================================================================
+   CHAT — adjust the strategy
+   ========================================================================= */
+function strategyIntent(raw){
+  const t=raw.toLowerCase(); const has=(...w)=>w.some(x=>t.includes(x));
+  /* per-pillar tone control, e.g. "make pillar 2 more energetic" */
+  const pm=t.match(/pillar\s*([123])|\bp([123])\b|支柱\s*([123])/);
+  const pid=pm?('P'+(pm[1]||pm[2]||pm[3])):(has('comeback','重启')?'P1':(has('trail explorer','越野')?'P2':(has('everyday commuter','日常通勤')?'P3':null)));
+  const TONES=[['energ','活力',{en:'Energetic',zh:'活力四射'}],['playful','俏皮',{en:'Playful',zh:'俏皮'}],['fun','有趣',{en:'Playful',zh:'俏皮'}],['professional','专业',{en:'Professional',zh:'专业'}],['warm','温暖',{en:'Warmer',zh:'更温暖'}],['urgent','紧迫',{en:'Urgent',zh:'紧迫'}],['premium','高端',{en:'Premium',zh:'高端'}],['luxur','奢华',{en:'Premium',zh:'高端'}],['casual','轻松',{en:'Casual',zh:'轻松'}],['emotional','情感',{en:'Emotional',zh:'更具情感'}],['inspir','鼓舞',{en:'Inspiring',zh:'鼓舞人心'}],['bold','大胆',{en:'Bolder',zh:'更大胆'}]];
+  const toneHit=TONES.find(x=>t.includes(x[0])||t.includes(x[1]));
+  if(pid&&toneHit){const per=DATA.pillars.find(p=>p.id===pid);const pn=per?per.persona:{en:pid,zh:pid};
+    return {pillarTone:{pid,tone:toneHit[2]},adj:{en:`Set ${pn.en}'s tone to ${toneHit[2].en}.`,zh:`将${pn.zh}的语气设为${toneHit[2].zh}。`},reply:{en:`Done — ${pn.en} now runs a ${toneHit[2].en.toLowerCase()} tone. You'll see a tone tag on that pillar, and its next posts, articles and ads will pick it up.`,zh:`已完成——${pn.zh}现采用${toneHit[2].zh}的语气。该支柱会显示语气标签，其后续内容、文章与广告都会采用。`}};}
+  if(has('outdoor','trail','hik','climb','summit','p2','越野','户外','徒步','登山')) return {lead:'P2',adj:{en:'Re-led the US entry with the Trail Explorer (Outdoor).',zh:'改以越野探索者（户外）为美国进入主打。'},reply:{en:"Done — I've re-prioritised the strategy to lead with the Trail Explorer (Outdoor Sports). The pillar order and recommended lead now put Outdoor first, ahead of Rehabilitation and Commute. Social, GEO and Ads will weight toward the outdoor persona on the next generation.",zh:'已完成——我已将策略调整为以"越野探索者"（户外运动）为主打。支柱顺序与推荐主线现已把户外排在康复与通勤之前。下一轮的社媒、GEO 与广告将向户外人物倾斜。'}};
+  if(has('rehab','elder','aging','age','comeback','senior','dignity','p1','康复','养老','老','重启','尊严')) return {lead:'P1',adj:{en:'Led with Intelligent Rehabilitation (the Comeback Walker).',zh:'以智能康复（重启行者）为主打。'},reply:{en:"Got it — Intelligent Rehabilitation leads again. It's the widest whitespace (8% supply, 39% engagement), so it's the strongest default. Pillars re-ordered with the Comeback Walker first.",zh:'明白——重新以智能康复为主打。这是最大的空白机会（供给 8%、互动 39%），也是最强的默认选择。支柱已重新排序，重启行者排在最前。'}};
+  if(has('commut','last mile','office','work','p3','通勤','最后一公里','上班')) return {lead:'P3',adj:{en:'Led with Smoother Commutes (the Everyday Commuter).',zh:'以轻松通勤（日常通勤者）为主打。'},reply:{en:"Done — the Everyday Commuter leads now. Heads up: commute is the more contested lane, so keep a sharp effort-reduction angle (30–50% less exertion) to stand out.",zh:'已完成——现以日常通勤者为主打。提醒：通勤赛道竞争更激烈，建议保持鲜明的省力角度（省力 30–50%）以突围。'}};
+  if(has('caregiver','family','daughter','son','carer','parent','照护','家人','子女','家属','父母')) return {caregiver:true,adj:{en:'Added a caregiver / family angle to the Comeback Walker.',zh:'为重启行者增加照护者 / 家属角度。'},reply:{en:"Added a caregiver angle. Many rehab purchases are made by an adult child for a parent, so I've added a family-decision-maker message under the Comeback Walker — \"give them back their afternoon walks\" already speaks to this and can lead.",zh:'已增加照护者角度。许多康复购买由成年子女为父母决定，因此我在重启行者下增加了"家属决策者"信息——"把午后散步还给他们"正契合此点，可作为主打。'}};
+  if(has('bold','bolder','aggress','punch','edgy','loud','大胆','强硬','犀利','张扬')) return {personality:{en:'Bold, direct, challenger-led — names the problem plainly and dares the category to catch up, while keeping the dignity core.',zh:'大胆、直接、以挑战者姿态——直言痛点、敢于叫板品类，同时保留尊严内核。'},adj:{en:'Made the brand personality bolder / challenger-led.',zh:'将品牌个性调整得更大胆、更具挑战者姿态。'},reply:{en:"Tone dialled up — the brand personality is now bolder and challenger-led. I kept the dignity core (it's what wins the rehab audience) but sharpened the edges. See the updated Personality card in the recommendation and the recommends section.",zh:'语气已加强——品牌个性现更大胆、更具挑战者姿态。我保留了尊严内核（这是赢得康复受众的关键），但让锋芒更锐利。请见推荐区与建议区更新后的"个性"卡片。'}};
+  if(has('amazon','ads','budget','spend','roas','广告','预算','投放')) return {adj:{en:'Prioritised Amazon (rehab) in the ad plan.',zh:'在广告计划中优先 Amazon（康复）。'},reply:{en:"Noted — Amazon (rehab) is flagged as the priority ad channel; it's already your best pool at 5.1× ROAS. Ads Autopilot will keep weighting budget there.",zh:'已记录——Amazon（康复）已标记为优先广告渠道；它已是你 5.1× ROAS 的最佳受众池。广告自动驾驶将持续向此倾斜预算。'}};
+  if(has('price','afford','cost','cheap','value','价格','实惠','成本','性价比')) return {adj:{en:'Added a value / affordability message.',zh:'增加价值 / 实惠信息。'},reply:{en:"Added a value message. I'd pair the price with the \"2.4 kg, no app, one button\" simplicity so it reads as accessible, not cheap.",zh:'已增加价值信息。建议将价格与"2.4 kg、无需 App、一键操作"的简单性搭配，让它读起来是"可及"而非"廉价"。'}};
+  return {adj:{en:'Noted: "'+raw.trim().slice(0,60)+'" — refined the positioning accordingly.',zh:'已记录："'+raw.trim().slice(0,60)+'"——据此优化定位。'},reply:{en:"Noted — I've folded that into the positioning. Tell me a persona (rehab / outdoor / commute), a tone, or a channel and I'll re-weight the whole strategy around it.",zh:'已记录——我已将其纳入定位。告诉我一个人物（康复 / 户外 / 通勤）、一种语气或一个渠道，我就会围绕它重新调整整个策略。'}};
+}
+function chatSuggs(){return [
+  {q:'Make the tone of Pillar 2 more energetic',lab:{en:'Pillar 2 → energetic',zh:'支柱 2 → 活力'}},
+  {q:'Lead with outdoor instead',lab:{en:'Lead with Outdoor',zh:'改以户外为主打'}},
+  {q:'Add a caregiver angle for families',lab:{en:'Add caregiver angle',zh:'增加照护者角度'}},
+  {q:'Prioritise Amazon ads',lab:{en:'Prioritise Amazon',zh:'优先 Amazon'}}
+];}
+function chatDrawerHTML(){return `<div class="drawer-head">
+    <span class="ico v" style="width:34px;height:34px;padding:7px;border-radius:10px">${IC.wand}</span>
+    <div style="flex:1"><b style="font-size:14.5px">${L({en:'Strategy Copilot',zh:'策略副驾'})}</b><div class="soft" style="font-size:11.5px">${L({en:'AI · edits the strategy live',zh:'AI · 实时编辑策略'})}</div></div>
+    <button class="icobtn" onclick="toggleChat(false)">${IC.x}</button>
+  </div>
+  <div class="chat-body" id="chat-body"></div>
+  <div class="chat-sugg">${chatSuggs().map(s=>`<button onclick="sendChat('${s.q.replace(/'/g,"\\'")}')">${L(s.lab)}</button>`).join('')}</div>
+  <div class="chat-input"><input id="chat-inp" placeholder="${L({en:'Ask to change the strategy…',zh:'输入以调整策略…'})}" onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">${IC.arrow}</button></div>`;}
+function renderChatMsgs(){
+  const b=document.getElementById('chat-body'); if(!b) return;
+  const intro=`<div class="msg bot">${L({en:"Hi — I'm your strategy assistant. Tell me how to adjust ExoStride's US strategy and I'll update it live. Try a suggestion below.",zh:'你好——我是你的策略助手。告诉我如何调整 ExoStride 的美国策略，我会实时更新。可试试下方建议。'})}</div>`;
+  b.innerHTML=intro+S.chat.map(m=>{if(m.role==='typing')return `<div class="msg typing">${L({en:'typing…',zh:'正在输入…'})}</div>`;return `<div class="msg ${m.role}">${(m.text||'').replace(/</g,'&lt;')}</div>`;}).join('');
+  b.scrollTop=b.scrollHeight;
+}
+function toggleChat(open){
+  S.chatOpen=open; let d=document.getElementById('chat-drawer');
+  if(!open){if(d)d.remove();return;}
+  if(!d){d=document.createElement('div');d.className='drawer';d.id='chat-drawer';document.body.appendChild(d);}
+  d.innerHTML=chatDrawerHTML(); renderChatMsgs();
+  setTimeout(()=>{const i=document.getElementById('chat-inp');if(i)i.focus();},60);
+}
+function sendChat(preset){
+  const inp=document.getElementById('chat-inp'); const text=(preset||(inp?inp.value:'')||'').trim(); if(!text)return;
+  if(inp)inp.value='';
+  S.chat.push({role:'user',text}); S.chat.push({role:'typing'}); renderChatMsgs();
+  const intent=strategyIntent(text);
+  setTimeout(()=>{
+    S.chat=S.chat.filter(m=>m.role!=='typing'); S.chat.push({role:'bot',text:L(intent.reply)});
+    if(intent.lead)S.leadPillar=intent.lead; if(intent.caregiver)S.caregiver=true; if(intent.personality)S.personality=intent.personality;
+    if(intent.pillarTone)S.pillarTone[intent.pillarTone.pid]=intent.pillarTone.tone;
+    if(intent.adj)S.adjustments.push(intent.adj);
+    renderChatMsgs(); if(S.view==='strategy')renderView();
+  },850);
+}
+function adjBanner(){return `<div class="adj-banner"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><b style="color:var(--violet);font-size:13.5px"><span style="width:14px;height:14px;display:inline-block;vertical-align:-2px">${IC.wand}</span> ${L({en:'Adjustments from your chat',zh:'来自你对话的调整'})}</b><button class="linkbtn" onclick="resetAdjustments()">${L({en:'reset',zh:'重置'})}</button></div><div style="margin-top:6px">${S.adjustments.map(a=>`<span class="adj-chip">${L(a)}</span>`).join('')}</div></div>`;}
+function resetAdjustments(){S.adjustments=[];S.leadPillar='P1';S.caregiver=false;S.personality=null;S.pillarTone={};if(S.view==='strategy')renderView();}
 
 /* =========================================================================
    BOOT
