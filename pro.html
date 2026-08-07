@@ -408,8 +408,8 @@ img,svg{max-width:100%;display:block}
 .mobburger{display:none;width:36px;height:36px;border-radius:9px;border:1px solid var(--hair);color:var(--ink);place-items:center;font-size:19px;background:#fff;flex:none}
 .scrim{position:fixed;inset:0;background:rgba(9,16,15,.45);z-index:65;display:none}
 .scrim.show{display:block}
-.login{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:24px;
- background:radial-gradient(1100px 560px at 72% -12%,rgba(45,191,156,.28),transparent 60%),radial-gradient(820px 460px at -5% 112%,rgba(45,191,156,.16),transparent 55%),#0b1312}
+.login{position:fixed;inset:0;z-index:9000;display:grid;place-items:center;padding:24px;
+ background:radial-gradient(1100px 560px at 72% -12%,rgba(255,100,45,.30),transparent 60%),radial-gradient(820px 460px at -5% 112%,rgba(255,100,45,.16),transparent 55%),#191B23}
 .login.hide{opacity:0;visibility:hidden;transition:.45s}
 .login .card{width:100%;max-width:380px;background:#fff;border-radius:20px;padding:34px 30px;box-shadow:0 30px 90px rgba(0,0,0,.45)}
 .login .lwm{font-weight:800;font-size:30px;letter-spacing:-1px}
@@ -895,13 +895,12 @@ body.mode-advanced #modeSwitch{display:inline-flex}
 </style>
 </head>
 <body>
-<div id="advApp">
 <div class="login" id="login">
  <div class="card">
   <div class="lwm"><svg viewBox="0 0 100 100" style="width:22px;height:22px;vertical-align:-5px;margin-right:8px" aria-hidden="true"><path d="M50 2 C54 30 70 46 98 50 C70 54 54 70 50 98 C46 70 30 54 2 50 C30 46 46 30 50 2 Z" fill="#FF642D"/></svg><span style="color:var(--ink)">Touchigh</span></div>
-  <div class="lsub">Audience Research Platform</div>
-  <label>Username</label>
-  <input id="lu" placeholder="Username" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
+  <div class="lsub">Sign in to continue</div>
+  <label>Email</label>
+  <input id="lu" type="email" placeholder="you@company.com" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
   <label>Password</label>
   <input id="lp" type="password" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
   <div class="err" id="lerr"></div>
@@ -909,6 +908,8 @@ body.mode-advanced #modeSwitch{display:inline-flex}
   <div class="lfoot">© 2026 Touchigh · interactive prototype</div>
  </div>
 </div>
+<script>(function(){try{if(localStorage.getItem('th_auth')==='1'){var l=document.getElementById('login');if(l)l.style.display='none';}}catch(e){}})();</script>
+<div id="advApp">
 <div class="scrim" id="scrim" onclick="closeSide()"></div>
 <div class="app">
 <!-- ===================== SIDEBAR ===================== -->
@@ -2465,11 +2466,24 @@ function initDeck(){const decks=$$('#agentInner .deck');const deck=decks[decks.l
   $('.prev',deck).onclick=()=>show(i-1);$('.next',deck).onclick=()=>show(i+1);show(0);}
 
 /* ============================================================= AUTH + MOBILE DRAWERS */
-function doLogin(){const u=($('#lu').value||'').trim().toLowerCase(),p=($('#lp').value||'').trim();
-  if(u==='admin'&&p==='admin'){const l=$('#login');l.classList.add('hide');setTimeout(()=>{l.style.display='none';},450);
-    if(window.innerWidth<=560)$('#dock').classList.add('min');}
-  else{$('#lerr').textContent='Incorrect username or password — try admin / admin.';}}
-function doLogout(){const l=$('#login');l.style.display='grid';l.classList.remove('hide');$('#lu').value='';$('#lp').value='';$('#lerr').textContent='';closeSide();go('content-library');}
+/* Client-side sign-in gate. No email or password is stored anywhere in this file in
+   plaintext — each allowed account is represented only as SHA-256("<email>|<password>").
+   The credentials entered at sign-in are hashed in-browser (Web Crypto) and compared
+   against these digests; the digests themselves cannot be reversed back into the
+   original email/password. */
+const AUTH_H=["cd982a91cd95f2da25bc229b5d90f2648b4b8c8008febeebbce15475866866a1","a171bb8230e6b73270ed0bfe23fa76c2fac049b7b242f417050aa59823207ec1","83e2d69be4b81d5a69fc787a7fcbbdca8abd0b7846548e11d1adde4b5c29d75e"];
+async function sha256Hex(str){const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
+async function doLogin(){const u=($('#lu').value||'').trim().toLowerCase(),p=($('#lp').value||'').trim();
+  if(!u||!p){$('#lerr').textContent='Enter your email and password.';return;}
+  const btn=document.querySelector('#login .go');if(btn){btn.disabled=true;btn.style.opacity='.6';}
+  let ok=false;try{ok=AUTH_H.indexOf(await sha256Hex(u+'|'+p))!==-1;}catch(e){ok=false;}
+  if(btn){btn.disabled=false;btn.style.opacity='1';}
+  if(ok){try{localStorage.setItem('th_auth','1');}catch(e){}
+    const l=$('#login');l.classList.add('hide');setTimeout(()=>{l.style.display='none';},450);
+    const dockEl=$('#dock');if(dockEl&&window.innerWidth<=560)dockEl.classList.add('min');}
+  else{$('#lerr').textContent='Incorrect email or password.';}}
+function doLogout(){try{localStorage.removeItem('th_auth');}catch(e){}
+  const l=$('#login');l.style.display='grid';l.classList.remove('hide');$('#lu').value='';$('#lp').value='';$('#lerr').textContent='';closeSide();go('content-library');}
 function toggleSide(){const s=$('.side');s.classList.toggle('open');$('#scrim').classList.toggle('show',s.classList.contains('open'));}
 function closeSide(){$('.side').classList.remove('open');$('#scrim').classList.remove('show');}
 function toggleSowiseRail(){const a=$('.sowise-rail');if(a)a.classList.toggle('open');}
@@ -3564,7 +3578,7 @@ h1,h2,h3,h4{margin:0}
   </nav>
   <div class=&quot;sfoot&quot;>
     <a href=&quot;https://cloud.touchigh.ai&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;display:block;margin-bottom:8px;color:#FF642D;font-weight:800;text-decoration:none&quot;>↗ ToucHigh Cloud Suite</a>
-    <div class=&quot;lo&quot;>LOGOUT</div>
+    <div class=&quot;lo&quot; onclick=&quot;try{parent.doLogout()}catch(e){}&quot;>LOGOUT</div>
     © 2026 Touchigh · v13 redesign prototype
   </div>
 </aside>
@@ -4343,7 +4357,6 @@ setDockCtx();
 <button id="modeSwitch" onclick="SOMIN_setMode('simple')">&#9680; Switch to Simple</button>
 <script>
 function SOMIN_setMode(m){document.body.classList.remove('mode-simple','mode-advanced');document.body.classList.add('mode-'+m);
- if(m==='advanced'){var lg=document.getElementById('login');if(lg)lg.classList.add('hide');}
  try{window.scrollTo(0,0);}catch(e){}}
 (function(){var f=document.getElementById('simpleApp'),s=document.getElementById('modeSwitch');
  if(f&&f.parentElement!==document.body)document.body.appendChild(f);
