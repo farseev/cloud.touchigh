@@ -892,6 +892,9 @@ body.mode-simple #simpleApp{display:block}
 body.mode-advanced #advApp{display:block}
 #modeSwitch{display:none;position:fixed;left:14px;bottom:14px;z-index:500;align-items:center;gap:7px;background:#191B23;color:#FF8C43;border:none;border-radius:999px;padding:9px 15px;font-weight:800;font-size:12px;box-shadow:0 10px 30px rgba(16,32,31,.28);cursor:pointer}
 body.mode-advanced #modeSwitch{display:inline-flex}
+.langtog{position:fixed;top:72px;right:14px;z-index:9500;background:#191B23;color:#FF8C43;border:none;border-radius:999px;padding:8px 15px;font-weight:800;font-size:12px;letter-spacing:.3px;box-shadow:0 10px 30px rgba(16,32,31,.28);cursor:pointer}
+.langtog:hover{background:#2B2E38}
+@media(max-width:560px){.langtog{top:auto;bottom:14px;right:14px;padding:9px 14px}}
 </style>
 </head>
 <body>
@@ -909,6 +912,7 @@ body.mode-advanced #modeSwitch{display:inline-flex}
  </div>
 </div>
 <script>(function(){try{if(localStorage.getItem('th_auth')==='1'){var l=document.getElementById('login');if(l)l.style.display='none';}}catch(e){}})();</script>
+<button class="langtog" id="langTog" onclick="toggleLang()">EN</button>
 <div id="advApp">
 <div class="scrim" id="scrim" onclick="closeSide()"></div>
 <div class="app">
@@ -1992,7 +1996,7 @@ function go(scr,el){CUR=scr;
   $$('.screen').forEach(s=>s.classList.remove('active'));$('#scr-'+scr).classList.add('active');
   $$('.sub a').forEach(a=>a.classList.remove('active'));if(el)el.classList.add('active');else{const a=$('[data-scr="'+scr+'"]');if(a)a.classList.add('active');}
   const nav=$('#sowiseNav');if(nav)nav.classList.toggle('modon',scr==='sowise');
-  $('#ptitle').textContent=TITLES[scr]||scr;
+  $('#ptitle').textContent=(typeof curTitles==='function'?curTitles()[scr]:null)||TITLES[scr]||scr;
   $('#credits').style.display=scr==='expressions'?'block':'none';
   $('#screens').scrollTop=0;
   renderDock(scr);
@@ -2002,7 +2006,50 @@ function go(scr,el){CUR=scr;
   if(window.innerWidth<=900)closeSide();
 }
 /* ============================================================= COPILOT DOCK */
-const CTX={
+/* ============================================================= I18N (EN / 中文) */
+let LANG=(function(){try{return localStorage.getItem('th_lang')||'zh';}catch(e){return 'zh';}})();
+function tt(en,zh){return LANG==='zh'?zh:en;}
+const TITLES_ZH={'content-library':'内容库','brand-tracker':'品牌追踪','perspectives':'视角研究','soda':'SODA','personas':'人物画像','insights':'洞察','moments':'时刻','propositions':'主张','expressions':'创意表达','sowise':'SOWISE','billing':'套餐与账单'};
+function curTitles(){return LANG==='zh'?TITLES_ZH:TITLES;}
+const TEXT_ZH={
+ 'Plan & Billing':'套餐与账单','Settings':'设置','LOGOUT':'退出登录','Privacy Policy':'隐私政策','Terms and Conditions':'服务条款',
+ 'Workspace':'工作区','Hub':'中心','Insight':'洞察',
+ 'Content Source':'内容来源','Platform':'平台','Brands':'品牌','Date Range':'日期范围','Organic Posts':'自然发布内容',
+ 'Media Filters':'媒体筛选','Current Media Selection:':'当前媒体选择：','Total Engagement:':'总互动量：','Total Number of Media:':'媒体总数：',
+ '＋ Filter':'＋ 筛选','🔔 Create Notification':'🔔 创建通知','Predefined Filters':'预设筛选','⚲ Save Filter':'⚲ 保存筛选','Select Filter ›':'选择筛选 ›',
+ 'Understand Your Content':'了解你的内容','Analyze filtered data for personas & pain points':'分析筛选数据，洞察人群与痛点','Run Now':'立即运行',
+ 'Total Engagement':'总互动量','Content Activity Trend':'内容活跃度趋势','Engagement Trend':'互动趋势','Activity Score':'活跃度评分','Engagement Rate':'互动率',
+ 'Platform Distribution':'平台分布','Competitor Breakdown':'竞品对比','Brand Name':'品牌名称','Posts':'发帖数',
+ 'Sign in to continue':'登录以继续','Email':'邮箱','Password':'密码','Sign in →':'登录 →',
+ 'Agentic assistant · powered by Claude':"智能体助手 · 由 Claude 驱动",
+ "⤢ Open in SOWISE — carry this window's context":'⤢ 在 SOWISE 中打开 — 携带此窗口上下文',
+ 'Context-aware · answers from the data on your current screen':'情境感知 · 基于当前页面数据作答'
+};
+function tSweep(list){list.forEach(el=>{if(!el)return;const n=el.firstChild;if(!n||n.nodeType!==3)return;
+  if(el.dataset.i18nEn===undefined)el.dataset.i18nEn=n.nodeValue;
+  const en=el.dataset.i18nEn,key=en.trim(),zh=TEXT_ZH[key];
+  if(zh)n.nodeValue=(LANG==='zh')?en.replace(key,zh):en;});}
+function tPh(el,en,zh){if(el)el.placeholder=(LANG==='zh')?zh:en;}
+function applyI18n(){
+  tSweep($$('.side .g-head .lbl, .side .foot .lo, .side .foot a, .topbar .ws .lab, .topbar .hub .lab'));
+  tSweep($$('.fsel .k, .h2, .chipbtn, .runbar b, .muted, .login .lsub, .login label, .login .go, .login .lfoot, .dock .ti small, .dock .esc, .dock .zap, thead th'));
+  $$('.side [data-scr]').forEach(a=>{const k=a.getAttribute('data-scr');const v=curTitles()[k];if(v)a.textContent=v;});
+  const pt=$('#ptitle');if(pt&&typeof CUR!=='undefined'&&CUR)pt.textContent=curTitles()[CUR]||TITLES[CUR]||pt.textContent;
+  tPh($('#lp'),'Password','密码');
+  tPh($('#dockInput'),'Ask anything about this screen…','对这个页面有什么问题都可以问…');
+  const mb=$('#modeSwitch');if(mb)mb.innerHTML=(LANG==='zh'?'◐ 切换到简易模式':'◐ Switch to Simple');
+  const lt=$('#langTog');if(lt)lt.textContent=(LANG==='zh'?'EN':'中文');
+}
+function toggleLang(){
+  LANG=(LANG==='zh')?'en':'zh';
+  try{localStorage.setItem('th_lang',LANG);}catch(e){}
+  if(typeof CTX_ZH!=='undefined')CTX=(LANG==='zh')?CTX_ZH:CTX_EN;
+  if(typeof AGENT_CTX_ZH!=='undefined')AGENT_CTX=(LANG==='zh')?AGENT_CTX_ZH:AGENT_CTX_EN;
+  applyI18n();
+  try{if(typeof CUR!=='undefined'&&CUR&&$('#dockBody'))renderDock(CUR);}catch(e){}
+  try{const f=document.getElementById('simpleApp');if(f&&f.contentWindow&&typeof f.contentWindow.setIframeLang==='function')f.contentWindow.setIframeLang(LANG);}catch(e){}
+}
+const CTX_EN={
  'content-library':{name:'Content Library · Inferred-Audience treemap',
    intro:"You're on the <b>Content Library</b> — 122 posts, 5 brands, concept view <b>Inferred Audience</b>. <b>Active Seniors</b> (152) is the biggest audience here, but it's almost all Wandercraft + DNSYS content — <b>ExoStride barely appears in it.</b>",
    chips:[
@@ -2067,6 +2114,72 @@ const CTX={
     {q:'Map whitespace for this workspace',a:"Running Whitespace Analysis…",act:'flowWhitespace'},
     {q:'What can SOWISE do?',a:"I can run any SOMIN skill end-to-end — brand &amp; agency decks, whitespace, creative expressions, clickability scoring, Meta/Google refresh, content calendars, persona &amp; trend research — wired to the SOMIN MCP, Figma, Meta and Drive."}]}
 };
+const CTX_ZH={
+ 'content-library':{name:'内容库 · 推断受众树状图',
+   intro:"你正在查看<b>内容库</b> — 122 篇帖子，5 个品牌，视图为<b>推断受众</b>。<b>Active Seniors</b>（152）是这里最大的受众群体，但内容几乎全部来自 Wandercraft 和 DNSYS — <b>ExoStride 在其中几乎没有出现。</b>",
+   chips:[
+    {q:'ExoStride 最大的受众缺口在哪里？',a:"你最大的内容供给缺口是 <b>Active Seniors</b>：该受众共有 152 份媒体内容（Wandercraft 118 份，DNSYS 34 份），ExoStride 在其中完全没有出现。<b>Individuals with Mobility Challenges</b>（104）和 <b>Rehabilitation Patients</b>（88）是接下来两个空白赛道。<div style='margin-top:9px'><div style='font-size:10px;color:var(--soft);font-weight:700;margin-bottom:5px'>按受众划分的媒体量</div><div style='display:flex;align-items:center;gap:7px;margin:3px 0;font-size:11px'><span style='width:120px;flex:none'>Active Seniors</span><span style='flex:1;height:9px;background:#F4F5F9;border-radius:4px;overflow:hidden'><span style='display:block;height:100%;width:100%;background:var(--c-linkedin)'></span></span><b style='width:26px;text-align:right'>152</b></div><div style='display:flex;align-items:center;gap:7px;margin:3px 0;font-size:11px'><span style='width:120px;flex:none'>Mobility Chall.</span><span style='flex:1;height:9px;background:#F4F5F9;border-radius:4px;overflow:hidden'><span style='display:block;height:100%;width:68%;background:var(--c-linkedin)'></span></span><b style='width:26px;text-align:right'>104</b></div><div style='display:flex;align-items:center;gap:7px;margin:3px 0;font-size:11px'><span style='width:120px;flex:none'>Rehab. Patients</span><span style='flex:1;height:9px;background:#F4F5F9;border-radius:4px;overflow:hidden'><span style='display:block;height:100%;width:58%;background:var(--c-linkedin)'></span></span><b style='width:26px;text-align:right'>88</b></div><div style='display:flex;align-items:center;gap:7px;margin:3px 0;font-size:11px'><span style='width:120px;flex:none'>ExoStride</span><span style='flex:1;height:9px;background:#F4F5F9;border-radius:4px;overflow:hidden'><span style='display:block;height:100%;width:0%;background:var(--c-somin)'></span></span><b style='width:26px;text-align:right'>0</b></div></div>",stats:[['152','Active Seniors'],['0','ExoStride 帖子数'],['3','空白赛道']]},
+    {q:'将树状图筛选为 Active Seniors',a:"正在将概念视图筛选为所有品牌中的 <b>Active Seniors</b>…",act:'filterBO'},
+    {q:'对比 ExoStride 与 Wandercraft 的内容覆盖',a:"在各受众群体中，<b>Wandercraft</b> 几乎占据了所有主要赛道，<b>ExoStride</b> 则几乎没有存在感。Wandercraft 在 Active Seniors、Mobility Challenges 和 Rehabilitation Patients 三大赛道均领先；ExoStride 在这些主要受众赛道中尚未建立任何存在感。你恰恰在流量最大的地方覆盖最窄。",stats:[['覆盖广','Wandercraft'],['覆盖窄','ExoStride']]},
+    {q:'把这个变成一份策略提案',a:"这个交给智能体来做 — 我会带上这份树状图数据，生成一份以空白赛道为核心的跨市场提案。",act:'build:brand'}]},
+ 'soda':{name:'SODA · DNSYS 深度解析',
+   intro:"你正在 <b>SODA</b> 中查看 <b>DNSYS 社媒内容</b>（6月1日 – 7月1日）。我已解析出 DNSYS 的<b>产品</b>和<b>受众</b>结构 — 他们以 <b>Death Stranding 2</b> 游戏联名为主打，受众高度偏向<b>玩家群体</b>和户外爱好者。",
+   chips:[
+    {q:'DNSYS 的核心产品重点是什么？',a:"DNSYS 的产品叙事围绕 <b>BOOSTSUIT</b> 和 <b>Z1 Exoskeleton Pro</b> 展开 — 以 <b>Death Stranding 2</b> 游戏联名和涩谷 PARCO 快闪店为核心支点。此外还有一条较为低调的真实移动能力测试内容线（包括一位老年用户的初次体验反应）。",stats:[['7','产品类别'],['游戏联名','主打角度']]},
+    {q:'DNSYS 在和谁对话？',a:"他们的首要受众是<b>玩家群体</b>（权重 5），其次是<b>户外探险者</b>（3）以及<b>滑板 / 科技爱好者</b>（各 2）。整体是文化先行、游戏联名驱动的偏好结构 — 其中有一条内容触达了老年用户及其照护者，表现突出。",stats:[['玩家群体','第一'],['文化驱动','偏好']]},
+    {q:'这对 ExoStride 有什么帮助？',a:"DNSYS 主导了游戏文化话题，但其“行动能力与独立生活”的叙事只是附带提及，并非重点 — 这正是 ExoStride 的空白赛道所在。我可以把这些发现整理成一份定位提案，在 DNSYS 主打声势的地方，改以康复与尊严为核心叙事。",act:'build:agency'}]},
+ 'brand-tracker':{name:'品牌追踪 · 56 篇帖子 · 5 个品牌',
+   intro:"在<b>品牌追踪</b>中，你的活跃度排名<b>第 4</b>（2 篇帖子），互动量排名<b>第 4</b>（59），本周期仅领先 <b>DNSYS</b>。<b>Hypershell</b> 是异常值：34 篇帖子、5,308 次互动，在该品类中处于绝对领先地位。",
+   chips:[
+    {q:'ExoStride 在互动量上表现如何？',a:"本周期你以 59 次互动排在 5 个品牌中的第 4 位 — 仅领先 DNSYS（2）。<b>Hypershell</b> 大幅领先：34 篇帖子、5,308 次互动，总量是 Wandercraft（1,736）的 3 倍以上，而发帖数仅约为其 4 倍。单看发帖量并不能完全解释这个差距 — Hypershell 的单帖平均互动量也更高。",stats:[['第4','活跃度'],['第4','互动量'],['5,308','Hypershell 互动量']]},
+    {q:'给我看看每周趋势',a:"正在将内容活跃度切换为<b>按周</b>查看…",act:'weekly'},
+    {q:'谁在互动量上领先，为什么？',a:"<b>Hypershell</b>（74%）在本周期遥遥领先，<b>Wandercraft</b>（24%）位居第二，差距明显。<b>Cionic</b>、<b>ExoStride</b> 和 <b>DNSYS</b> 三者合计仅占约 2%。Hypershell 的领先既来自发帖量，也来自一系列高互动的户外 / 生活方式内容。"},
+    {q:'制定一份缩小差距的计划',a:"我会打开 SOWISE，基于这份追踪数据生成人物画像 → 痛点 → 创意的完整计划。",act:'build:brand'}]},
+ 'perspectives':{name:'概念空白分析 Q1 · 3 个人物画像 · 4 个痛点',
+   intro:"你正在查看 <b>ExoStride 付费概念空白分析 — Q1</b>（PS-6901）— 涵盖 5 个品牌共 319 份付费媒体内容。系统识别出 <b>3 个人物画像</b>和 <b>4 个痛点</b>。<b>The Effortless Commuter</b>（52 份媒体）是其中讨论量最大的一支。",
+   chips:[
+    {q:'总结一下识别出的人物画像',a:"<b>The Trailblazing Explorer</b>（8 份媒体，户外与地形场景）、<b>The Effortless Commuter</b>（52 份媒体，城市疲劳场景 — 讨论量最大）、以及 <b>The Reclaimed Stride</b>（34 份媒体，以康复为核心）。"},
+    {q:'哪个痛点应该优先解决？',a:"<b>Navigating the Mobility Gap</b> — 146 份媒体，是本次研究中最大的痛点，反映的是人们渴望的独立生活与日常行动实际体力消耗之间的落差。",stats:[['146','媒体量'],['4','痛点数']]},
+    {q:'基于这份研究生成洞察',a:"我会把概念空白分析 Q1 带入 SOWISE，生成完整的“洞察 → 主张”链路。",act:'build:whitespace'}]},
+ 'personas':{name:'人物画像 · The Reclaimed Stride',
+   intro:"已加载 <b>The Reclaimed Stride</b> — 3 个画像、34 份媒体、<b>612 次互动</b>（你表现最好的人物画像）。该画像基于 <b>PS-6901</b>（概念空白分析 Q1）构建。",
+   chips:[
+    {q:'这个人物画像有哪些核心痛点？',a:"共三个：<b>“我害怕再次摔倒”</b>、<b>“我不想让自己看起来像需要帮助”</b>，以及<b>“我不确定自己是否用对了康复方式”</b>。每一条都对应 ExoStride 的不同能力点。"},
+    {q:'为这个人物画像生成关键时刻',a:"正在跳转到“时刻”页面…",act:'gomoments'},
+    {q:'把这个人物画像变成一场campaign',a:"我会把 The Reclaimed Stride 带入 SOWISE，生成完整提案。",act:'build:brand'}]},
+ 'insights':{name:'洞察 · “独立胜过对摔倒的恐惧。”',
+   intro:"这条洞察来自 <b>The Reclaimed Stride × “Navigating the Mobility Gap”</b>（经济角度），源自概念空白分析 Q1，对应的受众故事是《<i>重返步道之路</i>》。",
+   chips:[
+    {q:'为什么这条洞察成立？',a:"它把一种基于恐惧的犹豫，重新诠释为一种价值取向的选择 — <i>独立胜过谨慎</i> — 这正是 The Reclaimed Stride 群体的核心共鸣点。在这个受众中，自信与尊严比临床化的表达更有说服力，因此这条信息读起来像是一种赋能，而不是推销。"},
+    {q:'基于此生成主张',a:"正在发送到“主张”页面…",act:'goprops'},
+    {q:'展示背后的人物画像 × 痛点组合',a:"来源：<b>The Reclaimed Stride</b> × <b>“Navigating the Mobility Gap: Confidence, Independence and Physical Limits”</b>，经济角度，概念空白分析 Q1 · 319 份媒体中的 6 份。"}]},
+ 'moments':{name:'时刻 · Devoted Caregiver × 重获独立',
+   intro:"已加载 <b>The Devoted Caregiver × “Reclaiming independence after injury”</b> — 612 份媒体中的 118 份，<b>24,140 次互动</b>，当前显示<b>生活时刻</b>。",
+   chips:[
+    {q:'哪个时刻的时机最合适？',a:"<b>术后康复初期</b> — 意向最强、窗口期最宽。这个阶段会重塑日常生活习惯，因此可以同时打开自信、独立和照护者支持三类信息角度。"},
+    {q:'为“术后康复初期”写一份内容简报',a:"<b>钩子：</b>“康复第一天——大多数人都会弄错的一件事” · <b>角度：</b>安抚而非推销 · <b>行动号召：</b>免费行动能力评估 · <b>形式：</b>轮播图 + 真实康复者的声音。",stats:[['TOFU','漏斗层级'],['轮播图','形式']]},
+    {q:'切换到微时刻（我想要…）',a:"正在切换时刻类型…",act:'seasonal'}]},
+ 'propositions':{name:'主张 · ExoStride × “尊严才是真正的产品”',
+   intro:"基于 <b>“尊严才是真正的产品，而不是设备本身。”</b> 为产品 <b>ExoStride</b>（消费者端）生成了五条主张。",
+   chips:[
+    {q:'哪条主张最有力？',a:"<b>“走得更远，感觉更好。”</b> — 唯一一条同时兼顾清晰产品事实（自适应、实时动力）与情感回报（自由地继续做自己热爱的事）的主张。这正是你表现最好的帖子共同具备的组合。"},
+    {q:'生成创意表达',a:"正在为这条主张打开“创意表达”页面…",act:'goexpr'},
+    {q:'把标语改得更短一些',a:"备选方案：<b>“感受不同。”</b> · <b>“独立，由动力驱动。”</b> · <b>“行动，认真的那种。”</b>"}]},
+ 'expressions':{name:'创意表达 · TOFU / MOFU / BOFU · 46/50 张图片额度',
+   intro:"你已基于“独立胜过对摔倒的恐惧”生成了一整套 <b>TOFU / MOFU / BOFU</b> 创意（共 34 个概念）。我可以预测哪些表现最好，或直接进行评分与投放。",
+   chips:[
+    {q:'哪个概念预测得分最高？',a:"我的预测：<b>Pattern Interrupt — “STOP PUSHING THROUGH THE PAIN”</b> 在 TOFU 中得分最高；<b>Dramatic Beat Drop（楼梯前后对比）</b>最适合再营销；街头采访类内容表现稳健，但上限较低。",stats:[['0.86','Pattern Int.'],['0.79','Beat Drop'],['0.61','Street Int.']]},
+    {q:'再生成 3 个 MOFU 概念',a:"三个 MOFU 方向：一个<b>对比拆解</b>（ExoStride 对比被动式助行工具）、一个 <b>30 秒“工作原理”讲解</b>，以及一个<b>案例实证短片</b>。需要我直接渲染出来吗？",act:'build:creative'},
+    {q:'为这些内容打分（点击率预测）',a:"我可以运行<b>创意评分</b>：上传每个渲染版本，向 SOMIN 请求预测的点击率表现，并标记出所有 ≥0.80 的“潜力最佳表现者”。这是一次 SOWISE 工作流。",act:'build:scoring'},
+    {q:'把表现最好的内容推送到 Meta',a:"这是 SOWISE 工作流的最后一步 — 完成评分后，把 ≥0.80 的创意以“暂停中”状态推送到 Meta 广告。",act:'build:meta'}]},
+ 'sowise':{name:'SOWISE · 智能体工作台',
+   intro:"你正在使用 <b>SOWISE</b> — 把你的 SOMIN 技能变成可自主运行的智能体流程。从左侧选择一个工作流，或直接告诉我你想构建什么。",
+   chips:[
+    {q:'运行 ExoStride 品牌提案',a:"正在画布中启动品牌策略提案…",act:'flowReassured'},
+    {q:'为这个工作区做空白赛道分析',a:"正在运行空白赛道分析…",act:'flowWhitespace'},
+    {q:'SOWISE 能做什么？',a:"我可以端到端地运行任何 SOMIN 技能 — 品牌与代理提案、空白赛道分析、创意表达、点击率评分、Meta / Google 广告刷新、内容日历、人物画像与趋势研究 — 并直接连接 SOMIN MCP、Figma、Meta 和 Drive。"}]}
+};
+let CTX=(LANG==='zh')?CTX_ZH:CTX_EN;
 
 function renderDock(scr){const c=CTX[scr];$('#ctxName').innerHTML=c.name;const b=$('#dockBody');b.innerHTML='';
   addDockMsg('ai',c.intro);renderChips();}
@@ -2136,7 +2249,7 @@ function openAgent(){pendingSowiseCtx=CUR;go('sowise');}
 function openAgentFrom(scr){pendingSowiseCtx=scr;go('sowise');}
 function toggleCtx(){$('#dock').classList.toggle('ctx-off');}
 
-const AGENT_CTX={
+const AGENT_CTX_EN={
  'content-library':"I've loaded your <b>Inferred-Audience treemap</b> — 122 media, 5 brands. Active Seniors is the biggest audience but ExoStride barely appears there: a clear content-supply whitespace. I can turn this straight into a cross-market strategy deck.",
  'brand-tracker':"I've loaded <b>Brand Tracker</b> — 56 posts. ExoStride ranks 4th on activity and 4th on engagement, ahead of only DNSYS on both. I can build the plan to close that gap.",
  'perspectives':"I've loaded <b>Study 027</b> — 4 personas, Entrepreneurs filter. I can build the persona → tension → proposition engine into a deck.",
@@ -2146,6 +2259,17 @@ const AGENT_CTX={
  'moments':"I've loaded <b>The Devoted Caregiver × reclaiming independence</b>. I can build a dated content calendar and post briefs.",
  'propositions':"I've loaded your <b>ExoStride proposition set</b>. I can render creative expressions and score them for clickability.",
  'expressions':"I've loaded your <b>TOFU expressions</b>. I can render the full funnel, score clickability, and push winners to Meta."};
+const AGENT_CTX_ZH={
+ 'content-library':"我已加载你的<b>推断受众树状图</b> — 122 份媒体、5 个品牌。Active Seniors 是这里最大的受众群体，但 ExoStride 在其中几乎没有出现：这是一个明显的内容供给空白。我可以直接把它整理成一份跨市场策略提案。",
+ 'brand-tracker':"我已加载<b>品牌追踪</b> — 56 篇帖子。ExoStride 活跃度排名第 4，互动量也排名第 4，仅领先 DNSYS。我可以帮你制定缩小差距的计划。",
+ 'perspectives':"我已加载 <b>Study 027</b> — 4 个人物画像，已按“企业家”筛选。我可以把“人物画像 → 痛点 → 主张”这条链路整理成一份完整提案。",
+ 'soda':"我已加载 <b>SODA 的 DNSYS 深度解析</b> — 他们的产品主打 Death Stranding 2 游戏联名，受众偏向玩家群体和户外探险者。我可以把这些发现整理成一份竞品定位提案，在 DNSYS 最强的地方给出针对性反击。",
+ 'personas':"我已加载 <b>The Reclaimed Stride</b> — 34 份媒体、612 次互动。我可以据此生成洞察链路、主张，以及完整提案。",
+ 'insights':"我已加载洞察 <b>“独立胜过对摔倒的恐惧。”</b> 我可以据此生成主张和创意内容。",
+ 'moments':"我已加载 <b>The Devoted Caregiver × 重获独立</b>。我可以据此生成一份带日期排期的内容日历和文案简报。",
+ 'propositions':"我已加载你的 <b>ExoStride 主张集</b>。我可以渲染创意表达，并对其进行点击率评分。",
+ 'expressions':"我已加载你的 <b>TOFU 创意表达</b>。我可以渲染完整漏斗内容、评分点击率，并把表现最好的推送到 Meta。"};
+let AGENT_CTX=(LANG==='zh')?AGENT_CTX_ZH:AGENT_CTX_EN;
 const CTXQUICK={'content-library':{t:'Just map the whitespace here',fn:()=>startFlow('whitespace')},
  'brand-tracker':{t:'Diagnose the engagement gap',fn:()=>startFlow('whitespace')},
  'perspectives':{t:'Generate the insight chains',fn:()=>startFlow('whitespace')},
@@ -2474,14 +2598,14 @@ function initDeck(){const decks=$$('#agentInner .deck');const deck=decks[decks.l
 const AUTH_H=["cd982a91cd95f2da25bc229b5d90f2648b4b8c8008febeebbce15475866866a1","a171bb8230e6b73270ed0bfe23fa76c2fac049b7b242f417050aa59823207ec1","83e2d69be4b81d5a69fc787a7fcbbdca8abd0b7846548e11d1adde4b5c29d75e"];
 async function sha256Hex(str){const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
 async function doLogin(){const u=($('#lu').value||'').trim().toLowerCase(),p=($('#lp').value||'').trim();
-  if(!u||!p){$('#lerr').textContent='Enter your email and password.';return;}
+  if(!u||!p){$('#lerr').textContent=tt('Enter your email and password.','请输入邮箱和密码。');return;}
   const btn=document.querySelector('#login .go');if(btn){btn.disabled=true;btn.style.opacity='.6';}
   let ok=false;try{ok=AUTH_H.indexOf(await sha256Hex(u+'|'+p))!==-1;}catch(e){ok=false;}
   if(btn){btn.disabled=false;btn.style.opacity='1';}
   if(ok){try{localStorage.setItem('th_auth','1');}catch(e){}
     const l=$('#login');l.classList.add('hide');setTimeout(()=>{l.style.display='none';},450);
     const dockEl=$('#dock');if(dockEl&&window.innerWidth<=560)dockEl.classList.add('min');}
-  else{$('#lerr').textContent='Incorrect email or password.';}}
+  else{$('#lerr').textContent=tt('Incorrect email or password.','邮箱或密码不正确。');}}
 function doLogout(){try{localStorage.removeItem('th_auth');}catch(e){}
   const l=$('#login');l.style.display='grid';l.classList.remove('hide');$('#lu').value='';$('#lp').value='';$('#lerr').textContent='';closeSide();go('content-library');}
 function toggleSide(){const s=$('.side');s.classList.toggle('open');$('#scrim').classList.toggle('show',s.classList.contains('open'));}
@@ -2808,12 +2932,18 @@ function spendCalls(){const f=({Low:.5,Medium:1,High:1.5,Max:2}[ENG.eff]||1);con
 
 /* register title + copilot context for billing */
 TITLES['billing']='Plan & Billing';
-CTX['billing']={name:'Plan & Billing · Touchigh Agency Pro',
+CTX_EN['billing']={name:'Plan & Billing · Touchigh Agency Pro',
  intro:"You're on <b>Plan &amp; Billing</b>. Current plan: <b>Touchigh Agency Pro</b> — 3 Specialist seats, 70 brands monitored, Data API. A seat is a call quota (120 / 5-hr window · 400 / week); the median pitch build is ≈30 calls.",
  chips:[
   {q:'How many pitch builds do I have left this week?',a:"Your 3 Specialist seats pool to <b>1,200</b> weekly calls; you've used <b>467</b>. At the ≈30-call median that's about <b>24 builds</b> left this week.",stats:[['467/1200','Weekly calls'],['~24','Builds left']]},
   {q:'What would Touchigh Pro cost instead?',a:"<b>Touchigh Pro</b> is USD 1,740/mo — 1 Specialist seat, 12 brands, every creative feature, no API. You'd go 3→1 seats and 70→12 brands. Model it live with the switcher on the right."},
   {q:'Add a Specialist seat',a:"A Specialist add-on is <b>$600/mo</b> — 120 calls / 5-hr window, 400 / week. Tick it in the switcher and hit <b>Switch to this plan</b> to apply."}]};
+CTX_ZH['billing']={name:'套餐与账单 · Touchigh Agency Pro',
+ intro:"你正在查看<b>套餐与账单</b>。当前套餐：<b>Touchigh Agency Pro</b> — 3 个专家席位，监测 70 个品牌，含数据 API。每个席位对应一定的调用额度（每 5 小时 120 次 · 每周 400 次）；一份中等复杂度的提案约需 30 次调用。",
+ chips:[
+  {q:'我这周还剩多少次提案可用额度？',a:"你的 3 个专家席位共享每周 <b>1,200</b> 次调用额度，目前已使用 <b>467</b> 次。按约 30 次调用生成一份提案计算，这周大约还能生成 <b>24 份</b>提案。",stats:[['467/1200','每周调用次数'],['~24','剩余提案数']]},
+  {q:'如果换成 Touchigh Pro 要多少钱？',a:"<b>Touchigh Pro</b> 为每月 1,740 美元 — 1 个专家席位，监测 12 个品牌，包含所有创意功能，不含 API。相当于从 3 席位降到 1 席位、从 70 个品牌降到 12 个。可以在右侧的切换器中实时试算。"},
+  {q:'新增一个专家席位',a:"专家席位加购价格为每月 <b>600 美元</b> — 每 5 小时 120 次调用，每周 400 次。在切换器中勾选后点击<b>切换到此套餐</b>即可生效。"}]};
 
 /* ---------- real creative datasets ---------- */
 const MERIDIAN_CREA=[
@@ -3213,6 +3343,7 @@ function agentSend(){const el=$('#agentInput');if(!el)return;const v=el.value.tr
 
 /* v12b: mark body when on the SOWISE canvas (composer present) */
 (function(){if(typeof go==='function'){const _g=go;go=function(scr,el){_g(scr,el);document.body.classList.toggle('scr-sowise',scr==='sowise');};}})();
+applyI18n();
 </script>
 <div class="modal" id="topupModal" onclick="if(event.target===this)closeTopup()">
   <div class="box">
@@ -3792,6 +3923,41 @@ function insSummary(o){return PERSONAS[o.pi].n+' content carries this tension ac
 let CUR='start', CURJOB='brand';
 const TITLES={start:'Start',runs:'Your work',brief:'Scope the run',run:'Run',
  'ex-personas':'Personas','ex-insights':'Insights','ex-library':'Content Library','ex-studies':'Perspective Studies'};
+let LANG=(function(){try{return localStorage.getItem('th_lang')||'zh';}catch(e){return 'zh';}})();
+const TITLES_ZH_IF={start:'开始',runs:'我的工作',brief:'设置本次任务',run:'运行中',
+ 'ex-personas':'人物画像','ex-insights':'洞察','ex-library':'内容库','ex-studies':'视角研究'};
+function curTitlesIF(){return LANG==='zh'?TITLES_ZH_IF:TITLES;}
+const TEXT_ZH_IF={
+ 'Start':'开始','Your work':'我的工作','3 jobs':'3 个任务','Explore the data':'浏览数据','Evidence &amp; library':'素材与资料库',
+ 'Personas':'人物画像','Insights':'洞察','Content Library':'内容库','Perspective Studies':'视角研究',
+ 'Brand Tracker':'品牌追踪','SODA':'SODA','Moments':'时刻','Propositions':'主张','Expressions':'创意表达',
+ 'Plan &amp; Billing':'套餐与账单','Settings':'设置','LOGOUT':'退出登录','Workspace':'工作区',
+ 'What are you making today?':'你今天想制作什么？',
+ 'Pick the deliverable. Touchigh reads your workspace, proposes every parameter — including the content pillars people used to have to invent from a blank filter panel — and you approve or change them on one screen.':'选择你要交付的内容类型。Touchigh 会读取你的工作区，自动给出每一项参数建议——包括过去需要从空白筛选面板里手动构思的内容支柱——你只需在一个页面上确认或调整即可。',
+ 'Brand briefing':'品牌简报','Where should we play across audiences?':'我们应该在哪些受众领域发力？','~32 slides · rigour-led · audit trail kept · 20–60 min':'约 32 页 · 严谨驱动 · 保留审计轨迹 · 20–60 分钟',
+ 'Agency pitch':'代理提案','How do we sell one big idea?':'如何用一个核心创意打动客户？','16–20 slides · idea-led · IDs suppressed · 20–60 min':'16–20 页 · 创意驱动 · 隐去身份信息 · 20–60 分钟',
+ 'Creator portfolio':'达人矩阵组合','Who owns which territory?':'谁该主攻哪个领域？','1 portfolio + 1 deck per creator · 20–60 min':'1 份组合方案 + 每位达人 1 份提案 · 20–60 分钟',
+ 'Scope it →':'开始设置 →',
+ 'Single step':'单一步骤','Already know exactly what you need?':'已经明确知道自己需要什么？','Run one stage on its own — same evidence, no full build.':'单独运行某一阶段——数据依据相同，无需完整构建。',
+ 'Whitespace analysis':'空白赛道分析','Trend analysis':'趋势分析','Content calendar':'内容日历','Creative scoring':'创意评分','Creative expressions':'创意表达','Meta creative refresh':'Meta 创意刷新',
+ 'Pick up where you left off':'继续上次的工作','See all work →':'查看全部工作 →',
+ 'ExoStride · brand briefing':'ExoStride · 品牌简报','Completed 2 days ago · 32 slides · QA passed':'2 天前完成 · 32 页 · 已通过质检',
+ 'Meridian Senior Living · agency pitch':'Meridian Senior Living · 代理提案','Paused at Propositions · 11 of 18 slides':'已暂停于主张阶段 · 18 页中的 11 页'
+};
+function firstTextNodeIF(el){for(const n of el.childNodes){if(n.nodeType===3&&n.nodeValue.trim().length>0)return n;}return null;}
+function tSweepIF(list){list.forEach(el=>{if(!el)return;const n=firstTextNodeIF(el);if(!n)return;
+  if(el.dataset.i18nEn===undefined)el.dataset.i18nEn=n.nodeValue;
+  const en=el.dataset.i18nEn,key=en.trim(),zh=TEXT_ZH_IF[key];
+  if(zh)n.nodeValue=(LANG==='zh')?en.replace(key,zh):en;});}
+function applyI18nIF(){
+  tSweepIF($$('.nav .primary, .nav .exp-head, .exp-sub a, .navlabel, .sfoot .lo, .ws .lab, .cnt'));
+  tSweepIF($$('.hero h1, .hero p, .jobcard h3, .jobcard .q, .jobcard .go, .th b, .th .muted, .th .tag, .stepchip, .pickup-label, .pill.act, .runrow .rt, .runrow .rm'));
+  const pt=$('#ptitle');if(pt&&typeof CUR!=='undefined'&&CUR)pt.textContent=curTitlesIF()[CUR]||TITLES[CUR]||pt.textContent;
+}
+window.setIframeLang=function(l){LANG=l;try{localStorage.setItem('th_lang',l);}catch(e){}
+  if(typeof CUR!=='undefined'&&CUR==='start'&&typeof renderStart==='function')renderStart();
+  applyI18nIF();
+};
 function go(s){
   CUR=s;
   $$('.screen').forEach(x=>x.classList.remove('active'));
@@ -3799,7 +3965,6 @@ function go(s){
   $$('.nav .primary').forEach(b=>b.classList.toggle('on',b.dataset.s===s));
   $$('.exp-sub a').forEach(a=>a.classList.toggle('on',a.dataset.s===s));
   if(s.startsWith('ex-'))$('#expGroup').classList.add('open');
-  $('#ptitle').textContent=TITLES[s]||'Touchigh';
   $('#screens').scrollTop=0;
   $('#side').classList.remove('open');
   renderCrumb(s);
@@ -3811,6 +3976,7 @@ function go(s){
   if(s==='ex-library')renderExLibrary();
   if(s==='ex-studies')renderExStudies();
   setDockCtx();
+  applyI18nIF();
 }
 function renderCrumb(s){
   const c=$('#crumb');
@@ -3853,7 +4019,7 @@ function renderStart(){
   </div>
 
   <div style=&quot;display:flex;align-items:center;gap:10px;margin:0 0 11px&quot;>
-    <b style=&quot;color:var(--ink);font-size:13.5px&quot;>Pick up where you left off</b>
+    <b class=&quot;pickup-label&quot; style=&quot;color:var(--ink);font-size:13.5px&quot;>Pick up where you left off</b>
     <span class=&quot;pill act&quot; onclick=&quot;go('runs')&quot;>See all work →</span>
   </div>
   <div class=&quot;runstrip&quot;>
@@ -4348,6 +4514,7 @@ function dockSend(){
 resetBrief();
 renderStart();
 setDockCtx();
+applyI18nIF();
 </script>
 <button id=&quot;__advSwitch&quot; style=&quot;position:fixed;left:14px;bottom:14px;z-index:99999;display:inline-flex;align-items:center;gap:7px;background:#191B23;color:#FF8C43;border:none;border-radius:999px;padding:9px 15px;font:800 12px Inter,-apple-system,sans-serif;box-shadow:0 10px 30px rgba(16,32,31,.28);cursor:pointer&quot;>&amp;#9881; Advanced mode</button>
 <script>(function(){var b=document.getElementById(&quot;__advSwitch&quot;);if(b)b.addEventListener(&quot;click&quot;,function(){try{parent.SOMIN_setMode(&quot;advanced&quot;);}catch(e){}});})();</script>
