@@ -883,7 +883,7 @@ const UI={
   autofix:{en:'Auto-fix',zh:'自动修复'},fixed:{en:'Fixed',zh:'已修复'},generate:{en:'Generate',zh:'生成'},
   clickability:{en:'Clickability',zh:'点击潜力'},
   awareness:{en:'Awareness',zh:'认知'},consideration:{en:'Consideration',zh:'考虑'},conversion:{en:'Conversion',zh:'转化'},
-  powered:{en:'Powered by the SOMIN engine',zh:'由 SOMIN 引擎驱动'},
+  powered:{en:'Powered by 10+ years of AI Research',zh:'由 10 余年 AI 研究驱动'},
 };
 function t(k){return L(UI[k]||{en:k});}
 const STAGE={TOFU:{lab:UI.awareness,cls:'st-tofu'},MOFU:{lab:UI.consideration,cls:'st-mofu'},BOFU:{lab:UI.conversion,cls:'st-bofu'}};
@@ -1468,7 +1468,7 @@ const OB_STEPS=[
   {t:{en:'Scanning the competitive landscape',zh:'扫描竞争格局'},d:{en:'5 cross-border rivals · US e-commerce',zh:'5 个跨境对手 · 美国电商'}},
   {t:{en:'Reading 342 competitor ads & organic posts',zh:'读取 342 条对手广告与自然内容'},d:{en:'Meta, Amazon, Google, LinkedIn',zh:'Meta、Amazon、Google、领英'}},
   {t:{en:'Mapping whitespace & content demand',zh:'绘制空白机会与内容需求'},d:{en:'supply vs engagement, per theme',zh:'各主题的供给 vs 互动'}},
-  {t:{en:'Building personas, tensions & angles',zh:'构建人物、张力与角度'},d:{en:'SOMIN permutation engine',zh:'SOMIN 排列引擎'}},
+  {t:{en:'Building personas, tensions & angles',zh:'构建人物、张力与角度'},d:{en:'10+ years of AI Research permutation engine',zh:'10 余年 AI 研究排列引擎'}},
   {t:{en:'Recommending market-entry strategy',zh:'推荐市场进入策略'},d:{en:'3 pillars · positioning · messaging',zh:'3 大支柱 · 定位 · 信息'}}
 ];
 function renderOnboarding(){
@@ -1713,7 +1713,7 @@ SCREENS.strategy=()=>{
 
   ${S.adjustments.length?adjBanner():''}
   <div class="hide-mobile">
-  <div class="eyebrow" style="margin-bottom:10px">${L({en:'How it was built · 5 layers of SOMIN analysis',zh:'如何构建 · SOMIN 五层分析'})}</div>
+  <div class="eyebrow" style="margin-bottom:10px">${L({en:'How it was built · 5 layers of AI Research analysis',zh:'如何构建 · AI 研究五层分析'})}</div>
   <div class="flow" style="margin-bottom:26px">${method}</div>
 
   <h2 class="h-m" style="margin-bottom:6px">${L({en:'The competitive landscape',zh:'竞争格局'})}</h2>
@@ -2099,10 +2099,11 @@ SCREENS.settings=()=>{
     </div>
     <div class="card"><b class="h-s">${L({en:'Interface language',zh:'界面语言'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'Default language for this workspace.',zh:'此工作区的默认语言。'})}</p>
       <div class="lang" style="border-color:var(--tint)"><button class="${S.lang==='en'?'on':''}" onclick="setLang('en')">English</button><button class="${S.lang==='zh'?'on':''}" onclick="setLang('zh')">中文</button></div></div>
-    <div class="card"><b class="h-s">${L({en:'SOMIN engine',zh:'SOMIN 引擎'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'The strategy backbone behind every recommendation.',zh:'每条建议背后的策略骨干。'})}</p>
+    <div class="card"><b class="h-s">${L({en:'AI Research engine',zh:'AI 研究引擎'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'Powered by 10+ years of AI Research — the strategy backbone behind every recommendation.',zh:'由 10 余年 AI 研究驱动——每条建议背后的策略骨干。'})}</p>
       <div class="kv"><span class="k">${L({en:'Workspace',zh:'工作区'})}</span><span class="v">#3697</span></div>
       <div class="kv"><span class="k">${L({en:'Status',zh:'状态'})}</span><span class="v" style="color:var(--green)">● ${L({en:'Connected',zh:'已连接'})}</span></div>
-      <div class="kv"><span class="k">${L({en:'Last strategy run',zh:'上次策略运行'})}</span><span class="v">${L({en:'today',zh:'今天'})}</span></div></div>
+      <div class="kv"><span class="k">${L({en:'Last strategy run',zh:'上次策略运行'})}</span><span class="v">${L({en:'today',zh:'今天'})}</span></div>
+      <div class="kv"><span class="k">${L({en:'Research reference',zh:'研究参考'})}</span><span class="v"><a href="https://farseev.com" target="_blank" rel="noopener noreferrer" style="color:var(--violet)">farseev.com</a></span></div></div>
     <div class="card credits-card"><b class="h-s">${L({en:'AI credits',zh:'AI 额度'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'Every Copilot message, autofix, article draft and content regeneration draws from this pool. Manual human approvals are always free.',zh:'每一次副驾消息、一键修复、文章起草与内容重新生成都会消耗此额度。人工审批本身始终免费。'})}</p>
       ${creditsTotal()===null?`<div class="kv"><span class="k">${L({en:'Plan allowance',zh:'套餐额度'})}</span><span class="v" style="color:var(--violet)">${L(creditPlan().label)}</span></div><div class="kv"><span class="k">${L({en:'Used this period',zh:'本周期已用'})}</span><span class="v">${creditsUsed()}</span></div>`
         :`<div class="kv"><span class="k">${L({en:'Plan allowance',zh:'套餐额度'})}</span><span class="v">${L(creditPlan().label)}</span></div>
