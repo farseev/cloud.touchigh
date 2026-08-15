@@ -65,6 +65,7 @@ a{color:var(--blue);text-decoration:none}
 .ghost:hover{border-color:var(--ink);background:#fff}
 .ghost.sm{padding:6px 13px;font-size:12.5px}
 .chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--tint);color:var(--sec);white-space:nowrap}
+.chip svg{width:12px;height:12px;flex:none}
 .check{display:inline-flex;align-items:center;justify-content:center;width:1.3em;height:1.3em;border-radius:50%;background:var(--orange);color:#fff;font-size:.7em;flex:none}
 .card{background:#fff;border:1px solid var(--tint);border-radius:var(--r-m);padding:22px}
 .card.grey{background:var(--card)}
@@ -89,15 +90,28 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 
 .main{flex:1;display:flex;flex-direction:column;min-width:0}
 .topbar{height:var(--topbar);flex:none;background:#fff;border-bottom:1px solid var(--tint);display:flex;align-items:center;gap:14px;padding:0 22px;z-index:20}
-.workspace{display:flex;align-items:center;gap:10px;padding:6px 12px;border:1px solid var(--tint);border-radius:10px;cursor:pointer;transition:.13s}
+.workspace{display:flex;align-items:center;gap:10px;padding:6px 12px;border:1px solid var(--tint);border-radius:10px;cursor:pointer;transition:.13s;position:relative}
 .workspace:hover{border-color:var(--line);background:var(--card)}
 .ws-logo{width:30px;height:30px;border-radius:8px;background:#141519;display:flex;align-items:center;justify-content:center;flex:none}
+.ws-logo.sm{width:26px;height:26px;border-radius:7px}
 .ws-meta b{font-size:13px;display:block;line-height:1.2}.ws-meta span{font-size:11px;color:var(--soft)}
+.ws-dd{position:absolute;top:calc(100% + 8px);left:0;min-width:300px;background:#fff;border:1px solid var(--tint);border-radius:14px;box-shadow:var(--sh-lg);padding:8px;z-index:50;cursor:default}
+.ws-dd-head{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);padding:8px 10px 6px}
+.ws-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;cursor:pointer;transition:.13s}
+.ws-row:hover{background:var(--card)}
+.ws-row.on{background:#FFF3EA}
+.ws-dd-foot{padding:8px 6px 2px;margin-top:4px;border-top:1px solid var(--tint)}
+.plan-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;margin-left:auto;white-space:nowrap;flex:none}
+.plan-badge.starter{background:#F1F2F5;color:#5B5F6B}
+.plan-badge.growth{background:#FFE9D8;color:#C2540A}
+.plan-badge.enterprise{background:#EEE7FC;color:var(--violet)}
 .topbar-sp{flex:1}
 .seg{display:inline-flex;background:var(--card);border:1px solid var(--tint);border-radius:999px;padding:3px}
 .seg button{padding:6px 14px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--sec);transition:.13s;display:flex;align-items:center;gap:6px}
 .seg button.on{background:#fff;color:var(--ink);box-shadow:var(--sh-sm)}
 .seg.mode button.on[data-v="auto"]{color:var(--orange)}
+.seg.mode button.locked{opacity:.5;cursor:not-allowed}
+.seg.mode button.locked:hover{opacity:.75}
 .lang{display:inline-flex;border:1px solid var(--tint);border-radius:999px;overflow:hidden}
 .lang button{padding:6px 12px;font-size:12.5px;font-weight:700;color:var(--sec)}
 .lang button.on{background:var(--ink);color:#fff}
@@ -121,6 +135,20 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 .tile.link{cursor:pointer}.tile.link:hover{border-color:var(--line);box-shadow:var(--sh);transform:translateY(-2px)}
 .tile .ico{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
 .ico.o{background:var(--orange-t);color:var(--orange-d)}.ico.v{background:#F1E9FE;color:var(--violet)}.ico.b{background:#E1F0FC;color:var(--blue)}.ico.g{background:#E1F5EF;color:var(--green)}
+
+/* ---- pricing plans ---- */
+.plan-card{background:#fff;border:1.5px solid var(--tint);border-radius:var(--r-m);padding:26px;display:flex;flex-direction:column;position:relative;transition:.15s}
+.plan-card.featured{border-color:var(--orange);box-shadow:0 8px 28px rgba(255,100,45,.14)}
+.plan-card.current{border-color:var(--green)}
+.plan-card .plan-ribbon{position:absolute;top:-12px;left:22px;background:var(--orange);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px}
+.plan-card .plan-ribbon.current{background:var(--green)}
+.plan-card .plan-price{display:flex;align-items:baseline;gap:5px;margin:14px 0 4px}
+.plan-card .plan-price b{font-size:34px;font-weight:800;letter-spacing:-.02em}
+.plan-card .plan-price span{font-size:13px;color:var(--sec)}
+.plan-feat{display:flex;gap:9px;align-items:flex-start;padding:8px 0;font-size:13.5px;line-height:1.4}
+.plan-feat .fi-ck{width:17px;height:17px;border-radius:50%;background:var(--orange-t);color:var(--orange-d);flex:none;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.plan-feat.strong{font-weight:700;padding-top:14px;color:var(--ink)}
+.plan-feat.strong .fi-ck{visibility:hidden}
 
 /* ---- ink panel ---- */
 .ink-panel{background:var(--ink);color:#fff;border-radius:var(--r-l);padding:34px}
@@ -223,6 +251,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 .ob-step .s-t b{font-size:13.5px;display:block}.ob-step .s-t span{font-size:11.5px;color:#9a9da7}
 .spin{width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
+@keyframes htlpulse{0%,100%{opacity:1}50%{opacity:.25}}
 .pbar{height:5px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden;margin-top:6px}
 .pbar i{display:block;height:100%;background:var(--orange);width:0;transition:width .5s}
 
@@ -316,11 +345,19 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 .camp-sw{display:flex;align-items:center;gap:9px}
 .tbl tr.paused-row td{opacity:.42}
 .tbl tr.paused-row td:first-child{opacity:1}
+.tbl tr.you-row td{background:#FFF7ED}
+.tbl tr.you-row:hover td{background:#FFF1E2}
 .approve-bar{background:#fff;border:1px solid var(--tint);border-left:3px solid var(--orange);border-radius:var(--r);padding:12px 16px;margin-bottom:14px}
 
 /* ---- chat drawer ---- */
 .fab{position:fixed;right:22px;bottom:22px;z-index:55;background:var(--orange);color:#fff;border-radius:999px;padding:13px 19px;font-weight:600;font-size:14px;box-shadow:var(--sh-lg);display:inline-flex;align-items:center;gap:8px}
 .fab:hover{background:var(--orange-l)}.fab svg{width:18px;height:18px}
+.copilot-bubble{position:fixed;right:24px;bottom:24px;z-index:120;width:56px;height:56px;border-radius:50%;background:var(--orange);color:#fff;border:none;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-lg);cursor:pointer;transition:.15s;animation:bubblein .35s cubic-bezier(.2,.7,.2,1)}
+.copilot-bubble:hover{background:var(--orange-l);transform:translateY(-2px)}
+.copilot-bubble svg{width:24px;height:24px}
+.copilot-bubble.locked{background:#3a3f4d}
+.copilot-bubble.locked:hover{background:#4b5063}
+@keyframes bubblein{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
 .drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100%);background:#fff;z-index:130;box-shadow:-10px 0 44px rgba(25,27,35,.2);display:flex;flex-direction:column;animation:slidein .28s cubic-bezier(.2,.7,.2,1)}
 @keyframes slidein{from{transform:translateX(100%)}to{transform:none}}
 .drawer-head{padding:14px 16px;border-bottom:1px solid var(--tint);display:flex;align-items:center;gap:10px;flex:none}
@@ -329,6 +366,8 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 .msg.user{align-self:flex-end;background:var(--orange);color:#fff;border-bottom-right-radius:4px}
 .msg.bot{align-self:flex-start;background:#fff;color:var(--ink);border:1px solid var(--tint);border-bottom-left-radius:4px}
 .msg.typing{align-self:flex-start;color:var(--soft);background:#fff;border:1px solid var(--tint)}
+.msg.human{align-self:flex-start;background:#fff;color:var(--ink);border:1px solid #B6E6D8;border-bottom-left-radius:4px}
+.msg.sys{align-self:center;background:transparent;color:var(--soft);font-size:11px;text-align:center;max-width:100%;padding:2px 10px;white-space:normal}
 .chat-sugg{display:flex;gap:7px;flex-wrap:wrap;padding:10px 14px 4px;background:var(--card);flex:none}
 .chat-sugg button{font-size:12px;font-weight:600;border:1px solid var(--tint);background:#fff;border-radius:999px;padding:6px 11px;color:var(--cap)}
 .chat-sugg button:hover{border-color:var(--orange);color:var(--orange)}
@@ -337,9 +376,70 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 .chat-input input:focus{border-color:var(--orange)}
 .chat-input button{background:var(--orange);color:#fff;border-radius:50%;width:40px;height:40px;flex:none;display:flex;align-items:center;justify-content:center}
 .chat-input button svg{width:18px;height:18px}
+.ticket-form{padding:14px 16px 16px;border-top:1px solid var(--tint);background:#fff;flex:none;display:flex;flex-direction:column;gap:5px}
+.ticket-form label{font-size:11px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.03em;margin-top:6px}
+.ticket-form input,.ticket-form textarea{width:100%;border:1px solid var(--tint);border-radius:10px;padding:10px 12px;font-size:13.5px;font-family:inherit;color:var(--ink);outline:none;resize:vertical}
+.ticket-form textarea{min-height:78px;line-height:1.5}
+.ticket-form input:focus,.ticket-form textarea:focus{border-color:var(--orange)}
+.ticket-confirm{text-align:center;margin:auto;padding:20px 10px;display:flex;flex-direction:column;align-items:center}
 .adj-banner{background:#F1E9FE;border:1px solid #E0CFFA;border-radius:var(--r-m);padding:14px 16px;margin-bottom:22px}
 .adj-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;background:#fff;border:1px solid #E0CFFA;color:var(--violet);border-radius:999px;padding:5px 11px;margin:4px 5px 0 0}
 .lead-badge{font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--orange);color:#fff;padding:3px 9px;border-radius:999px;white-space:nowrap}
+
+/* ---- copilot content mutation: highlight + drafted-by-copilot badge ---- */
+@keyframes chatpulse{0%,100%{box-shadow:0 0 0 3px rgba(124,58,220,.5)}50%{box-shadow:0 0 0 7px rgba(124,58,220,.12)}}
+.chat-highlight{box-shadow:0 0 0 3px rgba(124,58,220,.5);animation:chatpulse 1.5s ease-in-out 3;border-radius:var(--r-m)}
+.copilot-chip{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;background:#F1E9FE;color:var(--violet);border:1px solid #E0CFFA;padding:3px 8px;border-radius:999px;white-space:nowrap}
+
+/* ---- AI credits ---- */
+.credits-chip{display:flex;align-items:center;gap:7px;border:1px solid var(--tint);border-radius:999px;padding:5px 12px 5px 6px;cursor:pointer;background:#fff;transition:.15s}
+.credits-chip:hover{border-color:var(--orange)}
+.credits-chip .ring{flex:none}
+.credits-chip .cr-txt{font-size:11.5px;font-weight:700;color:var(--cap);white-space:nowrap}
+.credits-chip.low .cr-txt{color:var(--red)}
+.credits-card .bar-track{height:9px}
+.credits-out{background:#FFF2F0;border:1px solid #FFC9C4;color:#9A1E17;border-radius:var(--r-m);padding:12px 14px;font-size:12.5px;line-height:1.5;margin-top:10px}
+
+/* ---- toast notifications ---- */
+#toast-root{position:fixed;left:24px;bottom:24px;z-index:140;display:flex;flex-direction:column-reverse;gap:8px;pointer-events:none}
+.toast{pointer-events:auto;background:#191B23;color:#fff;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;box-shadow:var(--sh-lg);max-width:360px;animation:toastin .25s cubic-bezier(.2,.7,.2,1)}
+.toast .ic{flex:none;width:18px;height:18px;color:var(--green)}
+@keyframes toastin{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+.toast.out{animation:toastout .2s ease forwards}
+@keyframes toastout{to{transform:translateY(6px);opacity:0}}
+
+/* ---- Enterprise: Touchigh team panel ---- */
+.team-row{display:flex;align-items:center;gap:12px;padding:11px 4px;border-bottom:1px solid var(--tint)}
+.team-row:last-child{border-bottom:0}
+.team-av{width:36px;height:36px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px}
+.team-online{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 0 0 rgba(0,159,129,.5);animation:pulse 1.8s infinite}
+
+/* ---- HumanTouch Loop progress badge: submitted → checking → verified → live ---- */
+.htl-track{display:inline-flex;align-items:center;gap:6px;margin-left:6px;margin-top:6px;padding:4px 9px 4px 7px;border-radius:999px;background:#F7F5F2;border:1px solid var(--tint);vertical-align:middle}
+.htl-bar{display:inline-flex;gap:2px}
+.htl-seg{width:9px;height:4px;border-radius:2px;background:var(--tint)}
+.htl-seg.on{background:var(--violet)}
+.htl-seg.on.done{background:var(--green)}
+.htl-lab{font-size:10px;font-weight:700;display:inline-flex;align-items:center;white-space:nowrap}
+.htl-time{font-size:9.5px;color:var(--soft);white-space:nowrap}
+
+/* ---- notification centre ---- */
+.notif-dot{position:absolute;top:-3px;right:-3px;background:var(--red);color:#fff;font-size:9px;font-weight:800;min-width:15px;height:15px;padding:0 3px;border-radius:999px;display:flex;align-items:center;justify-content:center;line-height:1}
+.notif-dd{position:absolute;top:calc(100% + 10px);right:0;width:340px;max-height:420px;overflow-y:auto;background:#fff;border:1px solid var(--tint);border-radius:14px;box-shadow:var(--sh-lg);z-index:150;text-align:left;cursor:default}
+.notif-dd-head{font-size:12.5px;font-weight:800;padding:12px 16px;border-bottom:1px solid var(--tint);color:var(--cap)}
+.notif-row{display:flex;gap:10px;padding:11px 16px;border-bottom:1px solid var(--tint);align-items:flex-start}
+.notif-row:last-child{border-bottom:0}
+.notif-ic{width:16px;height:16px;flex:none;margin-top:1px}
+.notif-empty{padding:24px 16px;text-align:center;font-size:12.5px;color:var(--soft)}
+
+/* ---- Messages: unified task/chat log across modules ---- */
+.task-row{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--tint);border-radius:var(--r-m);padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:.12s}
+.task-row:hover{border-color:var(--orange)}
+.task-ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:none}
+.task-status{font-size:10.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.task-status.open{background:var(--orange-t);color:var(--orange-d)}
+.task-status.resolved{background:#E1F5EF;color:var(--green)}
+.chat-task-bar{display:flex;align-items:center;gap:8px;padding:8px 16px;border-bottom:1px solid var(--tint);background:#FBFAF8}
 
 /* ---- premium / community ---- */
 .pro-badge{font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#8649E1,#AB6CFE);padding:3px 9px;border-radius:999px}
@@ -495,11 +595,15 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em}
 /* =========================================================================
    STATE + i18n
    ========================================================================= */
-const S={lang:'zh',mode:'auto',view:'dashboard',booted:false,user:null,filterPillar:'all',filterStage:'all',socialTab:'library',
-  approvals:{},edits:{},chat:[],adjustments:[],leadPillar:'P1',caregiver:false,personality:null,chatOpen:false,
+const S={lang:'zh',mode:'manual',view:'dashboard',booted:false,user:null,filterPillar:'all',filterStage:'all',socialTab:'library',
+  approvals:{},edits:{},chatByContext:{},adjustments:[],leadPillar:'P1',caregiver:false,personality:null,chatOpen:false,
   pillarTone:{},editing:null,imgSwap:{},commEnabled:false,replyTone:'professional',
   tlEdits:{},articleEdits:{},articleApproved:{},
-  adStatus:{},campStatus:{},recActions:{}};
+  adStatus:{},campStatus:{},recActions:{},
+  account:'exostride',wsOpen:false,chatAgent:'ai',chatContext:'strategy',
+  humanTouchLoop:false,htlStatus:{},ticketConfirm:null,tickets:[],
+  chatHighlight:null,copilotDrafts:[],hookOverride:{},
+  tasks:{},notifications:[],notifOpen:false,notifSeq:0};
 let STUDIO=null;
 const USERS={
   'zhaokui@touchigh.ai':{name:'Zhao Kui',first:{en:'Zhao Kui',zh:'赵奎'},initials:'ZK',grad:'linear-gradient(135deg,#3a3f4d,#191B23)',role:{en:'CEO · HT Science (ExoStride)',zh:'HT Science（ExoStride）首席执行官'}},
@@ -507,13 +611,269 @@ const USERS={
   'k@touchigh.ai':{name:'Kirill Lepikhin',first:{en:'Kirill',zh:'Kirill'},initials:'KL',grad:'linear-gradient(135deg,#008FF8,#006DCA)',role:{en:'Touchigh',zh:'Touchigh'}}
 };
 const PASSWORD='123qwe0-=';
+/* ---- account switcher: brand workspaces reachable from this login ---- */
+const ACCOUNTS=[
+  {id:'exostride',name:'ExoStride',mark:'E<span style="color:#CE1B2B">S</span>',product:{en:'US-H-1.0Pro · United States',zh:'US-H-1.0Pro · 美国'},plan:'starter',credits:{used:38}},
+  {id:'nuvohome',name:'NuvoHome',mark:'N',product:{en:'SmartHub X1 · United States',zh:'SmartHub X1 · 美国'},plan:'growth',credits:{used:640}},
+  {id:'lumacare',name:'LumaCare',mark:'L',product:{en:'GlowSerum 24 · United States',zh:'GlowSerum 24 · 美国'},plan:'starter',credits:{used:12}}
+];
+/* ---- AI credits: what each tier is allotted, and what draws from the pool ---- */
+const CREDIT_PLANS={
+  starter:{monthly:150,label:{en:'150 AI credits / mo',zh:'每月 150 AI 额度'}},
+  growth:{monthly:2000,label:{en:'2,000 AI credits / mo',zh:'每月 2,000 AI 额度'}},
+  enterprise:{monthly:null,label:{en:'Unlimited AI credits (fair use)',zh:'无限 AI 额度（合理使用）'}}
+};
+const CREDIT_COSTS={chat:3,generate:5,autofix:8,article:15,regen:10,studio:5};
+function creditPlan(){return CREDIT_PLANS[currentAccount().plan];}
+function creditsTotal(){return creditPlan().monthly;}
+function creditsUsed(){return currentAccount().credits.used;}
+function creditsRemaining(){const t=creditsTotal();return t===null?Infinity:Math.max(0,t-creditsUsed());}
+function hasCredits(n){n=n||1;return creditsTotal()===null||creditsRemaining()>=n;}
+function spendCredits(n){n=n||1;if(creditsTotal()===null)return true;if(!hasCredits(n))return false;currentAccount().credits.used+=n;return true;}
+function outOfCreditsNudge(){
+  openModal(`<div class="reader" style="width:min(440px,100%)">
+    <div class="reader-head"><button class="reader-close" onclick="closeModal()">${IC.x}</button>
+      <span class="chip" style="margin-bottom:10px;color:var(--red);border-color:#FAD1D4"><span style="width:13px;height:13px;display:inline-block">${IC.bolt}</span>${L({en:'Out of AI credits',zh:'AI 额度已用完'})}</span>
+      <h1 style="font-size:19px">${L({en:"You've used this period's AI credits",zh:'本周期 AI 额度已用完'})}</h1></div>
+    <div class="reader-body">
+      <p class="muted" style="font-size:13.5px;line-height:1.55">${L({en:'Every Copilot message, autofix, article draft and regeneration draws from your plan\'s AI credit pool. '+L(creditPlan().label)+' resets each billing period — upgrade for a bigger pool, or wait for the reset.',zh:'每一次副驾消息、一键修复、文章起草与重新生成都会消耗你套餐的 AI 额度。'+L(creditPlan().label)+'，每个计费周期重置——可升级获取更大额度，或等待下次重置。'})}</p>
+      <div style="display:flex;gap:10px;margin-top:16px;justify-content:flex-end">
+        <button class="ghost" onclick="closeModal()">${L({en:'Close',zh:'关闭'})}</button>
+        <button class="cta" onclick="closeModal();setView('plan')">${L({en:'View plans',zh:'查看套餐'})}</button>
+      </div>
+    </div></div>`);
+}
+function creditsChipHTML(){
+  const total=creditsTotal();
+  if(total===null)return `<span class="credits-chip" onclick="setView('settings')" title="${L({en:'Unlimited AI credits on Enterprise',zh:'企业版 AI 额度无限'})}"><span class="ring" style="width:16px;height:16px;color:var(--violet)">${IC.spark}</span><span class="cr-txt">${L({en:'Unlimited',zh:'无限'})}</span></span>`;
+  const used=creditsUsed(),pct=Math.min(100,Math.round(used/total*100)),low=pct>=85;
+  return `<span class="credits-chip ${low?'low':''}" onclick="setView('settings')" title="${L({en:'AI credits this period — click to view',zh:'本周期 AI 额度——点击查看'})}">${scoreRing(100-pct,18)}<span class="cr-txt">${Math.max(0,total-used)} ${L({en:'credits',zh:'额度'})}</span></span>`;
+}
+function updateCreditsChip(){const el=document.getElementById('credits-chip');if(el)el.innerHTML=creditsChipHTML();}
+/* ---- lightweight toast notifications (e.g. HumanTouch Loop approvals) ---- */
+function toast(msg,icon){
+  let root=document.getElementById('toast-root');
+  if(!root){root=document.createElement('div');root.id='toast-root';document.body.appendChild(root);}
+  const el=document.createElement('div');el.className='toast';
+  el.innerHTML=`<span class="ic">${icon||IC.check}</span><span>${msg}</span>`;
+  root.appendChild(el);
+  setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),220);},4200);
+}
+function relTime(ts){if(!ts)return '';return new Date(ts).toLocaleTimeString(S.lang==='zh'?'zh-CN':'en-US',{hour:'2-digit',minute:'2-digit'});}
+/* ---- notification centre: a running log of things the Touchigh team / system did ---- */
+function pushNotification(n){
+  S.notifications.unshift({id:++S.notifSeq,read:false,at:Date.now(),...n});
+  if(S.notifications.length>40)S.notifications.length=40;
+  updateNotifBell();
+}
+function unreadNotifCount(){return S.notifications.filter(n=>!n.read).length;}
+function notifBellHTML(){
+  const n=unreadNotifCount();
+  return `<button class="icobtn" style="position:relative" onclick="toggleNotif(event)" title="${L({en:'Notifications',zh:'通知'})}">${IC.bell}${n?`<span class="notif-dot">${n>9?'9+':n}</span>`:''}${S.notifOpen?notifDropdownHTML():''}</button>`;
+}
+function updateNotifBell(){const el=document.getElementById('notif-bell-wrap');if(el)el.innerHTML=notifBellHTML();}
+function toggleNotif(e){
+  if(e)e.stopPropagation();
+  S.notifOpen=!S.notifOpen;
+  if(S.notifOpen)S.notifications.forEach(n=>n.read=true);
+  updateNotifBell();
+}
+function notifDropdownHTML(){
+  if(!S.notifications.length)return `<div class="notif-dd" onclick="event.stopPropagation()"><div class="notif-dd-head">${L({en:'Notifications',zh:'通知'})}</div><div class="notif-empty">${L({en:'Nothing yet — activity from your team and automations will show up here.',zh:'暂无通知——团队与自动化产生的动态将显示在这里。'})}</div></div>`;
+  return `<div class="notif-dd" onclick="event.stopPropagation()"><div class="notif-dd-head">${L({en:'Notifications',zh:'通知'})}</div>${S.notifications.slice(0,20).map(n=>`<div class="notif-row"><span class="notif-ic" style="color:${n.color||'var(--green)'}">${n.icon||IC.check}</span><div style="flex:1;min-width:0"><div style="font-size:12.5px;line-height:1.4">${n.text}</div><div class="soft" style="font-size:10.5px;margin-top:2px">${relTime(n.at)}</div></div></div>`).join('')}</div>`;
+}
+document.addEventListener('click',function(e){if(S.notifOpen&&!e.target.closest('#notif-bell-wrap')){S.notifOpen=false;updateNotifBell();}});
+/* ---- unified task tracking: every chat thread / ticket is a "task" that can be open or resolved ---- */
+function taskFor(ctx){if(!S.tasks[ctx])S.tasks[ctx]={status:'open',resolvedBy:null,resolvedAt:null,updatedAt:Date.now()};return S.tasks[ctx];}
+function touchTask(ctx){const tk=taskFor(ctx);tk.updatedAt=Date.now();if(tk.status==='resolved'){tk.status='open';tk.resolvedBy=null;tk.resolvedAt=null;}return tk;}
+function resolveTask(ctx,by){
+  const tk=taskFor(ctx);tk.status='resolved';tk.resolvedBy=by;tk.resolvedAt=Date.now();tk.updatedAt=Date.now();
+  updateChatTaskBar();
+  const modName=L((CHAT_CONTEXTS[ctx]||{title:{en:ctx,zh:ctx}}).title).replace(' Copilot','').replace(' 副驾','');
+  pushNotification({icon:IC.check,color:'var(--green)',text:L({en:'<b>'+modName+'</b> marked resolved'+(by==='operator'?' by your Touchigh team.':' by you.'),zh:'<b>'+modName+'</b> 已标记为已解决'+(by==='operator'?'（由 Touchigh 团队处理）':'（由你处理）')})});
+  refreshNavBadge();
+  if(S.view==='messages')renderView();
+}
+/* toggles a chat-context task between open/resolved from the drawer's task bar */
+function toggleTaskResolved(ctx){
+  const tk=taskFor(ctx);
+  if(tk.status==='resolved'){
+    touchTask(ctx);
+    updateChatTaskBar();
+    refreshNavBadge();
+    if(S.view==='messages')renderView();
+  } else {
+    resolveTask(ctx,'user');
+  }
+}
+/* chat-drawer task status bar: shows open/resolved + who resolved it + when, updates in place */
+function chatTaskBarHTML(ctx){
+  const tk=taskFor(ctx);
+  const resolved=tk.status==='resolved';
+  return `<span class="task-status ${resolved?'resolved':'open'}">${resolved?L({en:'Resolved',zh:'已解决'}):L({en:'Open',zh:'进行中'})}</span>
+    ${resolved?`<span class="soft" style="font-size:11px">${L({en:(tk.resolvedBy==='operator'?'by Touchigh team':'by you'),zh:(tk.resolvedBy==='operator'?'由 Touchigh 团队':'由你')})} · ${relTime(tk.resolvedAt)}</span>`:''}
+    <button class="linkbtn" style="margin-left:auto" onclick="toggleTaskResolved('${ctx}')">${resolved?L({en:'Reopen',zh:'重新打开'}):L({en:'Mark resolved',zh:'标记为已解决'})}</button>`;
+}
+function updateChatTaskBar(){const el=document.getElementById('chat-task-bar');if(el)el.innerHTML=chatTaskBarHTML(S.chatContext);}
+function refreshNavBadge(){const el=document.getElementById('nav-messages-count');if(el){const n=openTaskCount();el.outerHTML=n?`<span id="nav-messages-count" class="tag" style="background:var(--orange);color:#fff">${n}</span>`:`<span id="nav-messages-count"></span>`;}}
+function openTaskCount(){
+  let n=0;
+  Object.keys(CHAT_CONTEXTS).forEach(ctx=>{if(S.chatByContext[ctx]&&S.chatByContext[ctx].length&&taskFor(ctx).status==='open')n++;});
+  n+=S.tickets.filter(t=>t.status==='open').length;
+  return n;
+}
+const DEFAULT_ACCOUNT_PLAN='starter';
+function currentAccount(){return ACCOUNTS.find(a=>a.id===S.account)||ACCOUNTS[0];}
+/* ---- plan-gated feature flags: what each tier actually unlocks in the UI ---- */
+function planAllows(feature){
+  const p=currentAccount().plan;
+  if(feature==='autopilot') return p!=='starter';
+  if(feature==='copilot') return p!=='starter';
+  if(feature==='humanHandoff') return p!=='starter';
+  if(feature==='humanTouchLoop') return p!=='starter';
+  if(feature==='touchpro') return p==='enterprise';
+  return true;
+}
+/* Enterprise gets HumanTouch Loop guaranteed-on (can't be switched off); Growth can opt in */
+function htlGuaranteed(){return currentAccount().plan==='enterprise';}
+function htlActive(){return planAllows('humanTouchLoop')&&(htlGuaranteed()||S.humanTouchLoop);}
+/* ---- HumanTouch Loop: submitted → checking → verified → live, each stage timestamped and logged ---- */
+const HTL_STAGES=[
+  ['submitted',{en:'Submitted',zh:'已提交'}],
+  ['checking',{en:'Checking',zh:'复核中'}],
+  ['verified',{en:'Verified',zh:'已核实'}],
+  ['live',{en:'Live',zh:'已上线'}]
+];
+function htlBadgeHTML(key){
+  const st=S.htlStatus[key]; if(!st)return '';
+  const idx=HTL_STAGES.findIndex(s=>s[0]===st.stage);
+  const segs=HTL_STAGES.map((s,i)=>`<span class="htl-seg ${i<=idx?'on':''} ${st.stage==='live'?'done':''}"></span>`).join('');
+  const ts=st[st.stage+'At'];
+  const busy=st.stage==='checking';
+  const color=st.stage==='live'?'var(--green)':st.stage==='verified'?'var(--green)':'var(--violet)';
+  return `<span id="htl-${key}" class="htl-track" title="${L({en:'HumanTouch Loop',zh:'HumanTouch Loop'})}">
+    <span class="htl-bar">${segs}</span>
+    <span class="htl-lab" style="color:${color}">${busy?`<span class="dot" style="background:var(--violet);animation:htlpulse 1.1s ease-in-out infinite;width:5px;height:5px;display:inline-block;margin-right:3px"></span>`:`<span class="check" style="width:1em;height:1em;font-size:.7em;background:${color};margin-right:3px;display:inline-flex">${IC.check}</span>`}${L(HTL_STAGES[idx][1])}</span>
+    <span class="htl-time">${relTime(ts)}</span>
+  </span>`;
+}
+function htlNotifText(key,stage,modName){
+  const map={
+    checking:{en:'<b>'+modName+'</b> ('+key+') is now <b>Checking by HumanTouch</b>.',zh:'<b>'+modName+'</b>（'+key+'）现正由 <b>HumanTouch</b> 复核。'},
+    verified:{en:'<b>'+modName+'</b> ('+key+') was <b>Touchigh-verified</b> by your team.',zh:'<b>'+modName+'</b>（'+key+'）已由团队 <b>Touchigh 核实</b>。'},
+    live:{en:'<b>'+modName+'</b> ('+key+') is now <b>live</b> — verified and published by Touchigh.',zh:'<b>'+modName+'</b>（'+key+'）现已 <b>上线</b>——经 Touchigh 核实并发布。'}
+  };
+  return L(map[stage]);
+}
+function htlModuleName(key){
+  const cr=DATA.creatives&&DATA.creatives.find(c=>c.key===key);
+  if(cr)return L(pillar(cr.pillar).persona);
+  if(key.indexOf('TL-')===0)return L({en:'Thought leadership',zh:'思想领导力'});
+  return L({en:'Content',zh:'内容'});
+}
+function scheduleHtl(key){
+  if(!htlActive()||S.htlStatus[key])return;
+  const modName=htlModuleName(key);
+  const now=Date.now();
+  S.htlStatus[key]={stage:'checking',submittedAt:now,checkingAt:now,verifiedAt:null,liveAt:null};
+  pushNotification({icon:IC.headset,color:'var(--violet)',text:htlNotifText(key,'checking',modName)});
+  setTimeout(()=>{
+    S.htlStatus[key].stage='verified'; S.htlStatus[key].verifiedAt=Date.now();
+    const el=document.getElementById('htl-'+key);if(el)el.outerHTML=htlBadgeHTML(key);
+    toast(L({en:'Touchigh-verified — clearing to go live.',zh:'Touchigh 已核实——即将上线。'}),IC.check);
+    pushNotification({icon:IC.check,color:'var(--green)',text:htlNotifText(key,'verified',modName)});
+    setTimeout(()=>{
+      S.htlStatus[key].stage='live'; S.htlStatus[key].liveAt=Date.now();
+      const el2=document.getElementById('htl-'+key);if(el2)el2.outerHTML=htlBadgeHTML(key);
+      toast(L({en:'Live — verified and published by Touchigh.',zh:'已上线——经 Touchigh 核实并发布。'}),IC.check);
+      pushNotification({icon:IC.bolt,color:'var(--green)',text:htlNotifText(key,'live',modName)});
+    },1100);
+  },2600);
+}
+function toggleHtl(){
+  if(!planAllows('humanTouchLoop')){upgradeNudge('humanTouchLoop');return;}
+  if(htlGuaranteed())return;
+  S.humanTouchLoop=!S.humanTouchLoop; if(!S.humanTouchLoop)S.htlStatus={};
+  renderView();
+}
+function upgradeNudge(feature){
+  const need=feature==='touchpro'?'enterprise':'growth';
+  const needName=need==='enterprise'?{en:'Enterprise',zh:'企业版'}:{en:'Growth',zh:'成长版'};
+  const copy={
+    autopilot:{en:'Autopilot mode is part of the Growth plan — social, SEO·AEO·GEO and ads publish and optimize themselves once it\'s on.',zh:'自动驾驶模式包含在成长版中——开启后，社媒、SEO·AEO·GEO 与广告将自动发布并优化。'},
+    copilot:{en:'Copilot chat — and handing off to a human agent — is part of the Growth plan.',zh:'副驾聊天——以及转接人工客服——包含在成长版中。'},
+    humanHandoff:{en:'Handing this chat off to a human agent is part of the Growth plan.',zh:'将此对话转接给人工客服，属于成长版功能。'},
+    humanTouchLoop:{en:'HumanTouch Loop — a Touchigh specialist checking your content before it goes live — is part of the Growth plan.',zh:'HumanTouch Loop——由 Touchigh 专家在内容上线前进行复核——包含在成长版中。'},
+    touchpro:{en:'Touch PRO, the white-label platform, is included on Enterprise.',zh:'白标平台 Touch PRO 已包含在企业版中。'}
+  }[feature]||{en:'This is available on a higher plan.',zh:'此功能需更高套餐。'};
+  openModal(`<div class="reader" style="width:min(420px,100%)">
+    <div class="reader-head"><button class="reader-close" onclick="closeModal()">${IC.x}</button>
+      <span class="chip" style="margin-bottom:10px">${IC.lock}${L({en:'Locked on '+currentAccount().name+"'s current plan",zh:currentAccount().name+' 当前套餐未包含'})}</span>
+      <h1 style="font-size:19px">${L({en:'Available on '+L(needName),zh:'需升级至'+L(needName)})}</h1></div>
+    <div class="reader-body">
+      <p class="muted" style="font-size:13.5px;line-height:1.55">${L(copy)}</p>
+      <div style="display:flex;gap:10px;margin-top:16px;justify-content:flex-end">
+        <button class="ghost" onclick="closeModal()">${L({en:'Not now',zh:'暂不'})}</button>
+        <button class="cta" onclick="closeModal();setView('plan')">${L({en:'View plans',zh:'查看套餐'})}</button>
+      </div>
+    </div></div>`);
+}
+/* small "open the module Copilot" trigger reused in Social / SEO / Ads page-heads */
+function copilotTriggerHTML(ctx){
+  if(planAllows('copilot'))return `<button class="ghost sm" onclick="toggleChat(true,'${ctx}')"><span style="width:13px;height:13px;display:inline-block">${IC.wand}</span>${L({en:'Copilot',zh:'副驾'})}</button>`;
+  return `<button class="ghost sm" onclick="toggleChat(true,'${ctx}')"><span style="width:13px;height:13px;display:inline-block">${IC.headset}</span>${L({en:'Support',zh:'支持'})}</button>`;
+}
+const PLAN_LABEL={starter:{en:'Starter',zh:'入门版'},growth:{en:'Growth',zh:'成长版'},enterprise:{en:'Enterprise',zh:'企业版'}};
+/* ---- pricing tiers ---- */
+const PLANS=[
+  {id:'starter',price:300,name:{en:'Starter',zh:'入门版'},
+   tagline:{en:'Manual, always. AI is an option you spend credits on — it never acts for you on its own.',zh:'始终人工掌控。AI 是按额度消耗的可选项——绝不会自行替你行动。'},
+   cta:{en:'Start on Starter',zh:'选择入门版'},
+   features:[
+     {en:'Human-in-the-loop by default — manual mode means every post, article and ad waits for your approval before it goes out',zh:'默认人工在环——手动模式下，每条内容、文章与广告均需你审批后才会发布'},
+     {en:'No autopilot, no Copilot chat — nothing publishes, spends or drafts without you asking for it',zh:'不含自动驾驶与副驾聊天——未经你主动请求，任何内容均不会发布、投放或起草'},
+     {en:'150 AI credits / month — one-off AI actions (autofix, generate, regenerate) are there when you want them, and only then',zh:'每月 150 AI 额度——一键修复、生成、重新生成等 AI 功能随需使用，仅在你主动调用时消耗'},
+     {en:'Full Strategy, Social, SEO·AEO·GEO and Ads workspaces',zh:'完整的策略、社媒、SEO·AEO·GEO 与广告工作区'},
+     {en:'AI answer-engine visibility tracking (ChatGPT, Perplexity, Google AI, Gemini, Copilot)',zh:'AI 答案引擎能见度追踪（ChatGPT、Perplexity、Google AI、Gemini、Copilot）'},
+     {en:'Support by ticket — no live AI chat or human agent included',zh:'工单支持——不含实时 AI 聊天或人工客服'}
+   ]},
+  {id:'growth',price:800,featured:true,name:{en:'Growth',zh:'成长版'},
+   tagline:{en:'Copilot plus a human team behind you, with heavy automation doing the daily work.',zh:'副驾加真人团队护航，繁重的日常工作交由自动化完成。'},
+   cta:{en:'Upgrade to Growth',zh:'升级至成长版'},
+   features:[
+     {en:'Everything in Starter, plus:',zh:'包含入门版全部功能，另加：',strong:true},
+     {en:'Autopilot mode — Social, SEO·AEO·GEO and Ads publish and optimize on their own',zh:'自动驾驶模式——社媒、SEO·AEO·GEO 与广告自动发布并优化'},
+     {en:'Copilot in every module — Strategy, Social, SEO·AEO·GEO and Ads each get a context-aware chat that actually drafts, tunes and highlights content, not just replies',zh:'每个模块均配备副驾——策略、社媒、SEO·AEO·GEO 与广告均可实时起草、调整并高亮内容，而不只是文字回复'},
+     {en:'2,000 AI credits / month — enough for daily autopilot and Copilot use without thinking about it',zh:'每月 2,000 AI 额度——足以支撑日常自动驾驶与副驾使用，无需精打细算'},
+     {en:'HumanTouch Loop (optional) — turn on a Touchigh specialist\'s check before autopilot or your own approvals go live',zh:'HumanTouch Loop（可选）——开启后，自动驾驶或你自己的审批在上线前将再经 Touchigh 专家复核'},
+     {en:'Dedicated human account manager, reachable via the ticketing system',zh:'专属真人客户经理，可通过工单系统联系'},
+     {en:'AI ↔ human live chat — hand off from the AI agent to a human and back, anytime',zh:'AI ↔ 人工实时聊天——随时在 AI 客服与人工之间切换'},
+     {en:'A named Customer Success Manager working alongside you',zh:'专属客户成功经理与你并肩协作'}
+   ]},
+  {id:'enterprise',price:null,name:{en:'Enterprise',zh:'企业版'},
+   tagline:{en:'A team on call worldwide, always watching what the platform produces — not just waiting for your call.',zh:'团队全球待命，持续监测平台产出——而非只在你联系时才响应。'},
+   cta:{en:'Talk to sales',zh:'联系销售'},
+   features:[
+     {en:'Everything in Growth, plus:',zh:'包含成长版全部功能，另加：',strong:true},
+     {en:'Unlimited AI credits (fair use) — Copilot, autopilot and regeneration run without a meter',zh:'无限 AI 额度（合理使用）——副驾、自动驾驶与内容重生成不设配额',},
+     {en:'HumanTouch Loop, guaranteed — every autopilot and manual result is checked by a Touchigh specialist before it ships, no opt-in needed',zh:'保证启用 HumanTouch Loop——无论自动驾驶还是人工审批，所有结果均先经 Touchigh 专家复核后才会上线，无需手动开启'},
+     {en:'A named team across every timezone, always monitoring — reachable by chat or a scheduled call, not only on request',zh:'覆盖全部时区的专属团队，持续监测——可随时通过聊天或预约通话联系，而非仅在你请求时响应'},
+     {en:'Full white-glove support',zh:'尊享全程支持'},
+     {en:'Touch PRO white-label platform access — run Touchigh under your own brand',zh:'白标平台 Touch PRO 接入——以你自己的品牌运行 Touchigh'},
+     {en:'Agentic-framework integration (including Claude) — drive full autopilot from your own agent stack',zh:'智能体框架集成（含 Claude）——通过你自己的智能体技术栈驱动完整自动驾驶'},
+     {en:'Full analytics suite',zh:'完整分析套件'}
+   ]}
+];
 function L(o){return (o&&typeof o==='object'&&('en'in o))?(o[S.lang]??o.en):o;}
 const UI={
   tagline:{en:'AI search visibility, on autopilot',zh:'AI 搜索能见度，全自动托管'},
-  nav_main:{en:'Platform',zh:'平台'},nav_auto:{en:'Autopilots',zh:'自动驾驶'},
+  nav_main:{en:'Platform',zh:'平台'},nav_auto:{en:'Channels',zh:'投放渠道'},nav_account:{en:'Account',zh:'账户'},
   dashboard:{en:'Dashboard',zh:'总览'},strategy:{en:'Strategy',zh:'策略'},
-  social:{en:'Social Autopilot',zh:'社媒自动驾驶'},seo:{en:'SEO · AEO · GEO',zh:'SEO · AEO · GEO'},
-  ads:{en:'Ads Autopilot',zh:'广告自动驾驶'},settings:{en:'Settings',zh:'设置'},
+  competitors:{en:'Competitor Comparison',zh:'竞品对比'},
+  social:{en:'Social',zh:'社媒'},seo:{en:'SEO · AEO · GEO',zh:'SEO · AEO · GEO'},
+  ads:{en:'Ads',zh:'广告'},settings:{en:'Settings',zh:'设置'},
+  messages:{en:'Messages',zh:'消息'},
+  plan:{en:'Plan & Billing',zh:'套餐与账单'},
   auto:{en:'Autopilot',zh:'自动'},manual:{en:'Manual',zh:'手动'},
   workspace:{en:'Workspace',zh:'工作区'},
   approve:{en:'Approve',zh:'批准'},edit:{en:'Edit',zh:'编辑'},reject:{en:'Reject',zh:'拒绝'},
@@ -523,7 +883,7 @@ const UI={
   autofix:{en:'Auto-fix',zh:'自动修复'},fixed:{en:'Fixed',zh:'已修复'},generate:{en:'Generate',zh:'生成'},
   clickability:{en:'Clickability',zh:'点击潜力'},
   awareness:{en:'Awareness',zh:'认知'},consideration:{en:'Consideration',zh:'考虑'},conversion:{en:'Conversion',zh:'转化'},
-  powered:{en:'Powered by the Touchigh engine',zh:'由 Touchigh 引擎驱动'},
+  powered:{en:'Powered by the SOMIN engine',zh:'由 SOMIN 引擎驱动'},
 };
 function t(k){return L(UI[k]||{en:k});}
 const STAGE={TOFU:{lab:UI.awareness,cls:'st-tofu'},MOFU:{lab:UI.consideration,cls:'st-mofu'},BOFU:{lab:UI.conversion,cls:'st-bofu'}};
@@ -727,6 +1087,25 @@ const DATA={
       {ch:'Meta',ty:{en:'Prospecting',zh:'新客拓展'},pillar:'P3',spend:1200,roas:2.9,st:'watch',dec:{en:'Below 3× target — autopilot paused 2 fatigued creatives.',zh:'低于 3× 目标——自动驾驶已暂停 2 条疲劳素材。'}}
     ]}
 };
+/* ---- competitor comparison module: enriches DATA.competitors with comparable metrics ---- */
+const COMP_METRICS={
+  'Hypershell':{cite:18,eng:24,cadence:'14/wk',price:'$$$$',
+    strength:{en:'Raw power specs, category leader by ad volume',zh:'硬核参数，广告投放量位居品类第一'},
+    gap:{en:'No emotional or dignity narrative — reads as industrial equipment',zh:'缺乏情感或尊严叙事——读起来像工业设备'}},
+  'Dnsys':{cite:14,eng:19,cadence:'10/wk',price:'$$$',
+    strength:{en:'Sport-performance credibility with athletes',zh:'凭借运动员背书获得运动表现方面的可信度'},
+    gap:{en:'Narrow audience — doesn\'t speak to rehab or everyday users',zh:'受众狭窄——未触达康复或日常用户'}},
+  'WeWalk / consumer exos':{cite:9,eng:12,cadence:'6/wk',price:'$$',
+    strength:{en:'Low price, novelty-driven trial',zh:'低价、以猎奇心理驱动尝鲜购买'},
+    gap:{en:'Novelty fades fast — weak retention narrative',zh:'新鲜感消退快——留存叙事薄弱'}},
+  'Traditional mobility aids':{cite:6,eng:8,cadence:'3/wk',price:'$',
+    strength:{en:'Trusted, insurance-friendly, clinical credibility',zh:'广受信赖、利于保险报销、具备临床可信度'},
+    gap:{en:'Un-aspirational — no one wants to look like a patient',zh:'缺乏向往感——没人想看起来像病人'}},
+  'ReWalk / medical exo':{cite:11,eng:15,cadence:'5/wk',price:'$$$$$',
+    strength:{en:'Deep clinical validation, hospital distribution',zh:'深厚的临床验证、医院渠道分销'},
+    gap:{en:'Hospital-only positioning — invisible to the everyday consumer buyer',zh:'仅面向医院——普通消费者买家几乎看不到'}}
+};
+const YOU_METRIC={cite:DATA.visibility.cited,eng:39,cadence:'18/wk',price:'$$$'};
 /* build flat creative list */
 DATA.creatives=[];
 ['P1','P2','P3'].forEach(p=>['TOFU','MOFU','BOFU'].forEach(st=>{
@@ -762,7 +1141,12 @@ const IC={
   eye:I('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>'),
   arrow:I('<path d="M5 12h14M13 6l6 6-6 6"/>'),
   wand:I('<path d="M15 4V2M15 10V8M11 6H9M21 6h-2M18 3l-1.5 1.5M18 9l-1.5-1.5"/><path d="M3 21l12-12"/>'),
-  tag:I('<path d="M20.6 13.4L13 21l-9-9V4h8z"/><circle cx="8" cy="8" r="1.5"/>')
+  tag:I('<path d="M20.6 13.4L13 21l-9-9V4h8z"/><circle cx="8" cy="8" r="1.5"/>'),
+  lock:I('<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>'),
+  headset:I('<path d="M3 13a9 9 0 0 1 18 0"/><path d="M21 13v4a2 2 0 0 1-2 2h-1v-6h3z"/><path d="M3 13v4a2 2 0 0 0 2 2h1v-6H3z"/>'),
+  msg:I('<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>'),
+  bell:I('<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>'),
+  ticket:I('<path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/><path d="M9 7v13" stroke-dasharray="3 3"/>')
 };
 
 /* =========================================================================
@@ -780,15 +1164,17 @@ function modeBadge(){return S.mode==='auto'?`<span class="tag-auto">● ${t('aut
 
 function postCard(cr){if(S.editing===cr.key)return postCardEditor(cr);const pil=pillar(cr.pillar);const imgKey=S.imgSwap[cr.key]||cr.key;
   const editable=S.mode==='manual'&&S.approvals[cr.key]!=='approved';
-  return `<div class="post reveal ${S.approvals[cr.key]==='rejected'?'is-rejected':''}" data-key="${cr.key}">
+  const isDraft=S.copilotDrafts&&S.copilotDrafts.includes(cr.key);
+  const displayHook=S.hookOverride&&S.hookOverride[cr.key]?S.hookOverride[cr.key]:cr.hook;
+  return `<div class="post reveal ${S.approvals[cr.key]==='rejected'?'is-rejected':''} ${S.chatHighlight===cr.key?'chat-highlight':''}" data-key="${cr.key}">
     <div class="creative-img">
-      <img src="${CREATIVE_IMG[imgKey]}" alt="${L(cr.hook)}" loading="lazy">
+      <img src="${CREATIVE_IMG[imgKey]}" alt="${L(displayHook)}" loading="lazy">
       <span class="k">${cr.key}</span>
       ${cr.top?`<span class="badge-top">★ ${cr.score}% ${t('top_performer')}</span>`:''}
     </div>
     <div class="meta">
-      <div class="row">${pdot(cr.pillar)}<b style="font-size:12px">${L(pil.persona)}</b>${stageChip(cr.stage)}<span class="chip">${L(cr.sub)}</span></div>
-      <div class="cap" id="cap-${cr.key}" ${editable?`data-edit="1" onclick="openStudio('post','${cr.key}')" title="${L({en:'Click to edit',zh:'点击编辑'})}"`:''} style="margin-top:8px">${S.edits[cr.key]||L(cr.hook)}</div>
+      <div class="row">${pdot(cr.pillar)}<b style="font-size:12px">${L(pil.persona)}</b>${stageChip(cr.stage)}<span class="chip">${L(cr.sub)}</span>${isDraft?`<span class="copilot-chip"><span style="width:9px;height:9px;display:inline-block">${IC.wand}</span>${L({en:'Copilot',zh:'副驾'})}</span>`:''}</div>
+      <div class="cap" id="cap-${cr.key}" ${editable?`data-edit="1" onclick="openStudio('post','${cr.key}')" title="${L({en:'Click to edit',zh:'点击编辑'})}"`:''} style="margin-top:8px">${S.edits[cr.key]||L(displayHook)}</div>
     </div>
     <div class="foot">
       <div class="score">${scoreRing(cr.score)}<div><div style="font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)">${t('clickability')}</div><b>${cr.score}%</b></div></div>
@@ -916,9 +1302,12 @@ const AD_SEL=[{k:'P1-B-01',ch:'Amazon',spend:1400,roas:5.1,f:0},{k:'P1-B-04',ch:
    ========================================================================= */
 const NAV=[
   {sec:'nav_main'},
-  {id:'dashboard',ic:'dash'},{id:'strategy',ic:'strat',tag:'core'},
+  {id:'dashboard',ic:'dash'},{id:'strategy',ic:'strat',tag:'core'},{id:'competitors',ic:'chart'},
   {sec:'nav_auto'},
   {id:'social',ic:'social'},{id:'seo',ic:'seo'},{id:'ads',ic:'ads'},
+  {sec:'nav_account'},
+  {id:'messages',ic:'msg'},
+  {id:'plan',ic:'tag'},
   {sp:1},{id:'settings',ic:'set'}
 ];
 function renderShell(){
@@ -927,7 +1316,9 @@ function renderShell(){
     if(n.sp)return `<div style="flex:1"></div>`;
     const active=S.view===n.id?'active':'';
     const tag=n.tag==='core'?`<span class="tag v">${L({en:'CORE',zh:'核心'})}</span>`:'';
-    return `<button class="nav-item ${active}" onclick="setView('${n.id}')"><span class="ic">${IC[n.ic]}</span>${t(n.id)}${tag}</button>`;
+    const openCount=n.id==='messages'?openTaskCount():0;
+    const navBadge=n.id==='messages'?`<span id="nav-messages-count" class="tag" style="${openCount?'background:var(--orange);color:#fff':'display:none'}">${openCount||''}</span>`:'';
+    return `<button class="nav-item ${active}" onclick="setView('${n.id}')"><span class="ic">${IC[n.ic]}</span>${t(n.id)}${tag}${navBadge}</button>`;
   }).join('');
   document.getElementById('app').innerHTML=`
   <aside class="sidebar">
@@ -938,20 +1329,24 @@ function renderShell(){
   <div class="main">
     <header class="topbar">
       <div class="topbar-brand">${markHTML(false)}</div>
-      <div class="workspace" onclick="setView('strategy')">
-        <div class="ws-logo"><span style="font-weight:800;font-style:italic;font-size:13px;color:#fff">E<span style="color:#CE1B2B">S</span></span></div>
-        <div class="ws-meta"><b>ExoStride</b><span>US-H-1.0Pro · ${L(DATA.brand.target)}</span></div>
+      <div class="workspace" onclick="toggleWs(event)">
+        <div class="ws-logo"><span style="font-weight:800;font-style:italic;font-size:13px;color:#fff">${currentAccount().mark}</span></div>
+        <div class="ws-meta"><b>${currentAccount().name}</b><span>${L(currentAccount().product)}</span></div>
         <span style="color:var(--soft)">▾</span>
+        ${S.wsOpen?wsDropdownHTML():''}
       </div>
       <div class="topbar-sp"></div>
+      <div id="credits-chip">${creditsChipHTML()}</div>
+      ${currentAccount().plan==='enterprise'?`<a href="https://cloud.touchigh.ai/pro.html" target="_blank" rel="noopener noreferrer" class="chip" style="border-color:#EEE7FC;color:var(--violet);cursor:pointer" title="${L({en:'Touch PRO white-label platform',zh:'白标平台 Touch PRO'})}"><span style="width:12px;height:12px;display:inline-block">${IC.globe}</span>${L({en:'Touch PRO',zh:'Touch PRO'})}</a>`:''}
       <div class="seg mode">
-        <button class="${S.mode==='auto'?'on':''}" data-v="auto" onclick="setMode('auto')"><span style="width:14px;height:14px;display:inline-block">${IC.bolt}</span>${t('auto')}</button>
+        <button class="${S.mode==='auto'?'on':''} ${!planAllows('autopilot')?'locked':''}" data-v="auto" onclick="setMode('auto')" title="${planAllows('autopilot')?'':L({en:'Autopilot is on the Growth plan',zh:'自动驾驶属于成长版'})}"><span style="width:14px;height:14px;display:inline-block">${planAllows('autopilot')?IC.bolt:IC.lock}</span>${t('auto')}</button>
         <button class="${S.mode==='manual'?'on':''}" data-v="manual" onclick="setMode('manual')">${t('manual')}</button>
       </div>
       <div class="lang">
         <button class="${S.lang==='en'?'on':''}" onclick="setLang('en')">EN</button>
         <button class="${S.lang==='zh'?'on':''}" onclick="setLang('zh')">中文</button>
       </div>
+      <div id="notif-bell-wrap" style="position:relative">${notifBellHTML()}</div>
       <div class="avatar" style="background:${S.user.grad};cursor:pointer" title="${S.user.name} · ${L({en:'sign out',zh:'退出登录'})}" onclick="logout()">${S.user.initials}</div>
     </header>
     <main class="view" id="view"></main>
@@ -960,11 +1355,74 @@ function renderShell(){
     </nav>
   </div>`;
   renderView();
+  renderCopilotBubble();
 }
 const SCREENS={};
-function renderView(){const el=document.getElementById('view');if(!el)return;const f=SCREENS[S.view]||SCREENS.dashboard;el.innerHTML=`<div class="view-w">${f()}</div>`;el.scrollTop=0;runAnims();}
-function setView(v){S.view=v;renderShell();}
-function setMode(m){S.mode=m;renderShell();}
+function previewBannerHTML(){const acc=currentAccount();return `<div class="card" style="background:#FFF7ED;border-color:#FFD2B8;margin-bottom:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+  <span style="width:18px;height:18px;color:var(--orange);flex:none">${IC.bolt}</span>
+  <div style="flex:1;min-width:200px"><b style="font-size:13.5px">${L({en:'Preview workspace',zh:'预览工作区'})} · ${acc.name} <span class="plan-badge ${acc.plan}" style="margin-left:6px">${L(PLAN_LABEL[acc.plan])}</span></b>
+    <p class="muted" style="font-size:12.5px;margin-top:3px">${L({en:acc.name+"'s workspace is still onboarding — showing sample ExoStride data so you can see how the platform will look.",zh:acc.name+' 的工作区正在接入中——为便于预览界面效果，当前展示 ExoStride 的示例数据。'})}</p></div>
+  <button class="ghost sm" onclick="selectAccount('exostride')">${L({en:'Back to ExoStride',zh:'返回 ExoStride'})}</button>
+</div>`;}
+function renderView(){const el=document.getElementById('view');if(!el)return;const f=SCREENS[S.view]||SCREENS.dashboard;const banner=(S.account!=='exostride'&&S.view!=='plan'&&S.view!=='settings')?previewBannerHTML():'';el.innerHTML=`<div class="view-w">${banner}${f()}</div>`;el.scrollTop=0;runAnims();}
+function setView(v){S.view=v;syncChatContext();renderShell();}
+function contextForView(){return CHAT_CONTEXTS[S.view]?S.view:null;}
+function syncChatContext(){
+  if(!S.chatOpen)return;
+  const cv=contextForView();
+  if(!cv||cv===S.chatContext)return;
+  S.chatContext=cv; S.ticketConfirm=null;
+  const d=document.getElementById('chat-drawer');
+  if(d){d.innerHTML=chatDrawerHTML(); if(planAllows('copilot'))renderChatMsgs();}
+}
+/* ---- account switcher ---- */
+function toggleWs(e){if(e)e.stopPropagation();S.wsOpen=!S.wsOpen;renderShell();}
+function selectAccount(id){S.wsOpen=false;if(id===S.account){renderShell();return;}S.account=id;S.view='dashboard';enforcePlanState();renderShell();}
+function wsDropdownHTML(){
+  const rows=ACCOUNTS.map(a=>{
+    const on=a.id===S.account;
+    return `<div class="ws-row ${on?'on':''}" onclick="event.stopPropagation();selectAccount('${a.id}')">
+      <div class="ws-logo sm"><span style="font-weight:800;font-size:12px;color:#fff">${a.mark}</span></div>
+      <div class="ws-meta"><b>${a.name}</b><span>${L(a.product)}</span></div>
+      <span class="plan-badge ${a.plan}">${L(PLAN_LABEL[a.plan])}</span>
+      <span style="width:14px;height:14px;flex:none;color:var(--orange);visibility:${on?'visible':'hidden'}">${IC.check}</span>
+    </div>`;
+  }).join('');
+  return `<div class="ws-dd" onclick="event.stopPropagation()">
+    <div class="ws-dd-head">${L({en:'Switch workspace',zh:'切换工作区'})}</div>
+    ${rows}
+    <div class="ws-dd-foot">
+      <button class="ghost sm" style="width:100%;justify-content:center" onclick="event.stopPropagation();openAddWorkspace()"><span style="width:13px;height:13px;display:inline-block">${IC.plus}</span>${L({en:'Add brand workspace',zh:'添加品牌工作区'})}</button>
+    </div>
+  </div>`;
+}
+function openAddWorkspace(){
+  S.wsOpen=false;renderShell();
+  openModal(`<div class="reader" style="width:min(440px,100%)">
+    <div class="reader-head"><button class="reader-close" onclick="closeModal()">${IC.x}</button>
+      <span class="chip" style="margin-bottom:10px">${IC.plus}${L({en:'New workspace',zh:'新建工作区'})}</span>
+      <h1 style="font-size:19px">${L({en:'Add a brand workspace',zh:'添加品牌工作区'})}</h1></div>
+    <div class="reader-body">
+      <p class="muted" style="font-size:13.5px;line-height:1.55">${L({en:'Additional brand workspaces are included on the Growth and Enterprise plans. Your account manager can spin up a new workspace and onboard it in minutes.',zh:'新增品牌工作区包含在成长版与企业版套餐中。你的客户经理可在数分钟内为你创建并接入新工作区。'})}</p>
+      <div style="display:flex;gap:10px;margin-top:16px;justify-content:flex-end">
+        <button class="ghost" onclick="closeModal()">${L({en:'Close',zh:'关闭'})}</button>
+        <button class="cta" onclick="closeModal();setView('plan')">${L({en:'View plans',zh:'查看套餐'})}</button>
+      </div>
+    </div></div>`);
+}
+document.addEventListener('click',function(e){if(S.wsOpen&&!e.target.closest('.workspace')){S.wsOpen=false;renderShell();}});
+function setMode(m){
+  if(m==='auto'&&!planAllows('autopilot')){upgradeNudge('autopilot');return;}
+  S.mode=m;renderShell();
+}
+function enforcePlanState(){
+  if(!planAllows('autopilot')&&S.mode==='auto')S.mode='manual';
+  if(S.chatOpen){
+    S.ticketConfirm=null;
+    const d=document.getElementById('chat-drawer');
+    if(d){d.innerHTML=chatDrawerHTML(); if(planAllows('copilot'))renderChatMsgs();}
+  }
+}
 function setLang(l){S.lang=l;document.body.classList.toggle('zh',l==='zh');document.documentElement.lang=l;renderShell();}
 
 /* =========================================================================
@@ -993,11 +1451,15 @@ function doLogin(){
   const err=document.getElementById('lg-err');
   if(!USERS[em]){err.textContent=L({en:'No account found for that email.',zh:'未找到该邮箱对应的账户。'});return;}
   if(pw!==PASSWORD){err.textContent=L({en:'Incorrect password. Try again.',zh:'密码不正确，请重试。'});return;}
-  S.user=USERS[em];
+  S.user=USERS[em]; S.user.email=em;
+  /* default to Starter on every fresh login, so the demo always starts from the same baseline */
+  S.account='exostride'; const ex=ACCOUNTS.find(a=>a.id==='exostride'); if(ex){ex.plan=DEFAULT_ACCOUNT_PLAN;ex.credits.used=38;}
+  S.mode='manual'; S.humanTouchLoop=false; S.chatAgent='ai'; S.chatByContext={}; S.htlStatus={};
+  S.chatOpen=false; S.ticketConfirm=null; S.copilotDrafts=[]; S.hookOverride={}; S.chatHighlight=null;
   const lg=document.getElementById('login');if(lg)lg.remove();
   if(S.booted){renderShell();}else{renderOnboarding();}
 }
-function logout(){S.user=null;S.view='dashboard';document.getElementById('modal-root').innerHTML='';document.getElementById('app').innerHTML='';renderLogin();}
+function logout(){S.user=null;S.view='dashboard';S.chatOpen=false;S.ticketConfirm=null;const cd=document.getElementById('chat-drawer');if(cd)cd.remove();const cb=document.getElementById('copilot-bubble-wrap');if(cb)cb.remove();document.getElementById('modal-root').innerHTML='';document.getElementById('app').innerHTML='';renderLogin();}
 
 /* =========================================================================
    ONBOARDING — auto strategy generation
@@ -1006,7 +1468,7 @@ const OB_STEPS=[
   {t:{en:'Scanning the competitive landscape',zh:'扫描竞争格局'},d:{en:'5 cross-border rivals · US e-commerce',zh:'5 个跨境对手 · 美国电商'}},
   {t:{en:'Reading 342 competitor ads & organic posts',zh:'读取 342 条对手广告与自然内容'},d:{en:'Meta, Amazon, Google, LinkedIn',zh:'Meta、Amazon、Google、领英'}},
   {t:{en:'Mapping whitespace & content demand',zh:'绘制空白机会与内容需求'},d:{en:'supply vs engagement, per theme',zh:'各主题的供给 vs 互动'}},
-  {t:{en:'Building personas, tensions & angles',zh:'构建人物、张力与角度'},d:{en:'Touchigh permutation engine',zh:'Touchigh 排列引擎'}},
+  {t:{en:'Building personas, tensions & angles',zh:'构建人物、张力与角度'},d:{en:'SOMIN permutation engine',zh:'SOMIN 排列引擎'}},
   {t:{en:'Recommending market-entry strategy',zh:'推荐市场进入策略'},d:{en:'3 pillars · positioning · messaging',zh:'3 大支柱 · 定位 · 信息'}}
 ];
 function renderOnboarding(){
@@ -1056,6 +1518,7 @@ SCREENS.dashboard=()=>{
   const v=DATA.visibility;
   const modCards=[
     {id:'strategy',ic:'strat',cls:'o',t:UI.strategy,d:{en:'Auto-generated market-entry strategy — the core every module runs on.',zh:'自动生成的市场进入策略——所有模块的运行核心。'},stat:'3',sl:{en:'strategic pillars',zh:'战略支柱'}},
+    {id:'competitors',ic:'chart',cls:'b',t:UI.competitors,d:{en:'Where you stand on citation share, engagement and cadence vs. 5 rivals.',zh:'与 5 个对手相比，你在引用占比、互动与更新频率上的位置。'},stat:'5',sl:{en:'competitors tracked',zh:'追踪对手'}},
     {id:'social',ic:'social',cls:'v',t:UI.social,d:{en:'72 scored posts across 3 personas, autopilot or approval mode.',zh:'覆盖 3 类人物的 72 条评分内容，自动或审批模式。'},stat:'72',sl:{en:'creatives ready',zh:'素材就绪'}},
     {id:'seo',ic:'seo',cls:'b',t:UI.seo,d:{en:'AI-answer visibility, website hygiene and programmatic GEO articles.',zh:'AI 答案能见度、网站健康度与程序化 GEO 文章。'},stat:v.cited+'%',sl:{en:'cited in AI answers',zh:'被 AI 答案引用'}},
     {id:'ads',ic:'ads',cls:'g',t:UI.ads,d:{en:'Spend across Amazon, Meta and Google — auto-optimized to ROAS.',zh:'Amazon、Meta 与 Google 投放——按 ROAS 自动优化。'},stat:DATA.ads.roas+'×',sl:{en:'blended ROAS',zh:'综合 ROAS'}}
@@ -1075,10 +1538,10 @@ SCREENS.dashboard=()=>{
   ].map(f=>`<div class="feed-item"><div class="fi ico ${f.c}">${f.i}</div><div style="flex:1"><div style="font-size:13.5px">${L(f.x)}</div><div style="display:flex;gap:8px;align-items:center;margin-top:5px"><span class="soft" style="font-size:11.5px">${L(f.tm)}</span>${f.a?`<span class="tag-auto">${L({en:'autopilot',zh:'自动'})}</span>`:`<span class="tag-man">${L({en:'awaiting approval',zh:'待审批'})}</span>`}</div></div></div>`).join('');
 
   return `
-  <div class="crumb"><span>${L({en:'Home',zh:'首页'})}</span> · <b>ExoStride</b> · ${L({en:'US market entry',zh:'美国市场进入'})}</div>
+  <div class="crumb"><span>${L({en:'Home',zh:'首页'})}</span> · <b>${currentAccount().name}</b> · ${L({en:'US market entry',zh:'美国市场进入'})}</div>
   <div class="page-head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
     <div><h1>${S.lang==='en'?('Good morning, '+L(S.user.first)+'.'):('早上好，'+L(S.user.first)+'。')}</h1>
-    <p>${L({en:'ExoStride\'s strategy is live and three autopilots are running against it. Here\'s what moved.',zh:'ExoStride 的策略已上线，三个自动驾驶正据此运行。以下是最新进展。'})}</p></div>
+    <p>${L({en:currentAccount().name+'\'s strategy is live and three autopilots are running against it. Here\'s what moved.',zh:currentAccount().name+' 的策略已上线，三个自动驾驶正据此运行。以下是最新进展。'})}</p></div>
     <button class="cta" onclick="setView('strategy')"><span style="width:16px;height:16px;display:inline-block">${IC.strat}</span>${L({en:'View the strategy',zh:'查看策略'})}</button>
   </div>
 
@@ -1113,7 +1576,50 @@ SCREENS.dashboard=()=>{
       <span class="chip"><span class="dot bg-p1"></span>${L({en:'Live',zh:'实时'})}</span>
     </div>
     ${feed}
-  </div>`;
+  </div>
+  ${currentAccount().plan==='enterprise'?`<div class="card" style="margin-top:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <div class="ico v" style="width:40px;height:40px">${IC.globe}</div>
+    <div style="flex:1;min-width:220px"><b style="font-size:14px">Touch PRO</b>
+      <p class="muted" style="font-size:12.5px;margin-top:3px">${L({en:'Enterprise plan — run this workspace under your own brand.',zh:'企业版专享——以你自己的品牌运行本工作区。'})}</p></div>
+    <a href="https://cloud.touchigh.ai/pro.html" target="_blank" rel="noopener noreferrer" class="ghost sm">${L({en:'Open platform',zh:'打开平台'})} <span style="width:12px;height:12px;display:inline-block;margin-left:2px">${IC.arrow}</span></a>
+  </div>`:''}`;
+};
+
+/* =========================================================================
+   SCREEN: COMPETITOR COMPARISON — independent module, available on every plan
+   ========================================================================= */
+SCREENS.competitors=()=>{
+  const rows=[{n:currentAccount().name,you:true,foc:{en:'Everyday dignity & independence (rehab)',zh:'日常尊严与独立（康复）'},...YOU_METRIC}]
+    .concat(DATA.competitors.map(c=>({n:c.n,foc:c.foc,...(COMP_METRICS[c.n]||{})})));
+  const maxEng=Math.max(...rows.map(r=>r.eng||0));
+  const table=rows.map(r=>`<tr class="${r.you?'you-row':''}">
+    <td><b>${r.n}</b>${r.you?`<span class="chip" style="margin-left:8px;color:var(--orange);border-color:#FFD2B8">${L({en:'You',zh:'你'})}</span>`:''}</td>
+    <td class="muted" style="font-size:12.5px">${L(r.foc)}</td>
+    <td><b>${r.cite}%</b></td>
+    <td>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div class="bar-track" style="width:80px;height:14px"><div class="bar-fill anim-bar" data-w="${((r.eng||0)/maxEng*100).toFixed(0)}" style="width:0;background:${r.you?'var(--orange)':'var(--line)'}"></div></div>
+        <span style="font-size:12.5px">${r.eng}%</span>
+      </div>
+    </td>
+    <td class="muted" style="font-size:12.5px">${r.cadence||'—'}</td>
+    <td class="muted" style="font-size:12.5px">${r.price||'—'}</td>
+  </tr>`).join('');
+  const cards=DATA.competitors.map(c=>{const m=COMP_METRICS[c.n]||{};return `<div class="card">
+    <b style="font-size:14px">${c.n}</b>
+    <p class="muted" style="font-size:12px;margin-top:3px">${L(c.foc)}</p>
+    <div class="hr" style="margin:12px 0"></div>
+    <div style="font-size:12.5px;line-height:1.5"><b style="color:var(--green)">${L({en:'Strength',zh:'优势'})}</b> — ${L(m.strength||{en:'—',zh:'—'})}</div>
+    <div style="font-size:12.5px;line-height:1.5;margin-top:8px"><b style="color:var(--red)">${L({en:'Gap',zh:'短板'})}</b> — ${L(m.gap||{en:'—',zh:'—'})}</div>
+  </div>`}).join('');
+  return `<div class="crumb"><b>${L(UI.competitors)}</b> · ${t('powered')}</div>
+  <div class="page-head"><h1>${L({en:'Competitor comparison',zh:'竞品对比'})}</h1><p>${L({en:'How '+currentAccount().name+' stacks up against the 5 rivals in your category — AI-answer citation, engagement share, publishing cadence and price position. Available on every plan.',zh:currentAccount().name+' 与品类内 5 个对手的对比——AI 答案引用、互动占比、更新频率与价格定位。所有套餐均可使用。'})}</p></div>
+  <div class="card" style="padding:6px 6px 2px;margin-bottom:22px"><table class="tbl"><thead><tr>
+    <th>${L({en:'Brand',zh:'品牌'})}</th><th>${L({en:'Positioning',zh:'定位'})}</th><th>${L({en:'AI-answer citation',zh:'AI 答案引用'})}</th><th>${L({en:'Engagement share',zh:'互动占比'})}</th><th>${L({en:'Cadence',zh:'更新频率'})}</th><th>${L({en:'Price',zh:'价格'})}</th>
+  </tr></thead><tbody>${table}</tbody></table></div>
+  <h2 class="h-m" style="margin-bottom:6px">${L({en:'Where each competitor stands',zh:'各对手的位置'})}</h2>
+  <p class="muted" style="font-size:13px;margin-bottom:14px">${L({en:'Their strongest lane, and the gap your strategy is built to exploit.',zh:'他们最强的赛道，以及你的策略正是为利用这一缺口而设计。'})}</p>
+  <div class="grid g3">${cards}</div>`;
 };
 
 /* =========================================================================
@@ -1187,7 +1693,9 @@ SCREENS.strategy=()=>{
     <div><h1>${L({en:'Your US market-entry strategy',zh:'你的美国市场进入策略'})}</h1>
     <p>${L({en:'Generated automatically from your competitors\' advertising and organic content. This is the core — every post, article and ad below is drawn from it.',zh:'依据对手的广告与自然内容自动生成。这是核心——下方每条内容、文章与广告皆源于此。'})}</p></div>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <button class="cta" onclick="toggleChat(true)"><span style="width:15px;height:15px;display:inline-block">${IC.wand}</span>${L({en:'Adjust strategy',zh:'调整策略'})}</button>
+      ${planAllows('copilot')
+        ?`<button class="cta" onclick="toggleChat(true,'strategy')"><span style="width:15px;height:15px;display:inline-block">${IC.wand}</span>${L({en:'Adjust strategy',zh:'调整策略'})}</button>`
+        :`<button class="ghost" onclick="toggleChat(true,'strategy')"><span style="width:15px;height:15px;display:inline-block">${IC.headset}</span>${L({en:'Support',zh:'支持'})}</button>`}
       <button class="ghost" onclick="regenStrategy(this)"><span style="width:15px;height:15px;display:inline-block">${IC.bolt}</span>${L({en:'Regenerate',zh:'重新生成'})}</button>
     </div>
   </div>
@@ -1205,7 +1713,7 @@ SCREENS.strategy=()=>{
 
   ${S.adjustments.length?adjBanner():''}
   <div class="hide-mobile">
-  <div class="eyebrow" style="margin-bottom:10px">${L({en:'How it was built · 5 layers of Touchigh analysis',zh:'如何构建 · Touchigh 五层分析'})}</div>
+  <div class="eyebrow" style="margin-bottom:10px">${L({en:'How it was built · 5 layers of SOMIN analysis',zh:'如何构建 · SOMIN 五层分析'})}</div>
   <div class="flow" style="margin-bottom:26px">${method}</div>
 
   <h2 class="h-m" style="margin-bottom:6px">${L({en:'The competitive landscape',zh:'竞争格局'})}</h2>
@@ -1234,10 +1742,13 @@ SCREENS.strategy=()=>{
       <button class="ghost" onclick="setView('seo')">${L(UI.seo)}</button>
       <button class="ghost" onclick="setView('ads')">${L(UI.ads)}</button>
     </div>
-  </div>
-  <button class="fab" onclick="toggleChat(true)">${IC.wand}<span>${L({en:'Adjust strategy',zh:'调整策略'})}</span></button>`;
+  </div>`;
 };
-function regenStrategy(btn){btn.innerHTML='<span class="spin" style="border-top-color:var(--orange)"></span> '+L({en:'Analyzing…',zh:'分析中…'});setTimeout(()=>{renderView();},1400);}
+function regenStrategy(btn){
+  if(!spendCredits(CREDIT_COSTS.regen)){outOfCreditsNudge();return;}
+  btn.innerHTML='<span class="spin" style="border-top-color:var(--orange)"></span> '+L({en:'Analyzing…',zh:'分析中…'});
+  setTimeout(()=>{renderView();updateCreditsChip();},1400);
+}
 
 /* =========================================================================
    SCREEN: SOCIAL AUTOPILOT
@@ -1270,7 +1781,7 @@ SCREENS.social=()=>{
       ${sf.map(([v,l])=>`<button class="fbtn ${S.filterStage===v?'on':''}" onclick="setFilter('Stage','${v}')">${L(l)}</button>`).join('')}
     </div>`;
     let list=filteredCreatives();
-    const notice=`<div class="notice" style="margin-bottom:16px"><span style="width:18px;height:18px;flex:none">${IC.bolt}</span><div>${S.mode==='auto'?L({en:'<b>Autopilot is on.</b> Posts are scheduled and published automatically in strategy order — top performers first. Switch to Manual (top-right) to approve each one.',zh:'<b>自动驾驶已开启。</b>内容按策略顺序自动排期与发布——高潜力优先。切换右上角"手动"可逐条审批。'}):L({en:'<b>Manual mode.</b> Review each generated post — approve, edit or reject. Switch to Autopilot (top-right) to let Touchigh publish automatically.',zh:'<b>手动模式。</b>逐条审阅生成的内容——批准、编辑或拒绝。切换右上角"自动"可让 Touchigh 自动发布。'})}</div></div>`;
+    const notice=`<div class="notice" style="margin-bottom:16px"><span style="width:18px;height:18px;flex:none">${IC.bolt}</span><div>${S.mode==='auto'?L({en:'<b>Autopilot is on.</b> Posts are scheduled and published automatically in strategy order — top performers first. Switch to Manual (top-right) to approve each one.',zh:'<b>自动驾驶已开启。</b>内容按策略顺序自动排期与发布——高潜力优先。切换右上角"手动"可逐条审批。'}):L({en:'<b>Manual mode.</b> Review each generated post — approve, edit or reject. Switch to Autopilot (top-right) to let Touchigh publish automatically.',zh:'<b>手动模式。</b>逐条审阅生成的内容——批准、编辑或拒绝。切换右上角"自动"可让 Touchigh 自动发布。'})}${htlActive()?' '+L({en:'HumanTouch Loop is on — a Touchigh specialist double-checks each one before it truly goes live.',zh:'HumanTouch Loop 已开启——每条内容在真正上线前，均由 Touchigh 专家再次复核。'}):''}</div></div>`;
     body=`${filters}${notice}${S.mode==='manual'?`<div class="approve-bar" id="approve-bar">${pendingBarInner()}</div>`:''}
       <div class="muted" style="font-size:12.5px;margin-bottom:12px">${list.length} ${L({en:'creatives',zh:'条素材'})} · ${list.filter(c=>c.top).length} ${L({en:'top performers ≥80%',zh:'高潜力 ≥80%'})}</div>
       <div class="grid g4">${list.map(postCard).join('')}</div>`;
@@ -1305,7 +1816,7 @@ SCREENS.social=()=>{
         <div class="chip" style="margin-top:12px;font-size:11px;color:var(--violet);border-color:#E0CFFA"><span style="width:12px;height:12px;display:inline-block">${IC.wand}</span>${L(p.src)}</div>`}
       </div>
       <div class="foot"><div class="score">${scoreRing(p.score)}<div><div style="font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)">${t('clickability')}</div><b>${p.score}%</b></div></div>
-      ${S.mode==='auto'?`<span class="chip" style="margin-left:auto;color:var(--orange);border-color:#FFD2B8">${t('scheduled')} · LinkedIn</span>`:`<div class="post-act" id="act-TL-${pi}">${genericActions('TL-'+pi,'LinkedIn')}</div>`}</div>
+      ${S.mode==='auto'?`<span style="margin-left:auto;display:flex;align-items:center">${(()=>{if(htlActive())scheduleHtl('TL-'+pi);return '';})()}<span class="chip" style="color:var(--orange);border-color:#FFD2B8">${t('scheduled')} · LinkedIn</span>${htlActive()?htlBadgeHTML('TL-'+pi):''}</span>`:`<div class="post-act" id="act-TL-${pi}">${genericActions('TL-'+pi,'LinkedIn')}</div>`}</div>
     </div>`).join('')}</div>`;
   }
   else if(S.socialTab==='community'){
@@ -1356,8 +1867,11 @@ SCREENS.social=()=>{
 
   return `
   <div class="crumb"><b>${L(UI.social)}</b> · ${L({en:'generated from your strategy',zh:'由你的策略生成'})}</div>
-  <div class="page-head"><h1>${L({en:'Social Autopilot',zh:'社媒自动驾驶'})} ${modeBadge()}</h1>
-  <p>${L({en:'72 posts across your three personas — each scored for clickability before a dollar is spent, published on autopilot or held for your approval.',zh:'覆盖三类人物的 72 条内容——每条在投入前均已预测点击潜力，可自动发布或留待你审批。'})}</p></div>
+  <div class="page-head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+    <div><h1>${t('social')} ${modeBadge()}</h1>
+    <p>${L({en:'72 posts across your three personas — each scored for clickability before a dollar is spent, published on autopilot or held for your approval.',zh:'覆盖三类人物的 72 条内容——每条在投入前均已预测点击潜力，可自动发布或留待你审批。'})}</p></div>
+    ${copilotTriggerHTML('social')}
+  </div>
   ${tabbar}${body}`;
 };
 
@@ -1366,8 +1880,41 @@ SCREENS.social=()=>{
    ========================================================================= */
 S.seoTab='visibility';
 function setSeoTab(t){S.seoTab=t;renderView();}
-function autofix(btn){btn.outerHTML=`<span class="chip" style="color:var(--green);border-color:#B6E6D8"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Fixed',zh:'已修复'})}</span>`;}
-function genArticle(btn){const o=btn.innerHTML;btn.innerHTML='<span class="spin" style="border-top-color:#fff;width:13px;height:13px"></span>';setTimeout(()=>{btn.outerHTML=`<span class="chip" style="color:var(--green);border-color:#B6E6D8">✓ ${L({en:'Drafted',zh:'已起草'})}</span>`;},1500);}
+function autofix(btn,key){
+  if(!spendCredits(CREDIT_COSTS.autofix)){outOfCreditsNudge();return;}
+  if(key){const item=DATA.aeo.find(x=>x.k===key);if(item)item.s='pass';}
+  btn.outerHTML=`<span class="chip" style="color:var(--green);border-color:#B6E6D8"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Fixed',zh:'已修复'})}</span>`;
+  updateCreditsChip();
+}
+function simpleApprove(btn){btn.outerHTML=`<span class="chip ok-chip"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Approved',zh:'已批准'})}</span>`;}
+/* pool of extra GEO topics Copilot can draw new trending keywords from (kept out of the initial DATA.trending list) */
+const EXTRA_TRENDING=[
+  {kw:{en:'exoskeleton vs cane: a comparison',zh:'外骨骼 vs 拐杖对比'},vol:'5.3k',trend:'+71%'},
+  {kw:{en:'IP54 rating explained for tropical climates',zh:'热带气候 IP54 防护等级解读'},vol:'3.8k',trend:'+120%'},
+  {kw:{en:'aging in place checklist',zh:'居家养老清单'},vol:'12.2k',trend:'+54%'},
+  {kw:{en:'powered hip assist for stairs',zh:'动力髋部助力上下楼'},vol:'4.6k',trend:'+88%'},
+  {kw:{en:'exoskeleton battery life compared',zh:'外骨骼续航对比'},vol:'2.9k',trend:'+45%'}
+];
+function genArticle(btn,kwEn){
+  if(!spendCredits(CREDIT_COSTS.article)){outOfCreditsNudge();return;}
+  btn.innerHTML='<span class="spin" style="border-top-color:#fff;width:13px;height:13px"></span>';
+  setTimeout(()=>{
+    btn.outerHTML=`<span class="chip" style="color:var(--green);border-color:#B6E6D8">✓ ${L({en:'Drafted',zh:'已起草'})}</span>`;
+    if(kwEn){
+      const src=DATA.trending.find(k=>k.kw.en===kwEn);
+      const pillar=/hik|climb|trail|trek/i.test(kwEn)?'P2':/commut|last.mile/i.test(kwEn)?'P3':'P1';
+      DATA.articles.unshift({ty:'geo',ti:src?src.kw:{en:kwEn,zh:kwEn},kw:src?src.kw:{en:kwEn,zh:kwEn},st:'draft',pillar});
+      ARTICLE_BODIES.unshift({
+        tldr:{en:'A new GEO draft generated from a trending query — reflects ExoStride\'s measured proof points (80% less load, 16 Nm assist, 2.4 kg, IP54) angled to this topic.',zh:'根据热门查询生成的新 GEO 草稿——围绕该主题，呈现 ExoStride 的量化实证（减负 80%、助力 16 Nm、2.4 kg、IP54）。'},
+        stats:DATA.brand.specs.slice(0,3).map(s=>({n:s.v,l:s.k})),
+        sections:[{h:{en:'Why this is trending',zh:'为何成为热点'},p:{en:'Search interest around this topic has risen sharply — Touchigh drafted this article to capture it before competitors do.',zh:'该主题的搜索热度大幅上升——Touchigh 已起草本文，抢先于对手覆盖此话题。'}}],
+        faq:[]
+      });
+      renderView();
+    }
+    updateCreditsChip();
+  },1500);
+}
 const QUERIES=[
   {q:{en:'best powered exoskeleton for elderly',zh:'最佳老年动力外骨骼'},eng:[1,1,1,0,0],rank:2},
   {q:{en:'exoskeleton for hiking',zh:'徒步外骨骼'},eng:[1,1,0,1,0],rank:3},
@@ -1405,26 +1952,29 @@ SCREENS.seo=()=>{
       <div class="card" style="text-align:center;padding:22px 30px"><div style="font-size:44px;font-weight:800;color:var(--orange);line-height:1">${score}</div><div class="l" style="color:var(--orange)">${L({en:'AEO readiness',zh:'AEO 就绪度'})}</div><div class="d muted" style="font-size:11.5px">/ 100</div></div>
       <div class="notice"><span style="width:18px;height:18px;flex:none">${IC.bolt}</span><div>${S.mode==='auto'?L({en:'<b>Autopilot</b> applies structural fixes automatically as pages change — robots, schema, llms.txt and answer-first blocks stay healthy without you touching code.',zh:'<b>自动驾驶</b>会在页面变动时自动应用结构性修复——robots、结构化数据、llms.txt 与答案前置块无需你碰代码即保持健康。'}):L({en:'<b>Manual mode.</b> Review each finding and apply the fix. ExoStride\'s site structure is prepared for both search engines and LLM answer engines.',zh:'<b>手动模式。</b>逐项审阅并应用修复。ExoStride 的网站结构将同时适配搜索引擎与 LLM 答案引擎。'})}</div></div>
     </div>
-    ${DATA.aeo.map(a=>`<div class="crow"><div class="st ${a.s}">${a.s==='pass'?IC.check:a.s==='fix'?IC.bolt:'!'}</div>
+    ${DATA.aeo.map(a=>`<div class="crow ${S.chatHighlight==='aeo:'+a.k?'chat-highlight':''}"><div class="st ${a.s}">${a.s==='pass'?IC.check:a.s==='fix'?IC.bolt:'!'}</div>
       <div class="cinfo"><b>${a.k}</b><p>${L(a.d)}</p></div>
-      ${a.s==='pass'?`<span class="chip" style="color:var(--green);border-color:#B6E6D8">${L({en:'Healthy',zh:'健康'})}</span>`:(S.mode==='auto'?`<span class="chip" style="color:var(--orange);border-color:#FFD2B8">${L({en:'Auto-applied',zh:'已自动应用'})}</span>`:`<button class="cta sm" onclick="autofix(this)"><span style="width:13px;height:13px;display:inline-block">${IC.wand}</span>${L(UI.autofix)}</button>`)}</div>`).join('')}`;
+      ${a.s==='pass'?`<span class="chip" style="color:var(--green);border-color:#B6E6D8">${L({en:'Healthy',zh:'健康'})}</span>`:(S.mode==='auto'?`<span class="chip" style="color:var(--orange);border-color:#FFD2B8">${L({en:'Auto-applied',zh:'已自动应用'})}</span>`:`<button class="cta sm" onclick="autofix(this,'${a.k.replace(/'/g,"\\'")}')"><span style="width:13px;height:13px;display:inline-block">${IC.wand}</span>${L(UI.autofix)}</button>`)}</div>`).join('')}`;
   }
   else if(S.seoTab==='geo'){
     const stMap={published:['#E1F5EF','var(--green)',{en:'Published',zh:'已发布'}],draft:['var(--card)','var(--sec)',{en:'Draft',zh:'草稿'}],review:['var(--orange-t)','var(--orange-d)',{en:'In review',zh:'审阅中'}],scheduled:['#E1F0FC','var(--blue)',{en:'Scheduled',zh:'已排期'}]};
     const tyMap={geo:['◆',{en:'GEO article',zh:'GEO 文章'}],tl:['✎',{en:'Thought leadership',zh:'思想领导力'}],upd:['◈',{en:'Company update',zh:'公司动态'}]};
     body=`<p class="muted" style="font-size:13.5px;margin-bottom:16px;max-width:720px">${L({en:'Programmatic GEO generates new articles around trending queries — angled to ExoStride\'s pillars and the competitor narratives from your strategy — so you get found in AI answers as topics spike.',zh:'程序化 GEO 围绕上升查询生成新文章——结合 ExoStride 的支柱与策略中的竞品叙事——在话题升温时被 AI 答案收录。'})}</p>
     <h2 class="h-s" style="margin-bottom:10px">${L({en:'Trending now — one click to generate',zh:'当前趋势——一键生成'})}</h2>
-    <div class="grid g2" style="margin-bottom:24px">${DATA.trending.map(k=>`<div class="crow" style="margin-bottom:0"><div class="st" style="background:var(--orange-t);color:var(--orange-d)">${IC.chart}</div><div class="cinfo"><b>${L(k.kw)}</b><p>${k.vol} ${L({en:'monthly searches',zh:'月搜索量'})} · <span style="color:var(--green);font-weight:700">${k.trend}</span></p></div><button class="cta sm" onclick="genArticle(this)"><span style="width:13px;height:13px;display:inline-block">${IC.wand}</span>${L(UI.generate)}</button></div>`).join('')}</div>
+    <div class="grid g2" style="margin-bottom:24px">${DATA.trending.map(k=>`<div class="crow" style="margin-bottom:0"><div class="st" style="background:var(--orange-t);color:var(--orange-d)">${IC.chart}</div><div class="cinfo"><b>${L(k.kw)}</b><p>${k.vol} ${L({en:'monthly searches',zh:'月搜索量'})} · <span style="color:var(--green);font-weight:700">${k.trend}</span></p></div><button class="cta sm" onclick="genArticle(this,'${k.kw.en.replace(/'/g,"\\'")}')"><span style="width:13px;height:13px;display:inline-block">${IC.wand}</span>${L(UI.generate)}</button></div>`).join('')}</div>
     <h2 class="h-s" style="margin-bottom:10px">${L({en:'Article library',zh:'文章库'})}</h2>
     ${DATA.articles.map((a,ai)=>{const s=stMap[a.st],ty=tyMap[a.ty];return `<div class="lrow" style="cursor:pointer" onclick="openArticle(${ai})"><div class="thumb" style="background:${PILLAR_C[a.pillar].c}1a;color:${PILLAR_C[a.pillar].c}">${ty[0]}</div>
       <div style="flex:1;min-width:0"><b style="font-size:14px">${L(a.ti)}</b><div class="muted" style="font-size:12px;margin-top:3px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="chip" style="font-size:10.5px;padding:2px 8px"><span class="dot ${PILLAR_C[a.pillar].bg}"></span>${L(ty[1])}</span><span>${L({en:'target',zh:'目标'})}: ${L(a.kw)}</span></div></div>
       <span class="chip" style="background:${s[0]};color:${s[1]};border:0">${L(s[2])}</span>
-      <button class="ghost sm" onclick="event.stopPropagation();openArticle(${ai})"><span style="width:13px;height:13px;display:inline-block">${IC.eye}</span>${L(UI.open)}</button>${a.st==='review'&&S.mode==='manual'?`<button class="cta sm" onclick="event.stopPropagation();autofix(this)">${L({en:'Approve',zh:'批准'})}</button>`:''}</div>`;}).join('')}`;
+      <button class="ghost sm" onclick="event.stopPropagation();openArticle(${ai})"><span style="width:13px;height:13px;display:inline-block">${IC.eye}</span>${L(UI.open)}</button>${a.st==='review'&&S.mode==='manual'?`<button class="cta sm" onclick="event.stopPropagation();simpleApprove(this)">${L({en:'Approve',zh:'批准'})}</button>`:''}</div>`;}).join('')}`;
   }
 
   return `<div class="crumb"><b>${L(UI.seo)}</b> · ${L({en:'get found in search & AI answers',zh:'在搜索与 AI 答案中被发现'})}</div>
-  <div class="page-head"><h1>${L({en:'SEO · AEO · GEO',zh:'SEO · AEO · GEO'})} ${modeBadge()}</h1>
-  <p>${L({en:'Track where ExoStride shows up in AI answers, keep the site structured for answer engines, and generate GEO articles around trending queries — automatically.',zh:'追踪 ExoStride 在 AI 答案中的出现位置，保持网站面向答案引擎的结构，并围绕上升查询自动生成 GEO 文章。'})}</p></div>
+  <div class="page-head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+    <div><h1>${L({en:'SEO · AEO · GEO',zh:'SEO · AEO · GEO'})} ${modeBadge()}</h1>
+    <p>${L({en:'Track where ExoStride shows up in AI answers, keep the site structured for answer engines, and generate GEO articles around trending queries — automatically.',zh:'追踪 ExoStride 在 AI 答案中的出现位置，保持网站面向答案引擎的结构，并围绕上升查询自动生成 GEO 文章。'})}</p></div>
+    ${copilotTriggerHTML('seo')}
+  </div>
   ${tabbar}${body}`;
 };
 
@@ -1434,8 +1984,8 @@ SCREENS.seo=()=>{
 SCREENS.ads=()=>{
   const a=DATA.ads;const chColor={Amazon:'#FF9900',Meta:'#0866FF',Google:'#34A853'};
   const maxSpend=Math.max(...a.campaigns.map(c=>c.spend));
-  const rows=a.campaigns.map((c,i)=>{const stMap={scaling:['s-rise',{en:'Scaling',zh:'扩量中'}],steady:['s-fall',{en:'Steady',zh:'稳定'}],watch:['s-vol',{en:'Watching',zh:'观察中'}]};const cpaused=S.campStatus[i]==='paused';
-    return `<tr data-camp="${i}" class="${cpaused?'paused-row':''}"><td><div class="camp-sw"><div class="switch ${cpaused?'':'on'}" onclick="toggleCampaign(${i})" title="${L({en:'Turn campaign on / off',zh:'开启 / 暂停此投放'})}"></div><span class="dot" style="background:${chColor[c.ch]}"></span><div><b style="font-size:13px">${c.ch}</b><div class="soft" style="font-size:11px">${L(c.ty)}</div></div></div></td>
+  const rows=a.campaigns.map((c,i)=>{const stMap={scaling:['s-rise',{en:'Scaling',zh:'扩量中'}],steady:['s-fall',{en:'Steady',zh:'稳定'}],watch:['s-vol',{en:'Watching',zh:'观察中'}]};const cpaused=S.campStatus[i]==='paused';const camphl=S.chatHighlight==='camp:'+c.ch+':'+c.pillar;
+    return `<tr data-camp="${i}" class="${cpaused?'paused-row':''} ${camphl?'chat-highlight':''}"><td><div class="camp-sw"><div class="switch ${cpaused?'':'on'}" onclick="toggleCampaign(${i})" title="${L({en:'Turn campaign on / off',zh:'开启 / 暂停此投放'})}"></div><span class="dot" style="background:${chColor[c.ch]}"></span><div><b style="font-size:13px">${c.ch}</b><div class="soft" style="font-size:11px">${L(c.ty)}</div></div></div></td>
       <td><span class="chip" style="font-size:10.5px"><span class="dot ${PILLAR_C[c.pillar].bg}"></span>${L(pillar(c.pillar).persona)}</span></td>
       <td><b>$${c.spend.toLocaleString()}</b></td>
       <td><b style="color:${c.roas>=4?'var(--green)':c.roas>=3?'var(--ink)':'var(--red)'}">${c.roas}×</b></td>
@@ -1449,8 +1999,9 @@ SCREENS.ads=()=>{
     <div class="rec-foot" style="margin-top:11px">${recCtrlHTML(i)}</div>
   </div>`).join('');
 
-  const adCards=AD_SEL.map(x=>{const cr=DATA.creatives.find(c=>c.key===x.k);const paused=S.adStatus[x.k]==='paused';return `<div class="adc reveal ${paused?'paused':''}" data-adk="${x.k}">
-    <div class="adc-img"><img src="${CREATIVE_IMG[cr.key]}" alt="${L(cr.hook)}"><span class="k">${cr.key}</span><span class="ch"><span class="dot" style="background:${chColor[x.ch]};width:7px;height:7px"></span>${x.ch}</span>${paused?`<span class="paused-tag">${L({en:'Paused',zh:'已暂停'})}</span>`:''}</div>
+  const adCards=AD_SEL.map(x=>{const cr=DATA.creatives.find(c=>c.key===x.k);const paused=S.adStatus[x.k]==='paused';const displayHook=(S.hookOverride&&S.hookOverride[x.k])||cr.hook;return `<div class="adc reveal ${paused?'paused':''} ${S.chatHighlight===x.k?'chat-highlight':''}" data-adk="${x.k}">
+    <div class="adc-img"><img src="${CREATIVE_IMG[cr.key]}" alt="${L(displayHook)}"><span class="k">${cr.key}</span><span class="ch"><span class="dot" style="background:${chColor[x.ch]};width:7px;height:7px"></span>${x.ch}</span>${x.draft?`<span class="paused-tag" style="background:var(--violet)">${L({en:'Copilot draft',zh:'副驾起草'})}</span>`:(paused?`<span class="paused-tag">${L({en:'Paused',zh:'已暂停'})}</span>`:'')}</div>
+    <div style="font-size:11px;line-height:1.35;padding:8px 10px 0;color:var(--cap)">${L(displayHook)}</div>
     <div class="foot"><div><div style="font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--soft)">ROAS</div><b style="color:${x.roas>=4?'var(--green)':x.roas>=3?'var(--ink)':'var(--red)'}">${x.roas}×</b></div>
       <div><div style="font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--soft)">${L({en:'Spend',zh:'投放'})}</div><b>$${x.spend}</b></div>
       <span style="margin-left:auto" class="${x.f?'fatigue':'fresh'}">${x.f?L({en:'Fatiguing',zh:'疲劳中'}):L({en:'Fresh',zh:'健康'})}</span></div>
@@ -1458,8 +2009,11 @@ SCREENS.ads=()=>{
   </div>`;}).join('');
 
   return `<div class="crumb"><b>${L(UI.ads)}</b> · ${L({en:'amplify the winning content',zh:'放大制胜内容'})}</div>
-  <div class="page-head"><h1>${L({en:'Ads Autopilot',zh:'广告自动驾驶'})} ${modeBadge()}</h1>
-  <p>${L({en:'Runs and optimizes paid campaigns across Amazon, Meta and Google — reading live performance and reallocating budget to what converts, in your strategy\'s order.',zh:'在 Amazon、Meta 与 Google 上投放并优化付费广告——读取实时表现，按你的策略顺序将预算转向转化更好的内容。'})}</p></div>
+  <div class="page-head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+    <div><h1>${t('ads')} ${modeBadge()}</h1>
+    <p>${L({en:'Runs and optimizes paid campaigns across Amazon, Meta and Google — reading live performance and reallocating budget to what converts, in your strategy\'s order.',zh:'在 Amazon、Meta 与 Google 上投放并优化付费广告——读取实时表现，按你的策略顺序将预算转向转化更好的内容。'})}</p></div>
+    ${copilotTriggerHTML('ads')}
+  </div>
 
   <div class="card integ" style="margin-bottom:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
@@ -1504,7 +2058,7 @@ SCREENS.ads=()=>{
   </div>
 
   <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px"><h2 class="h-m">${L({en:'Live ad creatives · conversion (BOFU)',zh:'在投素材 · 转化（BOFU）'})}</h2><span class="soft" style="font-size:12px">${L({en:'the winning content, amplified as paid ads',zh:'制胜内容，作为付费广告放大'})}</span></div>
-  <p class="muted" style="font-size:12.5px;margin-bottom:14px">${L({en:'Ads Autopilot runs your bottom-of-funnel creatives as paid ads across channels and flags fatigue automatically — toggle any creative on or off to override.',zh:'广告自动驾驶将你的漏斗底部素材作为付费广告投放于各渠道并自动标记疲劳——可开关任一素材进行手动干预。'})}</p>
+  <p class="muted" style="font-size:12.5px;margin-bottom:14px">${L({en:'Ads runs your bottom-of-funnel creatives as paid ads across channels and flags fatigue automatically when autopilot is on — toggle any creative on or off to override.',zh:'广告模块将你的漏斗底部素材作为付费广告投放于各渠道，自动驾驶开启时会自动标记疲劳——可开关任一素材进行手动干预。'})}</p>
   <div class="ad-bar" id="ad-bar">${adBarInner()}</div>
   <div class="grid g4">${adCards}</div>`;
 };
@@ -1515,7 +2069,7 @@ SCREENS.ads=()=>{
 SCREENS.settings=()=>{
   const engines=['ChatGPT','Perplexity','Google AI Overviews','Gemini','Copilot'];
   return `<div class="crumb"><b>${L(UI.settings)}</b></div>
-  <div class="page-head"><h1>${L({en:'Settings',zh:'设置'})}</h1><p>${L({en:'Workspace, engine and autopilot configuration for ExoStride.',zh:'ExoStride 的工作区、引擎与自动驾驶配置。'})}</p></div>
+  <div class="page-head"><h1>${L({en:'Settings',zh:'设置'})}</h1><p>${L({en:'Workspace, engine and autopilot configuration for '+currentAccount().name+'.',zh:currentAccount().name+' 的工作区、引擎与自动驾驶配置。'})}</p></div>
   <div class="grid g2">
     <div class="card"><b class="h-s">${L({en:'Brand profile',zh:'品牌资料'})}</b><div style="margin-top:12px">
       <div class="kv"><span class="k">${L({en:'Brand',zh:'品牌'})}</span><span class="v">ExoStride</span></div>
@@ -1529,19 +2083,105 @@ SCREENS.settings=()=>{
     </div></div>
     <div class="card"><b class="h-s">${L({en:'AI answer engines tracked',zh:'追踪的 AI 答案引擎'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'Engines Touchigh monitors for citation share.',zh:'Touchigh 监测引用占比的引擎。'})}</p>
       ${engines.map(e=>`<div class="crow" style="padding:10px 14px;margin-bottom:8px"><div class="st pass">${IC.eye}</div><div class="cinfo"><b>${e}</b></div><div class="switch on"></div></div>`).join('')}</div>
-    <div class="card"><b class="h-s">${L({en:'Autopilot rules',zh:'自动驾驶规则'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'Global default across the three autopilots.',zh:'三个自动驾驶的全局默认。'})}</p>
-      <div class="crow" style="padding:12px 14px;margin-bottom:8px"><div class="cinfo"><b>${L({en:'Default mode',zh:'默认模式'})}</b><p>${L({en:'Autopilot vs manual approval',zh:'自动 vs 手动审批'})}</p></div><div class="seg"><button class="${S.mode==='auto'?'on':''}" onclick="setMode('auto')">${t('auto')}</button><button class="${S.mode==='manual'?'on':''}" onclick="setMode('manual')">${t('manual')}</button></div></div>
-      <div class="crow" style="padding:12px 14px;margin-bottom:8px"><div class="cinfo"><b>${L({en:'Publish only ≥ 80% clickability',zh:'仅发布点击潜力 ≥ 80%'})}</b><p>${L({en:'Hold lower-scoring creatives for review',zh:'低分素材留待审阅'})}</p></div><div class="switch" onclick="this.classList.toggle('on')"></div></div>
-      <div class="crow" style="padding:12px 14px;margin-bottom:0"><div class="cinfo"><b>${L({en:'Pause ads below 3× ROAS',zh:'低于 3× ROAS 暂停广告'})}</b><p>${L({en:'Auto-pause fatigued campaigns',zh:'自动暂停疲劳投放'})}</p></div><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+    <div class="card"><b class="h-s">${L({en:'Autopilot rules',zh:'自动驾驶规则'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${planAllows('autopilot')?L({en:'Global default across the three autopilots.',zh:'三个自动驾驶的全局默认。'}):L({en:'Autopilot is part of the Growth plan — this workspace is manual-only.',zh:'自动驾驶属于成长版——本工作区仅支持人工模式。'})}</p>
+      <div class="crow" style="padding:12px 14px;margin-bottom:8px"><div class="cinfo"><b>${L({en:'Default mode',zh:'默认模式'})}</b><p>${L({en:'Autopilot vs manual approval',zh:'自动 vs 手动审批'})}</p></div><div class="seg"><button class="${S.mode==='auto'?'on':''} ${!planAllows('autopilot')?'locked':''}" onclick="setMode('auto')" title="${planAllows('autopilot')?'':L({en:'Autopilot is on the Growth plan',zh:'自动驾驶属于成长版'})}">${planAllows('autopilot')?'':`<span style="width:11px;height:11px;display:inline-block;margin-right:3px;vertical-align:-1px">${IC.lock}</span>`}${t('auto')}</button><button class="${S.mode==='manual'?'on':''}" onclick="setMode('manual')">${t('manual')}</button></div></div>
+      <div class="crow" style="padding:12px 14px;margin-bottom:8px${planAllows('autopilot')?'':';opacity:.45'}"><div class="cinfo"><b>${L({en:'Publish only ≥ 80% clickability',zh:'仅发布点击潜力 ≥ 80%'})}</b><p>${L({en:'Hold lower-scoring creatives for review',zh:'低分素材留待审阅'})}</p></div><div class="switch" onclick="${planAllows('autopilot')?"this.classList.toggle('on')":`upgradeNudge('autopilot')`}"></div></div>
+      <div class="crow" style="padding:12px 14px;margin-bottom:0${planAllows('autopilot')?'':';opacity:.45'}"><div class="cinfo"><b>${L({en:'Pause ads below 3× ROAS',zh:'低于 3× ROAS 暂停广告'})}</b><p>${L({en:'Auto-pause fatigued campaigns',zh:'自动暂停疲劳投放'})}</p></div><div class="switch ${planAllows('autopilot')?'on':''}" onclick="${planAllows('autopilot')?"this.classList.toggle('on')":`upgradeNudge('autopilot')`}"></div></div>
+    </div>
+    <div class="card"><b class="h-s">${L({en:'Copilot & support',zh:'副驾与支持'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'How you reach the AI assistant and Touchigh\'s team.',zh:'如何联系 AI 助手与 Touchigh 团队。'})}</p>
+      <div class="crow" style="padding:10px 14px;margin-bottom:8px"><div class="st ${planAllows('copilot')?'pass':''}" style="${planAllows('copilot')?'':'background:var(--card);color:var(--soft)'}">${planAllows('copilot')?IC.wand:IC.lock}</div><div class="cinfo"><b>${L({en:'Copilot chat — Strategy, Social, SEO · AEO · GEO & Ads',zh:'副驾聊天——策略、社媒、SEO · AEO · GEO 与广告'})}</b><p>${planAllows('copilot')?L({en:'Prompt it freely or pick a pre-built ask, in every module',zh:'每个模块均可自由提问，或选择预设问题'}):L({en:'Growth plan and above',zh:'成长版及以上'})}</p></div>${planAllows('copilot')?`<span class="chip" style="color:var(--green);border-color:#B6E6D8">${L({en:'On',zh:'已开启'})}</span>`:`<button class="ghost sm" onclick="setView('plan')">${L({en:'Upgrade',zh:'升级'})}</button>`}</div>
+      <div class="crow" style="padding:10px 14px;margin-bottom:0"><div class="st ${planAllows('humanHandoff')?'pass':''}" style="${planAllows('humanHandoff')?'':'background:var(--card);color:var(--soft)'}">${planAllows('humanHandoff')?IC.headset:IC.lock}</div><div class="cinfo"><b>${L({en:'AI ↔ human handoff',zh:'AI ↔ 人工转接'})}</b><p>${planAllows('humanHandoff')?L({en:'Switch any chat to a human agent, and back',zh:'可将任意对话转人工，并随时切回'}):L({en:'Growth plan and above',zh:'成长版及以上'})}</p></div>${planAllows('humanHandoff')?`<span class="chip" style="color:var(--green);border-color:#B6E6D8">${L({en:'On',zh:'已开启'})}</span>`:`<button class="ghost sm" onclick="setView('plan')">${L({en:'Upgrade',zh:'升级'})}</button>`}</div>
+    </div>
+    <div class="card"><b class="h-s">${L({en:'HumanTouch Loop',zh:'HumanTouch Loop'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'One more human check from the Touchigh team before anything goes live — on top of your own autopilot or manual approval.',zh:'在你自己的自动驾驶或人工审批之上，再由 Touchigh 团队多加一道人工复核，通过后才会上线。'})}</p>
+      ${!planAllows('humanTouchLoop')?`<div class="crow" style="padding:12px 14px;margin-bottom:0"><div class="st" style="background:var(--card);color:var(--soft)">${IC.lock}</div><div class="cinfo"><b>${L({en:'Not on this plan',zh:'当前套餐不含此功能'})}</b><p>${L({en:'Growth plan and above',zh:'成长版及以上'})}</p></div><button class="ghost sm" onclick="setView('plan')">${L({en:'Upgrade',zh:'升级'})}</button></div>`
+      :htlGuaranteed()?`<div class="crow" style="padding:12px 14px;margin-bottom:0"><div class="st pass">${IC.check}</div><div class="cinfo"><b>${L({en:'Guaranteed on Enterprise',zh:'企业版保证启用'})}</b><p>${L({en:'Always on — every result is Touchigh-verified before it ships',zh:'始终开启——所有结果均经 Touchigh 复核后才会上线'})}</p></div><div class="switch on" style="cursor:not-allowed;opacity:.7" title="${L({en:'Guaranteed on — cannot be turned off',zh:'保证开启——无法关闭'})}"></div></div>`
+      :`<div class="crow" style="padding:12px 14px;margin-bottom:0"><div class="cinfo"><b>${L({en:'Enable HumanTouch Loop',zh:'启用 HumanTouch Loop'})}</b><p>${L({en:'Optional on Growth — turn on when you want Touchigh to double-check',zh:'成长版可选——需要 Touchigh 复核时开启'})}</p></div><div class="switch ${S.humanTouchLoop?'on':''}" onclick="toggleHtl()"></div></div>`}
     </div>
     <div class="card"><b class="h-s">${L({en:'Interface language',zh:'界面语言'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'Default language for this workspace.',zh:'此工作区的默认语言。'})}</p>
       <div class="lang" style="border-color:var(--tint)"><button class="${S.lang==='en'?'on':''}" onclick="setLang('en')">English</button><button class="${S.lang==='zh'?'on':''}" onclick="setLang('zh')">中文</button></div></div>
-    <div class="card"><b class="h-s">${L({en:'Touchigh engine',zh:'Touchigh 引擎'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'The strategy backbone behind every recommendation.',zh:'每条建议背后的策略骨干。'})}</p>
+    <div class="card"><b class="h-s">${L({en:'SOMIN engine',zh:'SOMIN 引擎'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'The strategy backbone behind every recommendation.',zh:'每条建议背后的策略骨干。'})}</p>
       <div class="kv"><span class="k">${L({en:'Workspace',zh:'工作区'})}</span><span class="v">#3697</span></div>
       <div class="kv"><span class="k">${L({en:'Status',zh:'状态'})}</span><span class="v" style="color:var(--green)">● ${L({en:'Connected',zh:'已连接'})}</span></div>
       <div class="kv"><span class="k">${L({en:'Last strategy run',zh:'上次策略运行'})}</span><span class="v">${L({en:'today',zh:'今天'})}</span></div></div>
+    <div class="card credits-card"><b class="h-s">${L({en:'AI credits',zh:'AI 额度'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'Every Copilot message, autofix, article draft and content regeneration draws from this pool. Manual human approvals are always free.',zh:'每一次副驾消息、一键修复、文章起草与内容重新生成都会消耗此额度。人工审批本身始终免费。'})}</p>
+      ${creditsTotal()===null?`<div class="kv"><span class="k">${L({en:'Plan allowance',zh:'套餐额度'})}</span><span class="v" style="color:var(--violet)">${L(creditPlan().label)}</span></div><div class="kv"><span class="k">${L({en:'Used this period',zh:'本周期已用'})}</span><span class="v">${creditsUsed()}</span></div>`
+        :`<div class="kv"><span class="k">${L({en:'Plan allowance',zh:'套餐额度'})}</span><span class="v">${L(creditPlan().label)}</span></div>
+      <div class="kv"><span class="k">${L({en:'Used this period',zh:'本周期已用'})}</span><span class="v">${creditsUsed()} / ${creditsTotal()}</span></div>
+      <div class="bar-track" style="margin-top:8px"><div class="bar-fill anim-bar" data-w="${Math.min(100,Math.round(creditsUsed()/creditsTotal()*100))}" style="width:0;background:${creditsRemaining()<creditsTotal()*.15?'var(--red)':'var(--violet)'}"></div></div>
+      ${creditsRemaining()===0?`<div class="credits-out"><b>${L({en:'Out of credits this period.',zh:'本周期额度已用尽。'})}</b> ${L({en:'Upgrade for a bigger pool, or wait for the reset.',zh:'可升级获取更大额度，或等待下次重置。'})}</div>`:''}`}
+      <button class="ghost sm" style="margin-top:12px" onclick="setView('plan')">${L({en:'Change plan for more credits',zh:'升级套餐获取更多额度'})}</button></div>
+    <div class="card"><b class="h-s">${L({en:'Plan',zh:'套餐'})}</b><p class="muted" style="font-size:12px;margin:5px 0 12px">${L({en:'Your current plan for this workspace.',zh:'本工作区当前所使用的套餐。'})}</p>
+      <div class="kv"><span class="k">${L({en:'Tier',zh:'等级'})}</span><span class="v"><span class="plan-badge ${currentAccount().plan}">${L(PLAN_LABEL[currentAccount().plan])}</span></span></div>
+      <button class="ghost sm" style="margin-top:12px" onclick="setView('plan')">${L({en:'Manage plan',zh:'管理套餐'})}</button></div>
+    ${currentAccount().plan==='enterprise'?touchighTeamCardHTML():''}
   </div>`;
 };
+/* ---- Enterprise: the always-on human team behind the platform ---- */
+const TOUCHIGH_TEAM=[
+  {name:'Mira Santos',role:{en:'Customer Success Manager',zh:'客户成功经理'},tz:{en:'Americas · online now',zh:'美洲 · 现已在线'},av:'MS',bg:'linear-gradient(135deg,#FF8C43,#C33909)'},
+  {name:'Kai Tanaka',role:{en:'Solutions Engineer',zh:'解决方案工程师'},tz:{en:'APAC · online now',zh:'亚太 · 现已在线'},av:'KT',bg:'linear-gradient(135deg,#008FF8,#006DCA)'},
+  {name:'Sofia Almeida',role:{en:'Dedicated Account Director',zh:'专属客户总监'},tz:{en:'EMEA · online now',zh:'欧非中东 · 现已在线'},av:'SA',bg:'linear-gradient(135deg,#8b5cf6,#5b21b6)'}
+];
+function touchighTeamCardHTML(){
+  return `<div class="card"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><b class="h-s">${L({en:'Your Touchigh team',zh:'你的 Touchigh 团队'})}</b><span class="chip" style="color:var(--green);border-color:#B6E6D8"><span class="team-online" style="margin-right:5px"></span>${L({en:'On call worldwide',zh:'全球待命'})}</span></div>
+    <p class="muted" style="font-size:12px;margin:5px 0 4px">${L({en:'Enterprise gets a team across every timezone — always monitoring what the platform produces, reachable by chat or call, not just on request.',zh:'企业版配备覆盖全部时区的团队——持续监测平台产出，可随时通过聊天或通话联系，而非仅在你请求时响应。'})}</p>
+    <div style="margin-top:8px">${TOUCHIGH_TEAM.map(m=>`<div class="team-row"><div class="team-av" style="background:${m.bg}">${m.av}</div><div style="flex:1;min-width:0"><b style="font-size:13px">${m.name}</b><div class="soft" style="font-size:11.5px">${L(m.role)}</div></div><span class="muted" style="font-size:11px;text-align:right">${L(m.tz)}</span></div>`).join('')}</div>
+    <button class="ghost sm" style="margin-top:12px" onclick="toggleChat(true,'strategy');toggleHumanAgent()"><span style="width:13px;height:13px;display:inline-block">${IC.headset}</span>${L({en:'Talk to your team now',zh:'立即联系你的团队'})}</button>
+  </div>`;
+}
+
+/* =========================================================================
+   SCREEN: PLAN & BILLING
+   ========================================================================= */
+SCREENS.plan=()=>{
+  const acc=currentAccount();
+  const cards=PLANS.map(p=>{
+    const isCurrent=p.id===acc.plan;
+    const cls=isCurrent?'current':(p.featured?'featured':'');
+    const ribbon=isCurrent?`<span class="plan-ribbon current">${L({en:'Current plan',zh:'当前套餐'})}</span>`:(p.featured?`<span class="plan-ribbon">${L({en:'Most popular',zh:'最受欢迎'})}</span>`:'');
+    const price=p.price==null?`<div class="plan-price"><b>${L({en:'Custom',zh:'定制报价'})}</b></div>`:`<div class="plan-price"><b>$${p.price}</b><span>${L({en:'USD / month',zh:'美元 / 月'})}</span></div>`;
+    const feats=p.features.map(f=>`<div class="plan-feat ${f.strong?'strong':''}"><span class="fi-ck">${IC.check}</span><span>${L(f)}</span></div>`).join('');
+    const cta=isCurrent
+      ? `<button class="ghost" style="width:100%;justify-content:center;margin-top:18px" disabled>${L({en:'Your current plan',zh:'当前使用中'})}</button>`
+      : `<button class="${p.featured?'cta':'ghost'}" style="width:100%;justify-content:center;margin-top:18px" onclick="choosePlan('${p.id}')">${L(p.cta)}</button>`;
+    return `<div class="plan-card ${cls}">${ribbon}
+      <b class="h-s">${L(p.name)}</b>
+      <p class="muted" style="font-size:12.5px;margin-top:5px;min-height:32px">${L(p.tagline)}</p>
+      ${price}
+      <div class="hr" style="margin:14px 0 4px"></div>
+      ${feats}
+      ${cta}
+    </div>`;
+  }).join('');
+  return `<div class="crumb"><b>${L(UI.plan)}</b> · ${acc.name}</div>
+  <div class="page-head"><h1>${L({en:'Plan & billing',zh:'套餐与账单'})}</h1><p>${L({en:'Pick how much of the loop Touchigh runs for you — from fully manual to a dedicated, human-validated Enterprise team.',zh:'选择 Touchigh 为你自动化多少环节——从完全人工，到配备专属人工校验团队的企业版。'})}</p></div>
+  <div class="grid g3" style="align-items:stretch">${cards}</div>
+  ${acc.plan==='enterprise'?`<div class="card" style="margin-top:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <div class="ico v" style="width:40px;height:40px">${IC.globe}</div>
+    <div style="flex:1;min-width:220px"><b style="font-size:14px">Touch PRO</b>
+      <p class="muted" style="font-size:12.5px;margin-top:3px">${L({en:'Included on your Enterprise plan — run the whole platform under your own brand.',zh:'已包含在你的企业版套餐中——以你自己的品牌运行整个平台。'})}</p></div>
+    <a href="https://cloud.touchigh.ai/pro.html" target="_blank" rel="noopener noreferrer" class="ghost sm">${L({en:'Open Touch PRO',zh:'打开 Touch PRO'})} <span style="width:12px;height:12px;display:inline-block;margin-left:2px">${IC.arrow}</span></a>
+  </div>`:''}`;
+};
+function choosePlan(id){
+  const p=PLANS.find(x=>x.id===id); if(!p)return;
+  openModal(`<div class="reader" style="width:min(440px,100%)">
+    <div class="reader-head"><button class="reader-close" onclick="closeModal()">${IC.x}</button>
+      <span class="chip" style="margin-bottom:10px">${IC.bolt}${L(p.name)}</span>
+      <h1 style="font-size:19px">${id==='enterprise'?L({en:'Talk to sales',zh:'联系销售'}):L({en:'Confirm plan change',zh:'确认更换套餐'})}</h1></div>
+    <div class="reader-body">
+      <p class="muted" style="font-size:13.5px;line-height:1.55">${id==='enterprise'
+        ? L({en:'Enterprise pricing is tailored to your brand portfolio, volume and support needs. Your account manager will reach out to scope the real contract — for this demo, confirming switches the interface to Enterprise so you can preview it.',zh:'企业版报价根据你的品牌组合、体量与支持需求量身定制，你的客户经理会与你联系确定正式合同。在本演示中，点击确认会将界面切换为企业版以供预览。'})
+        : L({en:'This is a prototype — confirming switches this workspace to the '+L(p.name)+' plan so you can see how the interface changes. No real card is charged; your account manager will confirm the change and update billing.',zh:'这是原型演示——点击确认会将本工作区切换为'+L(p.name)+'套餐，以便你查看界面变化。不会产生真实扣费，你的客户经理会确认变更并更新账单。'})}</p>
+      <div style="display:flex;gap:10px;margin-top:16px;justify-content:flex-end">
+        <button class="ghost" onclick="closeModal()">${L({en:'Cancel',zh:'取消'})}</button>
+        <button class="cta" onclick="applyPlan('${id}')">${id==='enterprise'?L({en:'Switch to Enterprise (demo)',zh:'切换至企业版（演示）'}):L(p.cta)}</button>
+      </div>
+    </div></div>`);
+}
+function applyPlan(id){
+  const acc=currentAccount(); acc.plan=id; closeModal(); S.wsOpen=false; enforcePlanState(); renderShell();
+}
 
 /* =========================================================================
    BOOT
@@ -1549,20 +2189,38 @@ SCREENS.settings=()=>{
 /* =========================================================================
    MANUAL-MODE APPROVAL WORKFLOW
    ========================================================================= */
-function filteredCreatives(){return DATA.creatives.filter(c=>(S.filterPillar==='all'||c.pillar===S.filterPillar)&&(S.filterStage==='all'||c.stage===S.filterStage));}
+function filteredCreatives(){
+  let list=DATA.creatives.filter(c=>(S.filterPillar==='all'||c.pillar===S.filterPillar)&&(S.filterStage==='all'||c.stage===S.filterStage));
+  if(S.copilotDrafts&&S.copilotDrafts.length){
+    list=list.slice().sort((a,b)=>{
+      const ai=S.copilotDrafts.indexOf(a.key),bi=S.copilotDrafts.indexOf(b.key);
+      if(ai===-1&&bi===-1)return 0; if(ai===-1)return 1; if(bi===-1)return -1; return ai-bi;
+    });
+  }
+  return list;
+}
 function postActions(cr){
-  if(S.mode==='auto') return `<span class="chip" style="color:var(--orange);border-color:#FFD2B8"><span class="check" style="width:1em;height:1em;font-size:.6em">${IC.check}</span>${cr.stage==='BOFU'?t('published'):t('scheduled')}</span>`;
+  if(S.mode==='auto'){
+    const base=`<span class="chip" style="color:var(--orange);border-color:#FFD2B8"><span class="check" style="width:1em;height:1em;font-size:.6em">${IC.check}</span>${cr.stage==='BOFU'?t('published'):t('scheduled')}</span>`;
+    if(htlActive()){scheduleHtl(cr.key);return base+htlBadgeHTML(cr.key);}
+    return base;
+  }
   const st=S.approvals[cr.key];
-  if(st==='approved') return `<span class="chip ok-chip"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Approved',zh:'已批准'})}</span><button class="linkbtn" onclick="approveItem('${cr.key}',null)">${L({en:'undo',zh:'撤销'})}</button>`;
+  if(st==='approved'){
+    const base=`<span class="chip ok-chip"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Approved',zh:'已批准'})}</span><button class="linkbtn" onclick="approveItem('${cr.key}',null)">${L({en:'undo',zh:'撤销'})}</button>`;
+    if(htlActive()){scheduleHtl(cr.key);return base+htlBadgeHTML(cr.key);}
+    return base;
+  }
   if(st==='rejected') return `<span class="chip no-chip">${L({en:'Rejected',zh:'已拒绝'})}</span><button class="linkbtn" onclick="approveItem('${cr.key}',null)">${L({en:'undo',zh:'撤销'})}</button>`;
   return `<div class="mini-act"><button class="icobtn ok" title="${t('approve')}" onclick="approveItem('${cr.key}','approved')">${IC.check}</button><button class="icobtn" title="${t('edit')}" onclick="openStudio('post','${cr.key}')">${IC.edit}</button><button class="icobtn no" title="${t('reject')}" onclick="approveItem('${cr.key}','rejected')">${IC.x}</button></div>`;
 }
 function approveItem(key,status){
-  if(status===null) delete S.approvals[key]; else S.approvals[key]=status;
+  if(status===null){delete S.approvals[key];delete S.htlStatus[key];} else S.approvals[key]=status;
   const cr=DATA.creatives.find(c=>c.key===key);
   const act=document.getElementById('act-'+key); if(act&&cr) act.innerHTML=postActions(cr);
   const post=document.querySelector('.post[data-key="'+key+'"]'); if(post) post.classList.toggle('is-rejected',S.approvals[key]==='rejected');
   updatePendingBar();
+  if(status==='approved'&&htlActive())toast(L({en:'Approved — now under Touchigh team validation before it goes live.',zh:'已批准——正由 Touchigh 团队复核，之后方可上线。'}));
 }
 function openEditPost(key){
   const cr=DATA.creatives.find(c=>c.key===key); const cur=(S.edits[key]||L(cr.hook)).replace(/"/g,'&quot;');
@@ -1583,6 +2241,7 @@ function saveEditPost(key){
   const cap=document.getElementById('cap-'+key); if(cap) cap.textContent=v;
   const cr=DATA.creatives.find(c=>c.key===key); const act=document.getElementById('act-'+key); if(act) act.innerHTML=postActions(cr);
   updatePendingBar(); closeModal();
+  if(htlActive())toast(L({en:'Approved — now under Touchigh team validation before it goes live.',zh:'已批准——正由 Touchigh 团队复核，之后方可上线。'}));
 }
 function pendingBarInner(){
   const list=filteredCreatives(); const pending=list.filter(c=>!S.approvals[c.key]).length; const done=list.length-pending;
@@ -1600,11 +2259,15 @@ function rejectAll(){filteredCreatives().forEach(c=>{if(!S.approvals[c.key])S.ap
 /* generic approval for non-creative items (CEO posts, etc.) */
 function genericActions(key,channel){
   const st=S.approvals[key];
-  if(st==='approved') return `<span class="chip ok-chip"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Approved',zh:'已批准'})} · ${channel}</span><button class="linkbtn" onclick="approveGeneric('${key}',null,'${channel}')">${L({en:'undo',zh:'撤销'})}</button>`;
+  if(st==='approved'){
+    const base=`<span class="chip ok-chip"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Approved',zh:'已批准'})} · ${channel}</span><button class="linkbtn" onclick="approveGeneric('${key}',null,'${channel}')">${L({en:'undo',zh:'撤销'})}</button>`;
+    if(htlActive()){scheduleHtl(key);return base+htlBadgeHTML(key);}
+    return base;
+  }
   if(st==='rejected') return `<span class="chip no-chip">${L({en:'Rejected',zh:'已拒绝'})}</span><button class="linkbtn" onclick="approveGeneric('${key}',null,'${channel}')">${L({en:'undo',zh:'撤销'})}</button>`;
   return `<div class="mini-act"><button class="icobtn ok" title="${t('approve')}" onclick="approveGeneric('${key}','approved','${channel}')">${IC.check}</button><button class="icobtn" title="${t('edit')}" onclick="openStudio('text','${key}')">${IC.edit}</button><button class="icobtn no" title="${t('reject')}" onclick="approveGeneric('${key}','rejected','${channel}')">${IC.x}</button></div>`;
 }
-function approveGeneric(key,status,channel){if(status===null)delete S.approvals[key];else S.approvals[key]=status;const el=document.getElementById('act-'+key);if(el)el.innerHTML=genericActions(key,channel);}
+function approveGeneric(key,status,channel){if(status===null){delete S.approvals[key];delete S.htlStatus[key];}else S.approvals[key]=status;const el=document.getElementById('act-'+key);if(el)el.innerHTML=genericActions(key,channel);if(status==='approved'&&htlActive())toast(L({en:'Approved — now under Touchigh team validation before it goes live.',zh:'已批准——正由 Touchigh 团队复核，之后方可上线。'}));}
 function approveBudget(btn){btn.outerHTML=`<div class="chip ok-chip" style="width:100%;justify-content:center;padding:10px;margin-top:14px"><span class="check" style="width:1em;height:1em;font-size:.6em;background:var(--green)">${IC.check}</span>${L({en:'Applied · budget shifted',zh:'已应用 · 预算已调整'})}</div>`;}
 
 /* ---- ad engine edit controls: on/off ads + apply/dismiss recommendations ---- */
@@ -1724,6 +2387,8 @@ function renderStudioCopilot(){
   b.scrollTop=b.scrollHeight;
 }
 function studioApply(i){
+  if(!spendCredits(CREDIT_COSTS.studio)){outOfCreditsNudge();return;}
+  updateCreditsChip();
   const s=STUDIO.sugg[i];
   STUDIO.chat.push({role:'user',text:L(s.lab)}); STUDIO.chat.push({role:'typing'}); renderStudioCopilot();
   const ov=document.getElementById('studio-regen');
@@ -1747,8 +2412,8 @@ function studioFmt(cmd){document.execCommand(cmd,false,null);}
 function studioEmoji(ch){const el=STUDIO.type==='post'?document.getElementById('studio-cap'):document.getElementById('studio-txt');if(el){el.focus();document.execCommand('insertText',false,ch);}}
 function studioSend(){const inp=document.getElementById('cop-inp');const text=(inp?inp.value:'').trim();if(!text)return;if(inp)inp.value='';STUDIO.chat.push({role:'user',text});STUDIO.chat.push({role:'typing'});renderStudioCopilot();setTimeout(()=>{STUDIO.chat=STUDIO.chat.filter(m=>m.role!=='typing');STUDIO.chat.push({role:'bot',text:(S.lang==='en'?"Got it — tap one of the suggestions above and I'll regenerate it live, or keep editing directly.":'收到——点击上方任一建议，我会实时重新生成；也可直接继续编辑。')});renderStudioCopilot();},700);}
 function studioSave(){
-  if(STUDIO.type==='post'){const cap=document.getElementById('studio-cap');if(cap)S.edits[STUDIO.key]=cap.innerHTML.trim();if(STUDIO.img!==STUDIO.key)S.imgSwap[STUDIO.key]=STUDIO.img;else delete S.imgSwap[STUDIO.key];S.approvals[STUDIO.key]='approved';closeStudio();renderView();}
-  else if(STUDIO.type==='text'){const tx=document.getElementById('studio-txt');if(tx)S.tlEdits[STUDIO.key]=tx.innerHTML.trim();S.approvals[STUDIO.key]='approved';closeStudio();renderView();}
+  if(STUDIO.type==='post'){const cap=document.getElementById('studio-cap');if(cap)S.edits[STUDIO.key]=cap.innerHTML.trim();if(STUDIO.img!==STUDIO.key)S.imgSwap[STUDIO.key]=STUDIO.img;else delete S.imgSwap[STUDIO.key];S.approvals[STUDIO.key]='approved';closeStudio();renderView();if(htlActive())toast(L({en:'Approved — now under Touchigh team validation before it goes live.',zh:'已批准——正由 Touchigh 团队复核，之后方可上线。'}));}
+  else if(STUDIO.type==='text'){const tx=document.getElementById('studio-txt');if(tx)S.tlEdits[STUDIO.key]=tx.innerHTML.trim();S.approvals[STUDIO.key]='approved';closeStudio();renderView();if(htlActive())toast(L({en:'Approved — now under Touchigh team validation before it goes live.',zh:'已批准——正由 Touchigh 团队复核，之后方可上线。'}));}
   else {const tx=document.getElementById('studio-txt');if(tx)S.articleEdits[STUDIO.id]=tx.innerHTML.trim();S.articleApproved[STUDIO.id]=true;const id=STUDIO.id;closeStudio();openArticle(id);}
 }
 function closeStudio(){STUDIO=null;closeModal();}
@@ -1774,45 +2439,343 @@ function strategyIntent(raw){
   if(has('price','afford','cost','cheap','value','价格','实惠','成本','性价比')) return {adj:{en:'Added a value / affordability message.',zh:'增加价值 / 实惠信息。'},reply:{en:"Added a value message. I'd pair the price with the \"2.4 kg, no app, one button\" simplicity so it reads as accessible, not cheap.",zh:'已增加价值信息。建议将价格与"2.4 kg、无需 App、一键操作"的简单性搭配，让它读起来是"可及"而非"廉价"。'}};
   return {adj:{en:'Noted: "'+raw.trim().slice(0,60)+'" — refined the positioning accordingly.',zh:'已记录："'+raw.trim().slice(0,60)+'"——据此优化定位。'},reply:{en:"Noted — I've folded that into the positioning. Tell me a persona (rehab / outdoor / commute), a tone, or a channel and I'll re-weight the whole strategy around it.",zh:'已记录——我已将其纳入定位。告诉我一个人物（康复 / 户外 / 通勤）、一种语气或一个渠道，我就会围绕它重新调整整个策略。'}};
 }
-function chatSuggs(){return [
-  {q:'Make the tone of Pillar 2 more energetic',lab:{en:'Pillar 2 → energetic',zh:'支柱 2 → 活力'}},
-  {q:'Lead with outdoor instead',lab:{en:'Lead with Outdoor',zh:'改以户外为主打'}},
-  {q:'Add a caregiver angle for families',lab:{en:'Add caregiver angle',zh:'增加照护者角度'}},
-  {q:'Prioritise Amazon ads',lab:{en:'Prioritise Amazon',zh:'优先 Amazon'}}
-];}
-function chatDrawerHTML(){return `<div class="drawer-head">
-    <span class="ico v" style="width:34px;height:34px;padding:7px;border-radius:10px">${IC.wand}</span>
-    <div style="flex:1"><b style="font-size:14.5px">${L({en:'Strategy Copilot',zh:'策略副驾'})}</b><div class="soft" style="font-size:11.5px">${L({en:'AI · edits the strategy live',zh:'AI · 实时编辑策略'})}</div></div>
+/* ---- module-aware Copilot: one context per workspace, each with its own thread, intro and pre-built asks ---- */
+const CHAT_CONTEXTS={
+  strategy:{icon:'wand',
+    title:{en:'Strategy Copilot',zh:'策略副驾'},sub:{en:'AI · edits the strategy live',zh:'AI · 实时编辑策略'},
+    intro:{en:"Hi — I'm your strategy assistant. Tell me how to adjust ExoStride's US strategy and I'll update it live. Try a suggestion below.",zh:'你好——我是你的策略助手。告诉我如何调整 ExoStride 的美国策略，我会实时更新。可试试下方建议。'},
+    placeholder:{en:'Ask to change the strategy…',zh:'输入以调整策略…'},
+    suggs:[
+      {q:'Make the tone of Pillar 2 more energetic',lab:{en:'Pillar 2 → energetic',zh:'支柱 2 → 活力'}},
+      {q:'Lead with outdoor instead',lab:{en:'Lead with Outdoor',zh:'改以户外为主打'}},
+      {q:'Add a caregiver angle for families',lab:{en:'Add caregiver angle',zh:'增加照护者角度'}},
+      {q:'Prioritise Amazon ads',lab:{en:'Prioritise Amazon',zh:'优先 Amazon'}}
+    ]},
+  social:{icon:'social',
+    title:{en:'Social Copilot',zh:'社媒副驾'},sub:{en:'AI · drafts and tunes your posts',zh:'AI · 撰写并优化你的内容'},
+    intro:{en:"Hi — ask me to draft captions, adjust tone, or explain why a post scored the way it did. Try a suggestion below.",zh:'你好——可以让我起草文案、调整语气，或解释某条内容的评分原因。可试试下方建议。'},
+    placeholder:{en:'Ask about your social content…',zh:'输入关于社媒内容的问题…'},
+    suggs:[
+      {q:'Draft 3 more captions for the rehab pillar',lab:{en:'Draft rehab captions',zh:'起草康复文案'}},
+      {q:'Make the tone more energetic',lab:{en:'More energetic tone',zh:'语气更活力'}},
+      {q:'Why is this post scored so high?',lab:{en:'Explain a score',zh:'解释评分'}},
+      {q:'Suggest a caregiver-angle post',lab:{en:'Caregiver-angle post',zh:'照护者角度内容'}}
+    ]},
+  seo:{icon:'seo',
+    title:{en:'SEO Copilot',zh:'SEO 副驾'},sub:{en:'AI · improves AI-answer visibility',zh:'AI · 提升 AI 答案能见度'},
+    intro:{en:"Hi — ask me why your citation share moved, or to draft a fix or a new GEO article. Try a suggestion below.",zh:'你好——可以问我引用占比为何变化，或让我起草修复方案或新的 GEO 文章。可试试下方建议。'},
+    placeholder:{en:'Ask about SEO · AEO · GEO…',zh:'输入关于 SEO · AEO · GEO 的问题…'},
+    suggs:[
+      {q:'Why did ChatGPT citation share change?',lab:{en:'Explain citation share',zh:'解释引用占比'}},
+      {q:'Draft a fix for the missing FAQ schema',lab:{en:'Draft FAQ schema fix',zh:'起草 FAQ 修复'}},
+      {q:'Suggest 3 new GEO article topics',lab:{en:'Suggest GEO topics',zh:'建议 GEO 选题'}},
+      {q:'Explain what llms.txt does',lab:{en:'Explain llms.txt',zh:'解释 llms.txt'}}
+    ]},
+  ads:{icon:'ads',
+    title:{en:'Ads Copilot',zh:'广告副驾'},sub:{en:'AI · optimizes spend and creative',zh:'AI · 优化投放与素材'},
+    intro:{en:"Hi — ask me why a channel is under target, which ad to scale, or to draft a new hook. Try a suggestion below.",zh:'你好——可以问我某渠道为何未达标、该扩量哪条广告，或让我起草新的钩子。可试试下方建议。'},
+    placeholder:{en:'Ask about ads & budget…',zh:'输入关于广告与预算的问题…'},
+    suggs:[
+      {q:'Why is Meta prospecting under target?',lab:{en:'Explain underperformance',zh:'解释表现不足'}},
+      {q:'Which ad should I scale?',lab:{en:'What should I scale?',zh:'该扩量哪条'}},
+      {q:'Draft a new BOFU hook',lab:{en:'Draft a new hook',zh:'起草新钩子'}},
+      {q:"Explain today's budget shift",lab:{en:'Explain budget shift',zh:'解释预算调整'}}
+    ]}
+};
+/* ---- copilot content mutations: real DATA/state changes behind each pre-built suggestion,
+   drawn from the same pillar/creative variations already in DATA, so the module actually changes ---- */
+function addCopilotDrafts(pillarId,n,stage){
+  S.copilotDrafts=S.copilotDrafts||[];
+  let pool=DATA.creatives.filter(c=>c.pillar===pillarId&&(!stage||c.stage===stage)&&!S.copilotDrafts.includes(c.key));
+  if(!pool.length)pool=DATA.creatives.filter(c=>c.pillar===pillarId&&(!stage||c.stage===stage));
+  pool.slice(0,n).forEach(c=>S.copilotDrafts.unshift(c.key));
+  S.socialTab='library';S.filterPillar='all';S.filterStage='all';
+}
+function toneShiftDrafts(){
+  S.hookOverride=S.hookOverride||{};
+  const targets=(S.copilotDrafts&&S.copilotDrafts.length)?S.copilotDrafts.slice(0,4):filteredCreatives().slice(0,4).map(c=>c.key);
+  targets.forEach(key=>{
+    const cr=DATA.creatives.find(c=>c.key===key);if(!cr)return;
+    const pool=DATA.hooks[cr.pillar][cr.stage];
+    const idx=pool.findIndex(h=>h===cr.hook);
+    S.hookOverride[key]=pool[(idx+1+pool.length)%pool.length];
+  });
+  S.socialTab='library';
+}
+function highlightTopScorer(){
+  const list=filteredCreatives().length?filteredCreatives():DATA.creatives;
+  const top=list.slice().sort((a,b)=>b.score-a.score)[0];
+  if(top){S.chatHighlight=top.key;S.socialTab='library';}
+}
+function addCaregiverDraft(){
+  S.copilotDrafts=S.copilotDrafts||[];
+  const cr=DATA.creatives.find(c=>c.pillar==='P1'&&c.stage==='BOFU'&&L(c.hook).indexOf('afternoon walks')>-1||L(c.hook).indexOf('午后散步')>-1);
+  const key=cr?cr.key:'P1-B-04';
+  if(DATA.creatives.find(c=>c.key===key)&&!S.copilotDrafts.includes(key))S.copilotDrafts.unshift(key);
+  S.caregiver=true;S.socialTab='library';S.filterPillar='all';S.filterStage='all';
+}
+function bumpCitationShare(){
+  const v=DATA.visibility;const old=v.cited;
+  v.prev=old;v.cited=Math.min(99,old+2);
+  v.platforms[0].v=Math.min(99,v.platforms[0].v+3);v.platforms[0].d+=3;
+  S.seoTab='visibility';
+}
+function fixAeoItem(k){const item=DATA.aeo.find(x=>x.k===k);if(item)item.s='pass';S.seoTab='hygiene';S.chatHighlight='aeo:'+k;}
+function addGeoTopics(n){
+  const present=new Set(DATA.trending.map(t=>t.kw.en));
+  const fresh=EXTRA_TRENDING.filter(t=>!present.has(t.kw.en)).slice(0,n);
+  fresh.forEach(t=>DATA.trending.unshift(t));
+  S.seoTab='geo';
+}
+function highlightAeo(k){S.chatHighlight='aeo:'+k;S.seoTab='hygiene';}
+function highlightCampaign(ch,pillar){S.chatHighlight='camp:'+ch+':'+pillar;}
+function scaleTopAd(){
+  const c=DATA.ads.campaigns.find(c=>c.st==='scaling')||DATA.ads.campaigns.slice().sort((a,b)=>b.roas-a.roas)[0];
+  if(c){c.spend+=400;DATA.ads.spend+=400;S.chatHighlight='camp:'+c.ch+':'+c.pillar;}
+}
+function draftBofuHook(){
+  const used=new Set(AD_SEL.map(x=>x.k));
+  let cr=DATA.creatives.find(c=>c.pillar==='P1'&&c.stage==='BOFU'&&!used.has(c.key));
+  if(!cr)cr=DATA.creatives.find(c=>c.stage==='BOFU'&&!used.has(c.key));
+  if(!cr)return;
+  S.hookOverride=S.hookOverride||{};
+  S.hookOverride[cr.key]={en:'80% less load, from the first step.',zh:'从第一步起，减负 80%。'};
+  AD_SEL.unshift({k:cr.key,ch:'Meta',spend:0,roas:0,f:0,draft:true});
+  S.copilotDrafts=S.copilotDrafts||[];S.copilotDrafts.unshift(cr.key);
+}
+function animateBudgetShift(){
+  const amz=DATA.ads.campaigns.find(c=>c.ch==='Amazon'&&c.pillar==='P1');
+  const meta=DATA.ads.campaigns.find(c=>c.ch==='Meta'&&c.pillar==='P3');
+  if(amz&&meta&&meta.spend>250){const shift=Math.min(300,meta.spend-200);meta.spend-=shift;amz.spend+=shift;S.chatHighlight='camp:Amazon:P1';}
+}
+const MODULE_REPLIES={
+  social:[
+    {k:['draft','caption','write'],r:{en:"Drafted 3 new caption variants for the rehab pillar — check the Social workspace, they're queued in your review list.",zh:'已为康复支柱起草 3 条新文案——请在社媒工作区查看，已加入待审队列。'},mutate:()=>addCopilotDrafts('P1',3)},
+    {k:['energetic','tone','energ'],r:{en:'Tone adjusted — more energetic, kept the dignity core. Applied to the next batch of drafts — look for the updated captions.',zh:'语气已调整——更具活力，同时保留尊严内核，已应用于下一批草稿——请查看已更新的文案。'},mutate:toneShiftDrafts},
+    {k:['score','why','clickability'],r:{en:'That post scores high on a strong hook plus a specific number ("80% less load") — both correlate with clickability across your account. I\'ve highlighted it below.',zh:'该内容因强钩子加具体数字（"减负 80%"）获得高分——这两者在你的账户中与点击率高度相关。已为你在下方高亮标出。'},mutate:highlightTopScorer},
+    {k:['caregiver','family'],r:{en:'Drafted a caregiver-angle post: "Give them back their afternoon walks." Queued under the Comeback Walker pillar.',zh:'已起草一条照护者角度的内容："把午后散步还给他们。"已加入重启行者支柱。'},mutate:addCaregiverDraft}
+  ],
+  seo:[
+    {k:['citation','chatgpt','why','change'],r:{en:'ChatGPT citation share moved with your last GEO article publish — new structured proof points tend to get picked up within 5-7 days. Numbers below just ticked up to reflect it.',zh:'ChatGPT 引用占比随你上一次 GEO 文章发布而变化——新增的结构化实证信息通常在 5-7 天内被收录。下方数据已随之更新。'},mutate:bumpCitationShare},
+    {k:['faq','schema','draft'],r:{en:'Drafted an FAQ schema fix covering weight, assist time and IP rating — marked healthy in Website hygiene below.',zh:'已起草涵盖重量、助力时长与防护等级的 FAQ 结构化数据修复——网站健康度中已标记为健康。'},mutate:()=>fixAeoItem('FAQ schema')},
+    {k:['topic','geo article','suggest'],r:{en:'Queued 3 new GEO topics — check Programmatic GEO, they\'re pinned at the top of Trending now.',zh:'已生成 3 个新的 GEO 选题——请在程序化 GEO 中查看，已置顶于"当前趋势"。'},mutate:()=>addGeoTopics(3)},
+    {k:['llms.txt','llms'],r:{en:"llms.txt tells AI crawlers which pages are the authoritative source for your product claims — it's why ChatGPT and Perplexity cite you accurately. I've highlighted that row in Website hygiene.",zh:'llms.txt 告诉 AI 爬虫哪些页面是你产品主张的权威来源——这也是 ChatGPT 与 Perplexity 能准确引用你的原因。已在网站健康度中为你高亮该项。'},mutate:()=>highlightAeo('llms.txt')}
+  ],
+  ads:[
+    {k:['meta','prospecting','under','target'],r:{en:'Meta prospecting is under target because frequency hit 9.4 on a small pool — highlighted the row below.',zh:'Meta 拓新未达标是因为在小受众池上频次已达 9.4——已在下方高亮该行。'},mutate:()=>highlightCampaign('Meta','P3')},
+    {k:['scale','which ad'],r:{en:"Scale the Amazon rehab campaign — it's running the best ROAS against your 3× target, the clearest headroom in the account. Bumped its budget below.",zh:'建议扩量 Amazon 康复投放——其 ROAS 表现最佳，远超 3× 目标，是账户中最明显的加投空间。已在下方为其提升预算。'},mutate:scaleTopAd},
+    {k:['hook','draft','bofu'],r:{en:'Drafted a new BOFU hook: "80% less load, from the first step." Added it to your live ad creatives below.',zh:'已起草新的 BOFU 钩子："从第一步起，减负 80%。"已加入下方在投素材。'},mutate:draftBofuHook},
+    {k:['budget','shift','today'],r:{en:"Today's shift moved budget from Meta prospecting (below target) to Amazon rehab — the standard autopilot reallocation rule. Bars below reflect the new split.",zh:'今日调整已将预算从 Meta 拓新（未达标）转向 Amazon 康复——这是自动驾驶的标准再分配规则。下方柱状图已反映新的分配。'},mutate:animateBudgetShift}
+  ]
+};
+function moduleReply(ctx,text){
+  const tl=text.toLowerCase();
+  const hit=(MODULE_REPLIES[ctx]||[]).find(c=>c.k.some(k=>tl.includes(k)));
+  if(hit)return {reply:hit.r,mutate:hit.mutate};
+  const modName=L(CHAT_CONTEXTS[ctx].title).replace(' Copilot','').replace(' 副驾','');
+  return {reply:{en:"Noted — I've logged that for "+modName+". Try one of the suggestions below for something I can act on right now.",zh:'已记录——我已为'+modName+'团队记下此项。你也可以试试下方建议，我可以立即处理。'}};
+}
+function chatLog(){if(!S.chatByContext[S.chatContext])S.chatByContext[S.chatContext]=[];return S.chatByContext[S.chatContext];}
+function chatDrawerHTML(){
+  if(!planAllows('copilot'))return ticketDrawerHTML();
+  const human=S.chatAgent==='human';
+  const ctx=CHAT_CONTEXTS[S.chatContext]||CHAT_CONTEXTS.strategy;
+  return `<div class="drawer-head">
+    <span class="ico ${human?'g':'v'}" style="width:34px;height:34px;padding:7px;border-radius:10px">${human?IC.headset:IC[ctx.icon]}</span>
+    <div style="flex:1"><b style="font-size:14.5px">${human?L({en:'Mira · Customer Success',zh:'Mira · 客户成功经理'}):L(ctx.title)}</b><div class="soft" style="font-size:11.5px">${human?L({en:'Human agent · connected',zh:'人工客服 · 已接入'}):L(ctx.sub)}</div></div>
+    ${planAllows('humanHandoff')?`<button class="ghost sm" onclick="toggleHumanAgent()"><span style="width:12px;height:12px;display:inline-block">${human?IC.wand:IC.headset}</span>${human?L({en:'Back to AI',zh:'切回 AI'}):L({en:'Human agent',zh:'转人工'})}</button>`:''}
     <button class="icobtn" onclick="toggleChat(false)">${IC.x}</button>
   </div>
+  <div class="chat-task-bar" id="chat-task-bar">${chatTaskBarHTML(S.chatContext)}</div>
   <div class="chat-body" id="chat-body"></div>
-  <div class="chat-sugg">${chatSuggs().map(s=>`<button onclick="sendChat('${s.q.replace(/'/g,"\\'")}')">${L(s.lab)}</button>`).join('')}</div>
-  <div class="chat-input"><input id="chat-inp" placeholder="${L({en:'Ask to change the strategy…',zh:'输入以调整策略…'})}" onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">${IC.arrow}</button></div>`;}
+  <div class="chat-sugg">${ctx.suggs.map(s=>`<button onclick="sendChat('${s.q.replace(/'/g,"\\'")}')">${L(s.lab)}</button>`).join('')}</div>
+  <div class="chat-input"><input id="chat-inp" placeholder="${human?L({en:'Message Mira…',zh:'给 Mira 发消息…'}):L(ctx.placeholder)}" onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">${IC.arrow}</button></div>`;
+}
+/* Starter-tier drawer: no live AI chat, no human agent — support-ticket submission only */
+function ticketDrawerHTML(){
+  const ctx=CHAT_CONTEXTS[S.chatContext]||CHAT_CONTEXTS.strategy;
+  const modName=L(ctx.title).replace(' Copilot','').replace(' 副驾','');
+  if(S.ticketConfirm){
+    return `<div class="drawer-head">
+      <span class="ico g" style="width:34px;height:34px;padding:7px;border-radius:10px">${IC.check}</span>
+      <div style="flex:1"><b style="font-size:14.5px">${L({en:'Ticket submitted',zh:'工单已提交'})}</b><div class="soft" style="font-size:11.5px">${modName}</div></div>
+      <button class="icobtn" onclick="toggleChat(false)">${IC.x}</button>
+    </div>
+    <div class="chat-body">
+      <div class="ticket-confirm">
+        <span style="width:36px;height:36px;display:inline-block;color:var(--green);margin-bottom:10px">${IC.check}</span>
+        <b style="font-size:14.5px">${L({en:'Ticket '+S.ticketConfirm+' submitted',zh:'工单 '+S.ticketConfirm+' 已提交'})}</b>
+        <p class="muted" style="font-size:13px;line-height:1.5;margin-top:8px">${L({en:'Our support team typically replies within 1 business day'+(S.user&&S.user.email?' at '+S.user.email:'')+'.',zh:'我们的支持团队通常在 1 个工作日内通过邮件回复'+(S.user&&S.user.email?'（'+S.user.email+'）':'')+'。'})}</p>
+        <button class="ghost sm" style="margin-top:16px" onclick="S.ticketConfirm=null;const d=document.getElementById('chat-drawer');if(d)d.innerHTML=chatDrawerHTML();">${L({en:'Submit another ticket',zh:'提交新工单'})}</button>
+      </div>
+    </div>`;
+  }
+  return `<div class="drawer-head">
+    <span class="ico" style="width:34px;height:34px;padding:7px;border-radius:10px;background:#F1EEE8;color:var(--soft)">${IC.headset}</span>
+    <div style="flex:1"><b style="font-size:14.5px">${L({en:'Support',zh:'支持'})} · ${modName}</b><div class="soft" style="font-size:11.5px">${L({en:'Starter plan',zh:'入门版'})}</div></div>
+    <button class="icobtn" onclick="toggleChat(false)">${IC.x}</button>
+  </div>
+  <div class="chat-body">
+    <div class="msg sys" style="max-width:100%">${L({en:'Live AI Copilot chat and human agents are not included on Starter.',zh:'入门版不含实时 AI 副驾聊天与人工客服。'})}</div>
+    <div class="msg bot">${L({en:"You can still reach the Touchigh team by opening a support ticket below — we typically reply within 1 business day. Upgrade to Growth to unlock live AI Copilot chat, human handoff and autopilot.",zh:'你仍可通过下方工单联系 Touchigh 团队——我们通常在 1 个工作日内回复。升级至成长版即可解锁实时 AI 副驾聊天、转人工与自动驾驶。'})}</div>
+  </div>
+  <div class="ticket-form">
+    <label>${L({en:'Subject',zh:'主题'})}</label>
+    <input id="ticket-subject" value="${L({en:modName+' question',zh:modName+' 相关问题'}).replace(/"/g,'&quot;')}" />
+    <label>${L({en:'Message',zh:'消息'})}</label>
+    <textarea id="ticket-msg" placeholder="${L({en:'Describe what you need help with…',zh:'请描述你需要的帮助…'})}"></textarea>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="ghost sm" style="flex:1" onclick="toggleChat(false);setView('plan')">${L({en:'View plans',zh:'查看套餐'})}</button>
+      <button class="cta sm" style="flex:1" onclick="submitTicket()">${L({en:'Submit ticket',zh:'提交工单'})}</button>
+    </div>
+  </div>`;
+}
+function submitTicket(){
+  const subjEl=document.getElementById('ticket-subject'), msgEl=document.getElementById('ticket-msg');
+  const subj=(subjEl&&subjEl.value||'').trim(), msg=(msgEl&&msgEl.value||'').trim();
+  if(!msg){if(msgEl){msgEl.style.borderColor='var(--red)';msgEl.focus();}return;}
+  const id='TG-'+Math.floor(1000+Math.random()*9000);
+  S.tickets.push({id,ctx:S.chatContext,subj,msg,status:'open',createdAt:Date.now(),resolvedAt:null,resolvedBy:null,reply:null});
+  S.ticketConfirm=id;
+  const d=document.getElementById('chat-drawer'); if(d)d.innerHTML=chatDrawerHTML();
+  pushNotification({icon:IC.ticket,color:'var(--orange)',text:L({en:'Ticket <b>'+id+'</b> submitted — the Touchigh team typically replies within 1 business day.',zh:'工单 <b>'+id+'</b> 已提交——团队通常在 1 个工作日内回复。'})});
+  refreshNavBadge();
+  if(S.view==='messages')renderView();
+  setTimeout(()=>{
+    const tk=S.tickets.find(x=>x.id===id); if(!tk||tk.status!=='open')return;
+    tk.status='resolved'; tk.resolvedBy='operator'; tk.resolvedAt=Date.now();
+    tk.reply=L({en:"Thanks for reaching out — this is resolved on our end. Reply here (or open a new ticket) if you need anything else.",zh:'感谢联系——此问题已在我们这边处理完毕。如需其他帮助，请在此回复或提交新工单。'});
+    toast(L({en:'Ticket '+id+' resolved by Touchigh support.',zh:'工单 '+id+' 已由 Touchigh 支持团队解决。'}),IC.check);
+    pushNotification({icon:IC.check,color:'var(--green)',text:L({en:'Ticket <b>'+id+'</b> marked resolved by the Touchigh team.',zh:'工单 <b>'+id+'</b> 已由 Touchigh 团队标记为已解决。'})});
+    refreshNavBadge();
+    if(S.view==='messages')renderView();
+  },5200);
+}
+/* =========================================================================
+   MESSAGES: unified chat/task log across every module (OSOME-style)
+   ========================================================================= */
+function moduleNameFor(ctx){return L((CHAT_CONTEXTS[ctx]||{title:{en:ctx,zh:ctx}}).title).replace(' Copilot','').replace(' 副驾','');}
+function messageThreadRowHTML(ctx){
+  const c=CHAT_CONTEXTS[ctx];
+  const tk=taskFor(ctx);
+  const resolved=tk.status==='resolved';
+  const log=(S.chatByContext[ctx]||[]).filter(m=>m.role!=='typing');
+  const last=log[log.length-1];
+  const preview=last?(last.role==='sys'?L({en:'System note',zh:'系统提示'}):(last.text||'')):'';
+  return `<div class="task-row" onclick="toggleChat(true,'${ctx}')">
+    <div class="task-ic" style="background:${resolved?'#E1F5EF':'#F1EEE8'};color:${resolved?'var(--green)':'var(--violet)'}">${IC[c.icon]}</div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;justify-content:space-between"><b style="font-size:13.5px">${moduleNameFor(ctx)}</b><span class="soft" style="font-size:11px;white-space:nowrap">${relTime(tk.updatedAt)}</span></div>
+      <div class="muted" style="font-size:12px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${preview.replace(/</g,'&lt;')}</div>
+    </div>
+    <span class="task-status ${resolved?'resolved':'open'}">${resolved?L({en:'Resolved',zh:'已解决'}):L({en:'Open',zh:'进行中'})}</span>
+  </div>`;
+}
+function messageTicketRowHTML(tk){
+  const resolved=tk.status==='resolved';
+  return `<div class="task-row" onclick="openTicketDetail('${tk.id}')">
+    <div class="task-ic" style="background:${resolved?'#E1F5EF':'#FFF3D9'};color:${resolved?'var(--green)':'var(--orange-d)'}">${IC.ticket}</div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;justify-content:space-between"><b style="font-size:13.5px">${(tk.subj||L({en:'Support ticket',zh:'支持工单'})).replace(/</g,'&lt;')}</b><span class="soft" style="font-size:11px;white-space:nowrap">${relTime(resolved?tk.resolvedAt:tk.createdAt)}</span></div>
+      <div class="muted" style="font-size:12px;margin-top:2px">${tk.id} · ${moduleNameFor(tk.ctx)}</div>
+    </div>
+    <span class="task-status ${resolved?'resolved':'open'}">${resolved?L({en:'Resolved',zh:'已解决'}):L({en:'Open',zh:'进行中'})}</span>
+  </div>`;
+}
+function openTicketDetail(id){
+  const tk=S.tickets.find(x=>x.id===id); if(!tk)return;
+  const resolved=tk.status==='resolved';
+  openModal(`<div class="reader" style="width:min(440px,100%)">
+    <div class="reader-head"><button class="reader-close" onclick="closeModal()">${IC.x}</button>
+      <span class="chip" style="margin-bottom:10px">${IC.ticket}${tk.id}</span>
+      <h1 style="font-size:18px">${(tk.subj||L({en:'Support ticket',zh:'支持工单'})).replace(/</g,'&lt;')}</h1>
+      <p class="muted" style="font-size:12px;margin-top:4px">${moduleNameFor(tk.ctx)} · ${relTime(tk.createdAt)}</p>
+    </div>
+    <div class="reader-body">
+      <div class="msg user" style="max-width:100%;margin-bottom:12px">${(tk.msg||'').replace(/</g,'&lt;')}</div>
+      ${resolved?`<div class="msg bot" style="max-width:100%">${tk.reply||''}</div>
+      <p class="soft" style="font-size:11.5px;margin-top:10px">${L({en:'Resolved by the Touchigh team',zh:'由 Touchigh 团队解决'})} · ${relTime(tk.resolvedAt)}</p>`
+      :`<p class="soft" style="font-size:12px">${L({en:'Awaiting a reply from the Touchigh team — usually within 1 business day.',zh:'正在等待 Touchigh 团队回复——通常在 1 个工作日内。'})}</p>`}
+    </div></div>`);
+}
+SCREENS.messages=()=>{
+  const chatRows=Object.keys(CHAT_CONTEXTS).filter(ctx=>S.chatByContext[ctx]&&S.chatByContext[ctx].filter(m=>m.role!=='typing').length)
+    .map(ctx=>({at:taskFor(ctx).updatedAt,html:messageThreadRowHTML(ctx)}));
+  const ticketRows=S.tickets.map(tk=>({at:tk.resolvedAt||tk.createdAt,html:messageTicketRowHTML(tk)}));
+  const all=chatRows.concat(ticketRows).sort((a,b)=>(b.at||0)-(a.at||0));
+  const openCount=openTaskCount();
+  const empty=`<div style="padding:60px 20px;text-align:center">
+      <span style="width:40px;height:40px;display:inline-block;color:var(--soft);margin-bottom:10px">${IC.msg}</span>
+      <b style="font-size:14.5px;display:block">${L({en:'No conversations yet',zh:'暂无对话'})}</b>
+      <p class="muted" style="font-size:12.5px;margin-top:6px;max-width:320px;margin-left:auto;margin-right:auto">${L({en:'Chats with your Copilot and support tickets across every module show up here, so you can track what still needs a reply.',zh:'你与副驾的聊天以及各模块的支持工单都会显示在此处，方便追踪哪些仍需回复。'})}</p>
+    </div>`;
+  return `<div class="crumb"><b>${L(UI.messages)}</b> · ${currentAccount().name}</div>
+  <div class="page-head"><h1>${L({en:'Messages',zh:'消息'})}</h1><p>${L({en:'Every Copilot conversation and support ticket across Strategy, Social, SEO and Ads, in one place, so you always know what is open and what has been resolved.',zh:'来自策略、社媒、SEO 与广告各模块的每一次副驾对话与支持工单——集中于此，让你随时了解哪些仍待处理、哪些已解决。'})}</p></div>
+  ${openCount?`<div class="chip" style="margin-bottom:14px;color:var(--orange-d);border-color:#FFD2B8">${IC.bolt}${L({en:openCount+' open',zh:openCount+' 项进行中'})}</div>`:''}
+  <div>${all.length?all.map(r=>r.html).join(''):empty}</div>`;
+};
 function renderChatMsgs(){
   const b=document.getElementById('chat-body'); if(!b) return;
-  const intro=`<div class="msg bot">${L({en:"Hi — I'm your strategy assistant. Tell me how to adjust ExoStride's US strategy and I'll update it live. Try a suggestion below.",zh:'你好——我是你的策略助手。告诉我如何调整 ExoStride 的美国策略，我会实时更新。可试试下方建议。'})}</div>`;
-  b.innerHTML=intro+S.chat.map(m=>{if(m.role==='typing')return `<div class="msg typing">${L({en:'typing…',zh:'正在输入…'})}</div>`;return `<div class="msg ${m.role}">${(m.text||'').replace(/</g,'&lt;')}</div>`;}).join('');
+  const ctx=CHAT_CONTEXTS[S.chatContext]||CHAT_CONTEXTS.strategy;
+  const intro=`<div class="msg bot">${L(ctx.intro)}</div>`;
+  b.innerHTML=intro+chatLog().map(m=>{if(m.role==='typing')return `<div class="msg typing">${L({en:'typing…',zh:'正在输入…'})}</div>`;return `<div class="msg ${m.role}">${(m.text||'').replace(/</g,'&lt;')}</div>`;}).join('');
   b.scrollTop=b.scrollHeight;
 }
-function toggleChat(open){
+function toggleChat(open,ctx){
   S.chatOpen=open; let d=document.getElementById('chat-drawer');
-  if(!open){if(d)d.remove();return;}
+  if(!open){if(d)d.remove();S.chatAgent='ai';renderCopilotBubble();return;}
+  S.chatContext=ctx||contextForView()||S.chatContext||'strategy';
+  S.ticketConfirm=null;
   if(!d){d=document.createElement('div');d.className='drawer';d.id='chat-drawer';document.body.appendChild(d);}
-  d.innerHTML=chatDrawerHTML(); renderChatMsgs();
-  setTimeout(()=>{const i=document.getElementById('chat-inp');if(i)i.focus();},60);
+  d.innerHTML=chatDrawerHTML(); if(planAllows('copilot'))renderChatMsgs();
+  setTimeout(()=>{const i=document.getElementById('chat-inp')||document.getElementById('ticket-subject');if(i)i.focus();},60);
+  renderCopilotBubble();
+}
+/* persistent bottom-right copilot bubble — visible on every screen once logged in */
+function copilotBubbleHTML(){
+  const locked=!planAllows('copilot');
+  const cv=contextForView();
+  const ctx=CHAT_CONTEXTS[cv||S.chatContext||'strategy'];
+  const icon=S.chatOpen?IC.x:(locked?IC.headset:(IC[ctx.icon]||IC.wand));
+  const label=S.chatOpen?L({en:'Close',zh:'关闭'}):(locked?L({en:'Support',zh:'支持'}):L({en:'Copilot',zh:'副驾'})+' · '+L(ctx.title).replace(' Copilot','').replace(' 副驾',''));
+  return `<button class="copilot-bubble ${locked?'locked':''}" onclick="toggleChat(${S.chatOpen?'false':'true'})" title="${label}">${icon}</button>`;
+}
+function renderCopilotBubble(){
+  if(!S.user)return;
+  let b=document.getElementById('copilot-bubble-wrap');
+  if(!b){b=document.createElement('div');b.id='copilot-bubble-wrap';document.body.appendChild(b);}
+  b.innerHTML=copilotBubbleHTML();
+}
+function toggleHumanAgent(){
+  if(!planAllows('humanHandoff')){upgradeNudge('humanHandoff');return;}
+  S.chatAgent=S.chatAgent==='human'?'ai':'human';
+  chatLog().push({role:'sys',text:S.chatAgent==='human'
+    ? L({en:"You're now connected with Mira, your Customer Success Manager. She can see this conversation and will pick up from here.",zh:'你现已接通 Mira，你的客户成功经理。她可以看到本对话记录，将从这里继续为你服务。'})
+    : L({en:"Back with your Copilot (AI).",zh:'已切回副驾（AI）。'})});
+  const d=document.getElementById('chat-drawer'); if(d){d.innerHTML=chatDrawerHTML(); renderChatMsgs();}
 }
 function sendChat(preset){
   const inp=document.getElementById('chat-inp'); const text=(preset||(inp?inp.value:'')||'').trim(); if(!text)return;
   if(inp)inp.value='';
-  S.chat.push({role:'user',text}); S.chat.push({role:'typing'}); renderChatMsgs();
-  const intent=strategyIntent(text);
+  const human=S.chatAgent==='human'; const ctx=S.chatContext;
+  chatLog().push({role:'user',text});
+  touchTask(ctx); updateChatTaskBar(); refreshNavBadge();
+  if(!human&&!spendCredits(CREDIT_COSTS.chat)){
+    chatLog().push({role:'sys',text:L({en:"You're out of AI credits for this period — upgrade for more, or switch to your human team if included on your plan.",zh:'本周期 AI 额度已用完——可升级获取更多额度，或转接人工团队（如你的套餐包含）。'})});
+    renderChatMsgs();updateCreditsChip();return;
+  }
+  chatLog().push({role:'typing'}); renderChatMsgs(); updateCreditsChip();
+  const intent=ctx==='strategy'?strategyIntent(text):moduleReply(ctx,text);
   setTimeout(()=>{
-    S.chat=S.chat.filter(m=>m.role!=='typing'); S.chat.push({role:'bot',text:L(intent.reply)});
+    if(!human&&intent.mutate&&spendCredits(CREDIT_COSTS.generate))intent.mutate();
+    const log=chatLog(); S.chatByContext[ctx]=log.filter(m=>m.role!=='typing'); chatLog().push({role:human?'human':'bot',text:L(intent.reply)});
     if(intent.lead)S.leadPillar=intent.lead; if(intent.caregiver)S.caregiver=true; if(intent.personality)S.personality=intent.personality;
     if(intent.pillarTone)S.pillarTone[intent.pillarTone.pid]=intent.pillarTone.tone;
     if(intent.adj)S.adjustments.push(intent.adj);
-    renderChatMsgs(); if(S.view==='strategy')renderView();
-  },850);
+    touchTask(ctx); updateChatTaskBar(); refreshNavBadge();
+    renderChatMsgs(); if(S.view===ctx)renderView(); updateCreditsChip();
+    if(S.view==='messages')renderView();
+  },human?1200:850);
 }
 function adjBanner(){return `<div class="adj-banner"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><b style="color:var(--violet);font-size:13.5px"><span style="width:14px;height:14px;display:inline-block;vertical-align:-2px">${IC.wand}</span> ${L({en:'Adjustments from your chat',zh:'来自你对话的调整'})}</b><button class="linkbtn" onclick="resetAdjustments()">${L({en:'reset',zh:'重置'})}</button></div><div style="margin-top:6px">${S.adjustments.map(a=>`<span class="adj-chip">${L(a)}</span>`).join('')}</div></div>`;}
 function resetAdjustments(){S.adjustments=[];S.leadPillar='P1';S.caregiver=false;S.personality=null;S.pillarTone={};if(S.view==='strategy')renderView();}
