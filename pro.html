@@ -2626,7 +2626,7 @@ function initDeck(){const decks=$$('#agentInner .deck');const deck=decks[decks.l
    The credentials entered at sign-in are hashed in-browser (Web Crypto) and compared
    against these digests; the digests themselves cannot be reversed back into the
    original email/password. */
-const AUTH_H=["cd982a91cd95f2da25bc229b5d90f2648b4b8c8008febeebbce15475866866a1","a171bb8230e6b73270ed0bfe23fa76c2fac049b7b242f417050aa59823207ec1","83e2d69be4b81d5a69fc787a7fcbbdca8abd0b7846548e11d1adde4b5c29d75e"];
+const AUTH_H=["cd982a91cd95f2da25bc229b5d90f2648b4b8c8008febeebbce15475866866a1","a171bb8230e6b73270ed0bfe23fa76c2fac049b7b242f417050aa59823207ec1","83e2d69be4b81d5a69fc787a7fcbbdca8abd0b7846548e11d1adde4b5c29d75e","51117dd93ed50c39f07e4ebf31f7ce4bccdca3085706f25b390cc0035dfa2662"];
 async function sha256Hex(str){const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
 async function doLogin(){const u=($('#lu').value||'').trim().toLowerCase(),p=($('#lp').value||'').trim();
   if(!u||!p){$('#lerr').textContent=tt('Enter your email and password.','请输入邮箱和密码。');return;}
