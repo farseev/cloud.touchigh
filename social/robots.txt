@@ -1,0 +1,34 @@
+# Touchigh Social prototype. It contains client workspace data, so keep it out of search and AI indexes.
+# Every page also carries <meta name="robots" content="noindex">.
+
+User-agent: *
+Disallow: /
+
+# AI crawlers, named explicitly
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bytespider
+User-agent: Meta-ExternalAgent
+User-agent: Amazonbot
+Disallow: /
+
+# Link-preview bots may fetch the page so shared links unfurl with the preview card
+User-agent: Twitterbot
+User-agent: facebookexternalhit
+User-agent: LinkedInBot
+User-agent: Slackbot-LinkExpanding
+User-agent: WhatsApp
+User-agent: TelegramBot
+User-agent: Discordbot
+Allow: /
+Disallow: /ws/
