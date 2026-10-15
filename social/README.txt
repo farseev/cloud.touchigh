@@ -1,19 +1,17 @@
-Touchigh Social prototype (self-hostable copy)
+Touchigh Social prototype (self-hostable, protected copy)
 
-Open index.html in Chrome, Edge or Safari, or upload this folder to any static host.
-Keep ws/ next to index.html: the page loads each workspace and its insight engine from there when you switch.
+Sign-in
+- Open index.html and sign in with an allowed @touchigh.ai email and the team password.
+- The app and every file in ws/ are encrypted. They only open in the browser after a correct sign-in,
+  so the folder is safe to put on any static host.
+- Host it over https (or open it straight from disk). Browsers only allow the decryption over a secure connection.
 
-Included for hosting
-- Favicons: favicon.ico, favicon.svg, apple-touch-icon.png, icon-192.png, icon-512.png, site.webmanifest
-- Social preview: og-image.png (1200 x 630) with Open Graph and X card tags
-- robots.txt plus a noindex robots meta tag. Search engines and AI crawlers stay out;
-  link-preview bots can still fetch the page and image so shared links show a card.
-  The prototype holds client workspace data, which is why indexing is off.
+Optional server-side Basic Auth (Apache)
+- server-auth/.htaccess and server-auth/.htpasswd hold one login per allowed email with the same team password (bcrypt hashes).
+- Put .htpasswd outside the web root, set its absolute path in .htaccess, and copy .htaccess next to index.html.
+- nginx: use the same file with  auth_basic "Touchigh Social";  auth_basic_user_file /path/to/.htpasswd;
+- With Basic Auth on, link previews (Slack, LinkedIn, X) can't fetch the page, so shared links won't show a card.
 
-Before you share a hosted link
-1. og:image and twitter:image are relative paths. Facebook, LinkedIn and X need a full URL.
-   Ask for a rebuild with your address, or replace "og-image.png" in those two tags with the full URL.
-2. robots.txt only works at the root of a domain. If the prototype sits in a subfolder,
-   merge its rules into that domain's robots.txt.
-3. For stronger protection, send the header "X-Robots-Tag: noindex, nofollow, noarchive"
-   or put the folder behind a password.
+Social preview and robots
+- og:image and twitter:image are relative paths. Facebook, LinkedIn and X need a full URL: ask for a rebuild with your address.
+- robots.txt and the robots meta tag keep search engines and AI crawlers out. robots.txt only works at the root of a domain.

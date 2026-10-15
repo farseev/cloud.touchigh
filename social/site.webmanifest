@@ -1,7 +1,7 @@
 {
   "name": "Touchigh Social",
   "short_name": "Touchigh",
-  "description": "Plan, publish, engage and listen across China's and global social networks in one calendar, with SOMIN insights and an AI assistant. Interactive prototype.",
+  "description": "Plan, publish, engage and listen across China's and global social networks in one calendar, with SOMIN insights and Spark, the AI assistant. Interactive prototype.",
   "lang": "zh-CN",
   "start_url": "./",
   "scope": "./",
